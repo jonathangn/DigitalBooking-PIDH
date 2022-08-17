@@ -1,0 +1,11 @@
+#folders
+Back end
+BasesDeDatos
+Infraestructura
+Testing
+webServer
+.vscode
+
+#ficheros
+errores_digital_booking.log
+.gitignore
