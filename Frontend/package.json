@@ -36,6 +36,7 @@
     "util": "^0.12.4",
     "web-vitals": "^2.1.4"
   },
+  "engines": { "node": "14.x" },
   "jest": {
     "transformIgnorePatterns": [
       "/node_modules/(?!(react-syntax-highlighter)/)"
