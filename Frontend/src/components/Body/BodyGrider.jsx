@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { DataContext } from "../Context/DataContext";
 import Glider from "react-glider";
 import "glider-js/glider.min.css";
 import Api from "../../Helpers/Api";
 
 import scrollTo from "../../funcionesJS/scrollTo";
-import { Autoplay } from "swiper";
 
 function Grider() {
   const dataReady = useContext(DataContext);

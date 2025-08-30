@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { DataContext } from "../Context/DataContext";
+import React from "react";
 import Seeker from "./BodySeeker";
 import Grider from "./BodyGrider";
 import Listing from "./BodyListing";

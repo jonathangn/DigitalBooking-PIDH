@@ -1,19 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { DataContext } from "../Context/DataContext";
 import { Link } from "react-router-dom";
 import { GoLocation } from "react-icons/go";
 import { BsWifi } from "react-icons/bs";
 import { BiSwim } from "react-icons/bi";
-import Api from "../../Helpers/Api";
 
 const Listing = () => {
   const dataReady = useContext(DataContext);
   const products = useContext(DataContext);
-
-  // const results = 4;
-  // const [dataAPI, setDataAPI] = useState(products.products);
-  // const [pagination, setPagination] = useState([...dataAPI].splice(0, results));
-  // const [currentShowing, setCurrentShowing] = useState(0);
 
   if (!dataReady) {
     return (
@@ -23,11 +17,7 @@ const Listing = () => {
     );
   } else {
     let feedback = [];
-    // let average = () =>
-
     const check = document.getElementById("bt-create-account");
-    // const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-    // const productsS = shuffle(products.products);
 
     if (check) {
       return (
@@ -80,8 +70,6 @@ const Listing = () => {
                               ? "Muy bueno"
                               : "Regular"}
                           </h5>
-                          {/* <p className="review-number"> 8 </p>
-                          <h5 className="review-text">Muy Bueno</h5> */}
                         </div>
 
                         <h4>
@@ -125,12 +113,6 @@ const Listing = () => {
         </div>
       );
     } else {
-      // let feedback = [];
-      // let average = () =>
-      //   Math.trunc(
-      //     feedback.reduce((prev, curr) => (prev += curr)) / feedback.length
-      //   ) * 2;
-
       return (
         <div className="listing-container">
           <h1>Recomendaciones</h1>
@@ -181,8 +163,6 @@ const Listing = () => {
                               ? "Muy bueno"
                               : "Regular"}
                           </h5>
-                          {/* <p className="review-number"> 8 </p>
-                          <h5 className="review-text">Muy Bueno</h5> */}
                         </div>
 
                         <h4>

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { DateContext } from "../../components/Context/DateContext";
 import DatePicker, { registerLocale } from "react-datepicker";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 import "react-datepicker/dist/react-datepicker.css";
-import dateFormat, { masks } from "dateformat";
 import parseISO from "date-fns/parseISO";
 import swal from "sweetalert";
 import es from "date-fns/locale/es";
@@ -12,9 +11,6 @@ registerLocale("es", es);
 
 const Calendar = () => {
   const booking = useContext(DateContext);
-  const startDates = useContext(DateContext);
-  const endDates = useContext(DateContext);
-  const excluded = useContext(DateContext);
 
   const arrayExcluded = [];
   let exclutions = [];
