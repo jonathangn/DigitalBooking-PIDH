@@ -136,7 +136,6 @@ const Seeker = () => {
         />
 
         <div className="seeker-picker css-b62m3t-container">
-          <div>
             <DatePicker
               startDate={startDate}
               endDate={endDate}
@@ -153,7 +152,6 @@ const Seeker = () => {
               locale="es"
               className="input-level seeker-item"
             />
-          </div>
         </div>
         <div className="">
           <button

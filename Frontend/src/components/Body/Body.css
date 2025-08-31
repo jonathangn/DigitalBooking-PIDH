@@ -36,8 +36,20 @@
   display: unset !important;
 }
 
+.react-datepicker-wrapper {
+  display: contents;
+}
+
 .seeker-item {
   margin: 0 1%;
+
+  > div > div > div {
+    height: 42px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
 }
 
 /* .seeker-picker{
@@ -59,7 +71,7 @@
 }
 
 .seeker-select {
-  height: 5rem;
+  padding-bottom: 2em;
   margin: auto;
   display: flex;
   max-width: 1024px;
@@ -210,11 +222,11 @@
 }
 
 .grider-card-item:hover {
-  transform: scale(1.1);
+  transform: scale(1.02);
 
-  box-shadow: 0px 10px 10px #74757e6b;
+  /* box-shadow: 0px 10px 10px #74757e6b;
   -webkit-box-shadow: 0px 10px 10px #74757e6b;
-  -moz-box-shadow: 0px 10px 10px #74757e6b;
+  -moz-box-shadow: 0px 10px 10px #74757e6b; */
 
   /* box-shadow: 2px 10px 35px 6px rgba(158, 151, 151, 0.75);
     -webkit-box-shadow: 2px 10px 35px 6px rgba(158, 151, 151, 0.75);
@@ -266,7 +278,7 @@
   background-color: #fff;
   margin: 25px 32px;
   width: 45%;
-  border-radius: 1em;
+  border-radius: 8px;
   box-shadow: 0px 3px 10px #74757e6b;
   display: inline-flex;
   min-height: 290px;
@@ -277,10 +289,10 @@
 }
 
 .listing-card:hover {
-  transform: scale(1.1);
-  box-shadow: 2px 10px 35px 6px rgba(158, 151, 151, 0.75);
+  transform: scale(1.02);
+  /* box-shadow: 2px 10px 35px 6px rgba(158, 151, 151, 0.75);
   -webkit-box-shadow: 2px 10px 35px 6px rgba(158, 151, 151, 0.75);
-  -moz-box-shadow: 2px 10px 35px 6px rgba(158, 151, 151, 0.75);
+  -moz-box-shadow: 2px 10px 35px 6px rgba(158, 151, 151, 0.75); */
 }
 
 .listing-card p {
@@ -348,8 +360,8 @@ a {
 }
 
 .listing-card img {
-  width: 50%;
-  border-radius: 1em;
+  min-width: 240px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   object-fit: cover;
