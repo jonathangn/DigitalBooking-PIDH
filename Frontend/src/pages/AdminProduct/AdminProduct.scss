@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@use "../../App.scss";
 
 .admin-product-container {
   // padding: 0px 40px 40px 40px;
@@ -9,7 +9,7 @@
   display: inline-block;
   justify-content: column;
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     padding: 0px;
   }
 
@@ -76,11 +76,11 @@
     display: flex;
     justify-content: space-between;
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       flex-direction: column;
     }
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       flex-direction: column;
       padding: 0px;
       padding-top: 20px;
@@ -104,7 +104,7 @@
     height: 100%;
     padding: 24px;
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       width: 100%;
       height: 100%;
       padding: 18px;
@@ -128,7 +128,7 @@
       font-weight: 700;
       line-height: 14px;
     }
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       label {
         font-size: 18px;
       }
@@ -165,7 +165,7 @@
       height: 100%;
       padding-right: 10px;
 
-      @include breakpoints(sm) {
+      @include App.breakpoints(sm) {
         display: inline-block;
         padding: 0px;
       }
@@ -177,7 +177,7 @@
       padding-right: 10px;
       padding-bottom: 20px;
 
-      @include breakpoints(sm) {
+      @include App.breakpoints(sm) {
         display: inline-block;
         width: 100%;
         height: 100%;
@@ -208,7 +208,7 @@
           border: 1.5px solid var(--color-principal);
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
           height: 46px;
         }
       }
@@ -241,12 +241,12 @@
     font-weight: bold;
     color: var(--gris-plomo);
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       grid-template-columns: repeat(2, minmax(50%, 1fr));
       -ms-grid-columns: repeat(2, minmax(50%, 1fr));
     }
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       grid-template-columns: repeat(1, minmax(100%, 0fr));
       -ms-grid-columns: repeat(1, minmax(100%, 0fr));
       gap: 30px;
@@ -275,11 +275,11 @@
     -ms-user-select: none;
     user-select: none;
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       margin-bottom: 35px;
     }
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       margin-bottom: 30px;
     }
   }
@@ -363,12 +363,12 @@
   grid-template-columns: repeat(3, minmax(25%, 1fr));
   -ms-grid-columns: repeat(3, minmax(25%, 1fr));
 
-  @include breakpoints(md) {
+  @include App.breakpoints(md) {
     grid-template-columns: repeat(1, minmax(100%, 1fr));
     -ms-grid-columns: repeat(1, minmax(100%, 1fr));
   }
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     grid-template-columns: repeat(1, minmax(100%, 1fr));
     -ms-grid-columns: repeat(1, minmax(100%, 1fr));
   }
@@ -460,7 +460,7 @@ input {
   align-items: center;
   height: 100%;
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     padding: 10px;
   }
 }
@@ -477,11 +477,11 @@ input {
   max-height: 350px;
   max-width: 750px;
 
-  @include breakpoints(md) {
+  @include App.breakpoints(md) {
     width: 90%;
   }
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     min-width: 350px;
     padding: 1em;
   }
@@ -489,7 +489,7 @@ input {
   img {
     width: 128px;
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       width: 96px;
     }
   }
@@ -518,7 +518,7 @@ input {
     align-items: center;
     color: white;
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       width: 80%;
     }
 

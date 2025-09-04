@@ -1,10 +1,10 @@
-@import '../../App.scss';
+@use '../../App.scss';
 
 .signup {
     padding-top: 92px;
     background-color: #f4f4f4;
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
         // padding-top: 86px;
         padding-top: 100px;
         padding-bottom: 50px;
@@ -22,7 +22,7 @@
         height: 100%;
         padding: 32px;
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             padding: 25px 0px 20px 0px;
             height: calc(100vh - 80px);
         }
@@ -36,12 +36,12 @@
             height: 100%;
             padding: 2rem;
 
-            @include breakpoints(md) {
+            @include App.breakpoints(md) {
                 padding: 1rem;
                 width: 70%;
             }
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 width: 100%;
                 height: 84%;
                 padding: 0;
@@ -52,7 +52,7 @@
             color: var(--color-principal);
             margin-bottom: 30px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 24px;
             }
         }
@@ -65,7 +65,7 @@
             font-size: 14px;
             line-height: 14px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 width: 85%;
                 display: block;
                 align-self: flex-end;
@@ -78,7 +78,7 @@
             width: 100%;
             display: inline-block;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 width: 85%;
                 align-self: flex-end;
                 font-size: 12px;
@@ -100,7 +100,7 @@
                 border: 1.5px solid var(--color-principal);
             }
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 height: 40px;
                 width: 82.5%;
                 padding: 0px;
@@ -114,13 +114,13 @@
             width: 100%;
             justify-content: space-between;
 
-            @include breakpoints(md) {
+            @include App.breakpoints(md) {
                 display: inline-block;
                 justify-content: flex-start;
                 margin-bottom: 0px;
             }
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 display: inline-block;
                 justify-content: flex-start;
                 width: 70%;
@@ -143,11 +143,11 @@
                     border: 1.5px solid var(--color-principal);
                 }
 
-                @include breakpoints(md) {
+                @include App.breakpoints(md) {
                     margin-bottom: 7px;
                 }
 
-                @include breakpoints(sm) {
+                @include App.breakpoints(sm) {
                     height: 40px;
                     margin-bottom: 7px;
                 }
@@ -172,11 +172,11 @@
                 background-color: #16a49b;
             }
 
-            @include breakpoints(md) {
+            @include App.breakpoints(md) {
                 width: 100%;
             }
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 width: 70%;
             }
         }
@@ -187,7 +187,7 @@
             font-weight: 700;
             font-size: 14px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 width: 70%;
                 font-size: 12px;
             }
@@ -207,7 +207,7 @@
             justify-content: flex-end;
             width: 100%;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 justify-content: flex-start;
             }
 
@@ -218,11 +218,11 @@
                 margin-top: 10px;
                 margin-bottom: 8px;
 
-                @include breakpoints(md) {
+                @include App.breakpoints(md) {
                     margin-top: 5px;
                 }
 
-                @include breakpoints(sm) {
+                @include App.breakpoints(sm) {
                     width: 70%;
                     margin-top: 3px;
                     padding-left: 0px;
@@ -237,7 +237,7 @@
             justify-content: center;
             width: 100%;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 justify-content: center
             }
 
@@ -248,7 +248,7 @@
                 margin-top: 3px;
                 margin-bottom: 15px;
 
-                @include breakpoints(sm) {
+                @include App.breakpoints(sm) {
                     width: 70%;
                     padding-left: 0px;
                 }

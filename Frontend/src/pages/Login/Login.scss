@@ -1,9 +1,9 @@
-@import '../../App.scss';
+@use '../../App.scss';
 
 .login {
 
     padding-top: 92px ;
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
         padding-top: 80px 
     }
     
@@ -24,7 +24,7 @@
         height: 100%;
         padding: 32px;
 
-        @include breakpoints(sm){
+        @include App.breakpoints(sm){
             min-height: calc(100vh - 138px);
         }  
 
@@ -44,7 +44,7 @@
                 font-size: 18px;
             }
     
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 margin-bottom: 15px;
             }
         }
@@ -58,12 +58,12 @@
             height: 100%;
             padding: 2rem;
             
-            @include breakpoints(md) {
+            @include App.breakpoints(md) {
                 padding: 1rem;
                 width: 70%;
             }
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 padding: 1rem;
                 width: 100%;
                 
@@ -74,7 +74,7 @@
             color: var(--color-principal);
             margin-bottom: 30px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 24px;
             }
         }
@@ -128,11 +128,11 @@
             }
 
 
-            @include breakpoints(md) {
+            @include App.breakpoints(md) {
                 width: 100%;
             }
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 width: 100%;
             }
         }

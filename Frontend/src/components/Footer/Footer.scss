@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@use '../../App.scss';
 
 footer {
     background-color: #1DBEB4;
@@ -35,7 +35,7 @@ footer {
         top: 16px;
         margin-right: 15px;
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             display: none;
         }
     }

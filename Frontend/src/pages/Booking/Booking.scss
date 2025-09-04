@@ -1,4 +1,4 @@
-@import "../../App.scss";
+@use "../../App.scss";
 
 .form,
 .booking-date,
@@ -7,7 +7,7 @@
   h1 {
     color: var(--color-2);
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       font-size: 20px;
     }
   }
@@ -19,7 +19,7 @@
   padding: 40px 0px 16px 40px;
   color: var(--color-2);
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     font-size: 20px;
     padding: 30px 13px 0px 13px;
   }
@@ -42,11 +42,11 @@
     margin-bottom: 8px;
   }
 
-  @include breakpoints(md) {
+  @include App.breakpoints(md) {
     flex-direction: column;
   }
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     flex-direction: column;
     padding: 16px 13px 40px 13px;
   }
@@ -62,14 +62,14 @@
     padding-bottom: 1rem;
   }
 
-  @include breakpoints(md) {
+  @include App.breakpoints(md) {
     width: 100%;
     flex-direction: column;
     width: 100%;
     padding-right: 0;
   }
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     width: 100%;
     flex-direction: column;
     display: flex;
@@ -78,7 +78,7 @@
 
   /* BLOQUE DE INPUTS  */
   .form-inputs {
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       flex-direction: column;
     }
 
@@ -86,7 +86,7 @@
       display: flex;
       padding: 20px 13px;
 
-      @include breakpoints(sm) {
+      @include App.breakpoints(sm) {
         flex-direction: column;
         padding: 0px;
       }
@@ -98,7 +98,7 @@
       width: 50%;
       padding: 0px 15px;
 
-      @include breakpoints(sm) {
+      @include App.breakpoints(sm) {
         width: 100%;
         // padding: 0px 15px 0px 15px;
       }
@@ -160,7 +160,7 @@
           margin-left: 1rem;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
           margin-right: 0;
           margin-left: 0;
         }
@@ -250,11 +250,11 @@
           width: 1.1rem;
         }
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
           width: 1.8rem;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
           width: 40px;
         }
       }
@@ -363,11 +363,11 @@
 
   /* BLOQUE HORARIO DE LLEGADA */
   .check-in {
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       margin-bottom: 2rem;
     }
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       margin-bottom: 2rem;
     }
 
@@ -381,7 +381,7 @@
       .title-check-in {
         font-size: 16px;
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
           font-size: 14px;
         }
       }
@@ -407,7 +407,7 @@
           margin-right: 8px;
           color: var(--color-2);
 
-          @include breakpoints(sm) {
+          @include App.breakpoints(sm) {
             font-size: 2.7rem;
           }
         }
@@ -417,7 +417,7 @@
         color: #383b58;
         font-weight: 700;
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
           font-size: 14px;
         }
       }
@@ -436,29 +436,29 @@
 .booking-details {
   width: 28%;
 
-  @include breakpoints(md) {
+  @include App.breakpoints(md) {
     width: 100%;
   }
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     width: 100%;
   }
 
   .card-booking {
     min-height: 100%;
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       display: flex;
       flex-direction: column;
     }
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       display: flex;
       flex-direction: column;
     }
 
     .content-booking-details {
-      @include breakpoints(md) {
+      @include App.breakpoints(md) {
         display: flex;
         justify-content: space-between;
         padding: 0px 25px 25px 25px;
@@ -469,13 +469,13 @@
         height: 300px;
         // margin-bottom: 30px;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
           width: 50%;
           height: auto;
           margin-bottom: 0px;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
           min-width: 100%;
           margin-bottom: 20px;
         }
@@ -487,11 +487,11 @@
           background-position: center;
           background-repeat: no-repeat;
 
-          @include breakpoints(md) {
+          @include App.breakpoints(md) {
             border-radius: 10px;
           }
 
-          @include breakpoints(sm) {
+          @include App.breakpoints(sm) {
             width: 100%;
             height: 100%;
           }
@@ -504,7 +504,7 @@
         color: var(--gris-plomo);
       }
 
-      @include breakpoints(md) {
+      @include App.breakpoints(md) {
         width: 50%;
         padding: 0px 0px 0px 20px;
       }
@@ -514,11 +514,11 @@
         align-items: center;
         padding: 18px 0px 0px;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
           padding: 18px 0px 15px;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
           padding: 18px 0px 20px;
         }
 
@@ -533,11 +533,11 @@
       .check-in-booking-details {
         margin-top: 25px;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
           margin-top: 0px;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
           margin-top: 0px;
         }
 
@@ -545,11 +545,11 @@
           // padding: 20px 0px 20px;
           padding: 23px 0px;
 
-          @include breakpoints(md) {
+          @include App.breakpoints(md) {
             padding: 20px 0px;
           }
 
-          @include breakpoints(sm) {
+          @include App.breakpoints(sm) {
             padding: 25px 0px;
           }
         }
@@ -578,7 +578,7 @@
               border: 1.5px solid var(--color-principal);
             }
 
-            @include breakpoints(md) {
+            @include App.breakpoints(md) {
               height: 5rem;
             }
           }
@@ -601,11 +601,11 @@
             font-weight: 700;
             color: var(--color-3);
 
-            @include breakpoints(md) {
+            @include App.breakpoints(md) {
               margin-bottom: 15px;
             }
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
               margin-bottom: 0px;
             }
           }
@@ -695,11 +695,11 @@
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
         cursor: pointer;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
           margin-top: 25px;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
           margin-top: 30px;
         }
       }
@@ -710,7 +710,7 @@
   .title-booking-details {
     padding: 24px;
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       padding: 16px;
     }
   }
@@ -731,7 +731,7 @@
   align-items: center;
   height: 100%;
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     padding: 10px;
   }
 }
@@ -748,11 +748,11 @@
   max-height: 350px;
   max-width: 750px;
 
-  @include breakpoints(md) {
+  @include App.breakpoints(md) {
     width: 90%;
   }
 
-  @include breakpoints(sm) {
+  @include App.breakpoints(sm) {
     min-width: 350px;
     padding: 1em;
   }
@@ -760,7 +760,7 @@
   img {
     width: 128px;
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       width: 96px;
     }
   }
@@ -789,7 +789,7 @@
     align-items: center;
     color: white;
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
       width: 80%;
     }
 
@@ -840,7 +840,7 @@
   .booking-details .card-booking .bottom-booking-details .location-booking-details {
     padding: 18px 0px 20px;
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       padding: 10px 0px 10px;
     }
   }
@@ -854,7 +854,7 @@
     justify-content: space-between;
     padding: 0px 15px 10px 15px;
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       padding: 0px 15px 18px 15px;
     }
   }
@@ -864,7 +864,7 @@
     margin-bottom: 15px;
     width: 55%;
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       margin-bottom: 0px;
     }
   }
@@ -872,7 +872,7 @@
   .booking-details .card-booking .bottom-booking-details .check-in-booking-details h4 {
     padding: 25px 0px;
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
       padding: 20px 0px;
     }
   }

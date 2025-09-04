@@ -90,7 +90,6 @@ function Booking() {
       ...provided,
       borderBottom: "1px dotted pink",
       fontSize: "15px",
-      color: "#383B58",
       fontWeight: "700",
       color: state.isSelected ? "#ffffff" : "#383B58",
     }),
@@ -136,7 +135,7 @@ function Booking() {
 
               if (!values.name) {
                 error.name = "Por favor, ingresa tu nombre";
-              } 
+              }
               // else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)) {
               //   error.name = "El nombre solo puede contener letras";
               // }

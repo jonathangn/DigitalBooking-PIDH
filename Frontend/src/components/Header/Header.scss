@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@use '../../App.scss';
 
 // USUARIO NO LOGUEADO
 
@@ -12,7 +12,7 @@ nav {
     // z-index: 998;
     z-index: 9999;
 
-    @include breakpoints(sm) {}
+    @include App.breakpoints(sm) {}
 
     .navbar-container {
         width: 100%;
@@ -21,7 +21,7 @@ nav {
         justify-content: space-between;
         padding: 15px 40px 15px 40px;
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.14), 0px 4px 5px rgba(0, 0, 0, 0.12), 0px 1px 10px rgba(0, 0, 0, 0.2);
             padding: 0px 11px;
         }
@@ -31,7 +31,7 @@ nav {
         display: flex;
         align-items: flex-end;
         width: 50%;
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             align-items: center;
         }
     }
@@ -45,11 +45,11 @@ nav {
         padding-left: 12px;
 
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             display: none;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             display: none;
         }
     }
@@ -73,7 +73,7 @@ nav {
             margin: 10px;
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 display: none;
             }
         }
@@ -99,7 +99,7 @@ nav {
         display: none;
 
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             height: 80px;
             display: flex;
             justify-content: flex-end;
@@ -129,15 +129,15 @@ nav {
     }
 
     .nav-menu.active {
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             display: none;
         }
 
-        @include breakpoints(lg) {
+        @include App.breakpoints(lg) {
             display: none;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             background-color: var(--blanco);
             right: 0;
             transition: 350ms;
@@ -241,12 +241,12 @@ nav {
     align-items: center;
     position: relative;
     
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
         // min-width: 352px;
         // min-width: 286px;
     }
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
         display: none;
     }
 
@@ -273,11 +273,11 @@ nav {
     justify-content: center;
     margin: 10px;
 
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
         margin: 10px 10px 10px 0px;
     }
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
         color: #263238;
         background-color: #fff;
         margin: 0px;
@@ -308,7 +308,7 @@ nav {
 .navbar {
     display: none;
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
         height: 80px;
         display: flex;
         justify-content: end;
@@ -329,15 +329,15 @@ nav {
 }
 
 .nav-menu.active {
-    @include breakpoints(md) {
+    @include App.breakpoints(md) {
         display: none;
     }
 
-    @include breakpoints(lg) {
+    @include App.breakpoints(lg) {
         display: none;
     }
 
-    @include breakpoints(sm) {
+    @include App.breakpoints(sm) {
         background-color: var(--blanco);
         right: 0;
         transition: 350ms;

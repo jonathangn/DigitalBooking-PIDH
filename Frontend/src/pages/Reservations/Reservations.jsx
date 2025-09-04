@@ -115,7 +115,7 @@ function Reservations() {
           axios(config)
             .then(function (response) {
               // getReserva();
-              if (productos === undefined || reserva === []) {
+              if (productos === undefined || reserva.length === 0) {
                 setHayReserva(false);
                 setHayProductos(false);
               }

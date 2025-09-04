@@ -8,8 +8,8 @@ import Layout from '../components/Layout/index'
 import Product from '../pages/Product/Product'
 import Booking from '../pages/Booking/Booking'
 import AdminProduct from '../pages/AdminProduct/AdminProduct'
-import Reservations from 'src/pages/Reservations/Reservations'
-import NotFound from 'src/pages/NotFound/NotFound'
+import Reservations from '../pages/Reservations/Reservations'
+import NotFound from '../pages/NotFound/NotFound'
 
 function Routing() {
     return (

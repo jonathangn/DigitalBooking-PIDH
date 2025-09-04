@@ -1,4 +1,4 @@
-@import '../../App.scss';
+@use '../../App.scss';
 
 .reservation {
     // padding-top: 92px;
@@ -26,11 +26,11 @@
         height: 100%;
         padding: 32px;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             flex-direction: column;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             flex-direction: column;
             min-height: calc(100vh - 212px);
         }
@@ -42,14 +42,14 @@
         margin-top: -100px;
 
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             height: 300px;
             width: 300px;
             margin-right: 0;
             margin-bottom: 5px;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             height: 200px;
             width: 200px;
             margin-right: 0;
@@ -76,7 +76,7 @@
             color: var(--color-3);
             font-size: 32px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 25px;
             }
         }
@@ -87,7 +87,7 @@
             margin-top: 10px;
             font-size: 18px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 16px;
             }
         }
@@ -100,7 +100,7 @@
             font-weight: 600;
             font-size: 20px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 16px;
             }
         }
@@ -116,7 +116,7 @@
         align-self: center;
         text-align: center;
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             width: 88%;
         }
     }
@@ -149,11 +149,11 @@
         flex-direction: column;
         align-items: center;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             min-height: 100%;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             min-height: 100%;
             padding: 10px;
         }
@@ -176,12 +176,12 @@
         align-items: center;
         margin-bottom: 40px;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             width: 100%;
             flex-direction: column;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             width: 100%;
             flex-direction: column;
         }
@@ -193,11 +193,11 @@
         // box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
         border-radius: 8px;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             width: 100%;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             width: 100%;
         }
     }
@@ -207,7 +207,7 @@
         justify-content: space-between;
         width: 100%;
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             flex-direction: column;
         }
     }
@@ -216,13 +216,13 @@
         padding: 30px;
         width: 60%;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             padding: 25px 25px 0px 25px;
             width: 55%;
 
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             width: 100%;
             padding: 20px;
         }
@@ -233,7 +233,7 @@
             color: var(--color-2);
             margin-bottom: 7px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 25px;
                 margin-bottom: 20px;
             }
@@ -255,7 +255,7 @@
 
     .location-reserva {
         display: inline-flex;
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             svg{
                 align-self: flex-start;
                 width: 18px;
@@ -273,7 +273,7 @@
             color: var(--color-2);
             margin-bottom: 7px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 14px;
             }
         }
@@ -288,7 +288,7 @@
             color: var(--gris-plomo);
             margin-bottom: 7px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 14px;
             }
         }
@@ -310,7 +310,7 @@
             font-style: italic;
             margin-bottom: 7px;
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 14px;
             }
         }
@@ -330,11 +330,11 @@
         width: 40%;
         height: auto;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             width: 50%;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             width: 100%;
             height: 300px;
 
@@ -351,11 +351,11 @@
         background-repeat: no-repeat;
         // background-image: url('https://unsplash.com/photos/iMnSqmT2RGE/download?force=true&w=640');
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             border-radius: 0px 10px 0px 0px;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             border-radius: 0px 0px 0px 0px;
         }
 
@@ -381,11 +381,11 @@
             }
 
 
-            @include breakpoints(md) {
+            @include App.breakpoints(md) {
                 width: 100%;
             }
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 width: 100%;
             }
 
@@ -401,13 +401,13 @@
         align-items: center;
         padding: 30px;
 
-        @include breakpoints(md) {
+        @include App.breakpoints(md) {
             flex-direction: row;
             width: 100%;
             padding: 15px 0px;
         }
 
-        @include breakpoints(sm) {
+        @include App.breakpoints(sm) {
             width: 90%;
             padding: 15px 0px;
         }
@@ -415,7 +415,7 @@
             color: #fff;
             font-size: 16px;
             font-weight: 600;
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 font-size: 14px;
             }
         }
@@ -447,12 +447,12 @@
             }
 
 
-            @include breakpoints(md) {
+            @include App.breakpoints(md) {
                 width: 40%;
                 margin: 20px;
             }
 
-            @include breakpoints(sm) {
+            @include App.breakpoints(sm) {
                 width: 100%;
                 margin: 15px 0px;
                 font-size: 14px;

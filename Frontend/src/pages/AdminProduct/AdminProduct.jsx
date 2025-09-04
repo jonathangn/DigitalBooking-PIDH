@@ -76,14 +76,13 @@ function AdminProduct() {
       ...provided,
       borderBottom: "1px dotted pink",
       fontSize: "15px",
-      color: "#383B58",
       fontWeight: "700",
       color: state.isSelected ? "#ffffff" : "#383B58",
     }),
   };
 
   /* INPUTS VALIDATION */
-  
+
   const [inputs, setInputs] = useState([{ urlImg: "" }]);
 
   const handleInputsChange = (e, i) => {
@@ -154,14 +153,14 @@ function AdminProduct() {
 
                 if (!valores.latitud) {
                   errores.latitud = "La latitud es requerida";
-                } 
+                }
                 // else if (!/^[0-9]{1,10}$/.test(valores.latitud)) {
                 //   errores.latitud = "La latitud no es válida";
                 // }
 
                 if (!valores.longitud) {
                   errores.longitud = "La longitud es requerida";
-                } 
+                }
                 // else if (!/^[0-9]{1,10}$/.test(valores.longitud)) {
                 //   errores.longitud = "La longitud no es válida";
                 // }
