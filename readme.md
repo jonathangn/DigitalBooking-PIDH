@@ -2,7 +2,7 @@
 
 _Digital Booking is a web application where you can find different suppliers for your vacation or work trips, in many locations. It allows you to view and learn more about the place, check availability based on previous reservations, create an account with email confirmation, and book. As an administrator you can create new products._
 
-<img src="https://github.com/jonathangn/jonathangn/blob/main/img/pro_pidh/Screenshot_1.png" align="middle" style="float: center"/>
+<img src="https://github.com/jonathangn/jonathangn/blob/main/images/digital-booking/Screenshot_1.png" align="middle" style="float: center"/>
 
 ## Available Scripts
 
@@ -27,11 +27,11 @@ _To run the project you will need install all the dependencies of the project_
   npm start
   ```
 
- <img src="https://github.com/jonathangn/jonathangn/blob/main/img/pro_pidh/Screenshot_7.png"/> 
+ <img src="https://github.com/jonathangn/jonathangn/blob/main/images/digital-booking/Screenshot_7.png"/> 
  
 _The Frontend was made using the **React library**, which allows you to create reusable components at a good pace. The organization of folders allowed to maintain a clean and organized workspace, facilitating the work on each task throughout the sprints, the web application will be able to scale without any difficulty. Code integration is fast and seamless._
  
- </td><td><img src="https://github.com/jonathangn/jonathangn/blob/main/img/pro_pidh/Screenshot_8.png"/><img src="https://github.com/jonathangn/jonathangn/blob/main/img/pro_pidh/Screenshot_10.png"/>
+ </td><td><img src="https://github.com/jonathangn/jonathangn/blob/main/images/digital-booking/Screenshot_8.png"/><img src="https://github.com/jonathangn/jonathangn/blob/main/images/digital-booking/Screenshot_10.png"/>
 
  
 ## Environment 
@@ -59,5 +59,5 @@ Regarding the technical part, the logic was developed using the JSX Syntax, CSS 
 
 The reading of the token coming from the Backend was configured to render pages according to the user's role (unassigned, registered user and administrator) without affecting the UX, animations were also added in the cards and buttons.
 
-<img src="https://github.com/jonathangn/jonathangn/blob/main/img/pro_pidh/Screenshot_11.png"/>
+<img src="https://github.com/jonathangn/jonathangn/blob/main/images/digital-booking/Screenshot_11.png"/>
 
