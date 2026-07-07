@@ -1,0 +1,11 @@
+.git/
+.github/
+.vscode/
+*.log
+.gitignore
+.gitattributes
+readme.md
+promotion/
+Testing/
+webServer/
+Infraestructura/

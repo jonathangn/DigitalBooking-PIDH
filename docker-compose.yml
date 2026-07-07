@@ -1,0 +1,57 @@
+services:
+  db:
+    image: mariadb:10.11
+    container_name: digitalbooking-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: digitalbooking
+      MYSQL_USER: digitalbooker
+      MYSQL_PASSWORD: mz3w1pjloq67b612
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./BasesDeDatos/freshStart.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./BasesDeDatos/loadData.sql:/docker-entrypoint-initdb.d/02-data.sql
+    healthcheck:
+      test: ["CMD", "mariadb", "-u", "digitalbooker", "-pmz3w1pjloq67b612", "-e", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: digitalbooking-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8083:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/digitalbooking
+      SPRING_DATASOURCE_USERNAME: digitalbooker
+      SPRING_DATASOURCE_PASSWORD: mz3w1pjloq67b612
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: digitalbooking-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./Frontend/src:/app/src
+      - ./Frontend/public:/app/public
+      - ./Frontend/index.html:/app/index.html
+      - ./Frontend/vite.config.js:/app/vite.config.js
+
+volumes:
+  db_data:
