@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Api from "../../Helpers/Api";
 import "swiper/css";
-import "swiper/css/autoplay";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
+import { Autoplay } from "swiper/modules";
 import {
   IoIosArrowBack,
   IoIosArrowDropleftCircle,
@@ -200,7 +199,6 @@ function Product() {
       </div> */}
       <div className="swiper-container">
         <Swiper
-          modules={[Autoplay]}
           spaceBetween={0}
           centeredSlides={true}
           autoplay={{
@@ -236,7 +234,7 @@ function Product() {
         <div className="characteristics-grid-container">
           {producto.caracteristicas?.map((caracteristica, index) => {
             return (
-              <div index={index}>
+              <div key={index}>
                 <img
                   src={caracteristica.icono}
                   alt={"icono-" + caracteristica.nombre}

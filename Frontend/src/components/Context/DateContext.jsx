@@ -18,6 +18,7 @@ export const DateProvider = ({ children }) => {
   const [endDate, setEndDate] = useState(dateRange[1]);
 
   const getProduct = async () => {
+    if (!idProduct) return;
     try {
       const result = await fetch(Api + `productos/` + idProduct);
       const data = await result.json();
