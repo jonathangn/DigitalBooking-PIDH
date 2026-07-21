@@ -30,28 +30,47 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    # ports:
-    #   - "8083:8080"
+    ports:
+      - "8083:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/digitalbooking
       SPRING_DATASOURCE_USERNAME: digitalbooker
       SPRING_DATASOURCE_PASSWORD: mz3w1pjloq67b612
 
+  # --------------------------------------------------
+  # DEV frontend: Vite dev server with hot reload
+  # --------------------------------------------------
+  # frontend:
+  #   build:
+  #     context: ./Frontend
+  #     dockerfile: Dockerfile
+  #   container_name: digitalbooking-frontend
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - backend
+  #   ports:
+  #     - "8061:3000"
+  #   volumes:
+  #     - ./Frontend/src:/app/src
+  #     - ./Frontend/public:/app/public
+  #     - ./Frontend/index.html:/app/index.html
+  #     - ./Frontend/vite.config.js:/app/vite.config.js
+
+  # --------------------------------------------------
+  # PROD frontend: static build, nginx proxies /api -> backend
+  # --------------------------------------------------
   frontend:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=/api/
     container_name: digitalbooking-frontend
     restart: unless-stopped
     depends_on:
       - backend
     ports:
-      - "8061:3000"
-    volumes:
-      - ./Frontend/src:/app/src
-      - ./Frontend/public:/app/public
-      - ./Frontend/index.html:/app/index.html
-      - ./Frontend/vite.config.js:/app/vite.config.js
+      - "8061:80"
 
 volumes:
   db_data:
