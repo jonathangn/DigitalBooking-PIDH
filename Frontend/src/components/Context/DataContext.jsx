@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext } from "react";
 import Api from "../../Helpers/Api";
+import { fetchJson } from "../../Helpers/fetchJson";
 
 export const DataContext = createContext();
 
@@ -19,59 +20,51 @@ export const DataProvider = ({ children }) => {
 
   const getDataProducts = async () => {
     try {
-      const response = await fetch(filter);
-      const data = await response.json();
-
+      const data = await fetchJson(filter);
       setProducts(data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   const getData = async () => {
     try {
-      const response = await fetch(Api + "productos");
-      const data = await response.json();
+      const data = await fetchJson(Api + "productos");
       setDataReady(true);
-      // setCategories(data.map((p) => p.categoria));
-      // setCities(data.map((p) => p.ubicacion));
       setGallery(data.map((p) => p.imagenes));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   const getCategories = async () => {
     try {
-      const response = await fetch(Api + "categorias");
-      const data = await response.json();
+      const data = await fetchJson(Api + "categorias");
       setDataReady(true);
       setCategories(data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   const getCities = async () => {
     try {
-      const response = await fetch(Api + "ubicaciones");
-      const data = await response.json();
+      const data = await fetchJson(Api + "ubicaciones");
       setDataReady(true);
       setCities(data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   const getAllBooking = async () => {
     try {
-      const response = await fetch(Api + "reservas");
-      const data = await response.json();
+      const data = await fetchJson(Api + "reservas");
       setBooking(data);
       setStartDates(data.map((p) => p.fechaInicio));
       setEndDates(data.map((p) => p.fechaFinal));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState, createContext } from "react";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 import parseISO from "date-fns/parseISO";
 import Api from "../../Helpers/Api";
+import { fetchJson } from "../../Helpers/fetchJson";
 
 export const DateContext = createContext();
 
@@ -20,14 +21,13 @@ export const DateProvider = ({ children }) => {
   const getProduct = async () => {
     if (!idProduct) return;
     try {
-      const result = await fetch(Api + `productos/` + idProduct);
-      const data = await result.json();
+      const data = await fetchJson(Api + `productos/` + idProduct);
       setProduct(data);
       setStartDates([data.reservas.map((p) => p.fechaInicio)]);
       setEndDates([data.reservas.map((p) => p.fechaFinal)]);
       setBooking(data.reservas);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

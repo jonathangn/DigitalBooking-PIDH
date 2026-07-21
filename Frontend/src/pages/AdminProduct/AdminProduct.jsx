@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Api from "../../Helpers/Api";
+import { fetchJson } from "../../Helpers/fetchJson";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../../context/Context";
@@ -22,11 +23,10 @@ function AdminProduct() {
 
   const getCategories = async () => {
     try {
-      const response = await fetch(Api + "categorias");
-      const data = await response.json();
+      const data = await fetchJson(Api + "categorias");
       setCategories(data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -41,11 +41,10 @@ function AdminProduct() {
 
   const getCities = async () => {
     try {
-      const response = await fetch(Api + "ubicaciones");
-      const data = await response.json();
+      const data = await fetchJson(Api + "ubicaciones");
       setCities(data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
