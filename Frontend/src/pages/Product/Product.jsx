@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Api from "../../Helpers/Api";
 import "swiper/css";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import {
   IoIosArrowBack,
   IoIosArrowDropleftCircle,
@@ -199,6 +199,7 @@ function Product() {
       </div> */}
       <div className="swiper-container">
         <Swiper
+          modules={[Autoplay]}
           spaceBetween={0}
           centeredSlides={true}
           autoplay={{
