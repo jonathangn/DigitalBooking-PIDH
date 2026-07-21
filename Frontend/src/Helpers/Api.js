@@ -1,4 +1,4 @@
-const Api = "http://localhost:8083/";
-// const Api = "https://digitalbooking-api-grh0gua5dmeya7g5.eastus2-01.azurewebsites.net/";
+// const Api = "http://localhost:8083/";
+const Api = "https://pf-digitalbooking.indhub.co/";
 
 export default Api;
