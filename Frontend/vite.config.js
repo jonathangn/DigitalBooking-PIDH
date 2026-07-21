@@ -12,6 +12,7 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+    allowedHosts: 'pf-digitalbooking.indhub.co'
   },
   base: './',
   build: {
