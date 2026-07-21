@@ -14,10 +14,10 @@ import NotFound from '../pages/NotFound/NotFound'
 function Routing() {
     return (
         <>
-            <Router>
+            <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
                 <Layout>
                     <Routes>
-                        <Route path="/" exact element={<Home />} />
+                        <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/productos/:id" element={<Product />} />
