@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
-import { DateContext } from "../../components/Context/DateContext";
+import { DataContext } from "../../components/Context/DataContext";
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
@@ -29,12 +29,10 @@ function Booking() {
 
   /* LÓGICA CALENDARIO */
 
-  const idProduct = useContext(DateContext);
-  idProduct.setIdProduct(id);
+  const { setIdProduct, startDate, endDate, productDetail } =
+    useContext(DataContext);
+  setIdProduct(id);
 
-  const startDate = useContext(DateContext);
-  const endDate = useContext(DateContext);
-  const product = useContext(DateContext);
   const [bookingOk, setBookingOk] = useState(false);
 
   /* SELECT */
@@ -95,10 +93,10 @@ function Booking() {
     }),
   };
 
-  const producto = product && product.product;
+  const producto = productDetail;
   const gallery =
-    product.product.imagenes &&
-    product.product.imagenes.sort((a, b) => a.id - b.id);
+    productDetail.imagenes &&
+    productDetail.imagenes.sort((a, b) => a.id - b.id);
 
   if (!bookingOk) {
     return (
@@ -122,8 +120,8 @@ function Booking() {
               email: userEmail,
               city: "",
               hora: "",
-              fechaInicio: dateFormat(startDate.startDate, "yyyy-mm-dd"),
-              fechaFinal: dateFormat(endDate.endDate, "yyyy-mm-dd"),
+              fechaInicio: dateFormat(startDate, "yyyy-mm-dd"),
+              fechaFinal: dateFormat(endDate, "yyyy-mm-dd"),
               producto: { id: parseInt(id) },
               usuario: { id: userId },
               vacunado: false,
@@ -384,14 +382,14 @@ function Booking() {
                             <div className="check-in-check-out">
                               <h4>Check in </h4>
                               <h4 className="datesBooking">
-                                {dateFormat(startDate.startDate, "yyyy/mm/dd")}
+                                {dateFormat(startDate, "yyyy/mm/dd")}
                               </h4>
                             </div>
                             <hr className="hr-booking" />
                             <div className="check-in-check-out">
                               <h4>Check out </h4>
                               <h4 className="datesBooking">
-                                {dateFormat(endDate.endDate, "yyyy/mm/dd")}
+                                {dateFormat(endDate, "yyyy/mm/dd")}
                               </h4>
                             </div>
                             <hr className="hr-booking" />

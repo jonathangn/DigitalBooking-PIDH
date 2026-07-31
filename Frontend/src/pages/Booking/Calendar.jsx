@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { DateContext } from "../../components/Context/DateContext";
+import { DataContext } from "../../components/Context/DataContext";
 import DatePicker, { registerLocale } from "react-datepicker";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,14 +10,15 @@ import es from "date-fns/locale/es";
 registerLocale("es", es);
 
 const Calendar = () => {
-  const booking = useContext(DateContext);
+  const { productBookings, startDate, endDate, setStartDate, setEndDate } =
+    useContext(DataContext);
 
   const arrayExcluded = [];
   let exclutions = [];
 
   const getExcluded = () => {
-    booking.booking &&
-      booking.booking.forEach((reservation) => {
+    productBookings &&
+      productBookings.forEach((reservation) => {
         arrayExcluded.push(
           eachDayOfInterval({
             start: parseISO(reservation.fechaInicio),
@@ -33,27 +34,22 @@ const Calendar = () => {
 
   getExcluded();
 
-  const dateRange = useContext(DateContext);
-  const startDate = useContext(DateContext);
-  const endDate = useContext(DateContext);
-
   const onChange = (dates) => {
     const [start, end] = dates;
-    startDate.setStartDate(start);
+    setStartDate(start);
     if (exclutions) {
       if (exclutions.some((date) => start <= date && date <= end)) {
-        //Usar swwet alert aqui
         swal({
           text: "No puedes reservar en esas fechas",
           icon: "error",
           button: "¡Entendido!",
         });
-        startDate.setStartDate(null);
+        setStartDate(null);
       } else {
-        endDate.setEndDate(end);
+        setEndDate(end);
       }
     } else {
-      endDate.setEndDate(end);
+      setEndDate(end);
     }
   };
 
@@ -65,8 +61,8 @@ const Calendar = () => {
             <DatePicker
               selected={null}
               onChange={onChange}
-              startDate={dateRange.startDate}
-              endDate={dateRange.endDate}
+              startDate={startDate}
+              endDate={endDate}
               monthsShown={2}
               selectsRange
               locale={es}
@@ -84,9 +80,8 @@ const Calendar = () => {
           <DatePicker
             selected={null}
             onChange={onChange}
-            startDate={dateRange.startDate}
-            endDate={dateRange.endDate}
-            // monthsShown={2}
+            startDate={startDate}
+            endDate={endDate}
             selectsRange
             locale={es}
             inline

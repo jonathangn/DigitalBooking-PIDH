@@ -18,6 +18,10 @@ export const DataProvider = ({ children }) => {
   const [startDates, setStartDates] = useState([]);
   const [endDates, setEndDates] = useState([]);
 
+  const [productDetail, setProductDetail] = useState({});
+  const [productBookings, setProductBookings] = useState([]);
+  const [idProduct, setIdProduct] = useState(null);
+
   const getDataProducts = async () => {
     try {
       const data = await fetchJson(filter);
@@ -68,6 +72,17 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  const fetchProductBookings = async (id) => {
+    if (!id) return;
+    try {
+      const data = await fetchJson(Api + "productos/" + id);
+      setProductDetail(data);
+      setProductBookings(data.reservas || []);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getData();
     getCities();
@@ -75,6 +90,10 @@ export const DataProvider = ({ children }) => {
     getDataProducts();
     getAllBooking();
   }, [filter, setProducts]);
+
+  useEffect(() => {
+    fetchProductBookings(idProduct);
+  }, [idProduct]);
 
   return (
     <DataContext.Provider
@@ -99,6 +118,16 @@ export const DataProvider = ({ children }) => {
         setStartDates,
         endDates,
         setEndDates,
+
+        productDetail,
+        setProductDetail,
+        productBookings,
+        setProductBookings,
+        idProduct,
+        setIdProduct,
+
+        setStartDate: (val) => setDateRange((prev) => [val, prev[1]]),
+        setEndDate: (val) => setDateRange((prev) => [prev[0], val]),
 
         filter,
         setFilter,
