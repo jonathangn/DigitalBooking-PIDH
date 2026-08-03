@@ -54,7 +54,7 @@
     "react-icons": "^4.3.1",
     "react-jwt": "^1.3.0",
     "react-leaflet": "^4.2.1",
-    "react-router-dom": "^6.28.2",
+    "react-router-dom": "^7.18.2",
     "react-select": "^5.10.2",
     "react-share": "^4.4.1",
     "sass": "^1.92.0",
@@ -67,7 +67,7 @@
     "web-vitals": "^4.2.4"
   },
   "devDependencies": {
-    "@babel/core": "~7.28.6",
+    "@babel/core": "^7.29.6",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/preset-env": "^7.28.3",
     "@testing-library/jest-dom": "^5.17.0",
@@ -75,8 +75,12 @@
     "@testing-library/user-event": "^13.5.0",
     "babel-preset-jest": "^28.1.3",
     "jest": "^28.1.3",
+    "jsdom": "^29.1.1",
     "react-test-renderer": "^18.3.1",
     "vitest": "^3.2.4"
+  },
+  "overrides": {
+    "nanoid": "^3.3.17"
   },
   "engines": {
     "node": "20.x"
