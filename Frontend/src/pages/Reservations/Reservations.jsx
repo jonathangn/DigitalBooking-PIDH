@@ -139,7 +139,7 @@ function Reservations() {
                 let idReserva = reserva.find((item) => item.producto.id === p.id);
                 let imagenFrente = p.imagenes.find((item) => item.titulo === "frente1");
                 return (
-                  <div className="reservas-items-container">
+                  <div key={p.id} className="reservas-items-container">
                     <section className="reserva-item">
                       <div className="info-reserva">
                         <div className="text-container-reserva">
@@ -163,7 +163,7 @@ function Reservations() {
                                     </div>
                                     <div className="datos-extra-reserva">
                                       <h4>Datos extras:</h4>
-                                      <h4>"{r.datosExtra}"</h4>
+                                      <h4>&quot;{r.datosExtra}&quot;</h4>
                                       <h4>
                                         {r.vacunado
                                           ? "Usted indicó que se encuentra vacunado contra el COVID-19"

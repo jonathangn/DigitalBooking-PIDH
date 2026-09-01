@@ -714,7 +714,7 @@ function AdminProduct() {
                 <h1>Cargar imágenes</h1>
                 {inputs.map((x, i) => {
                   return (
-                    <div className="gallery-sender">
+                    <div key={i} className="gallery-sender">
                       <form className="gallery-sender-form">
                         <Field
                           type="text"
