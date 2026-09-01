@@ -10,9 +10,8 @@ function SignUp() {
   const [errorPost, setErrorPost] = React.useState(null);
   const [formSent, setFormSent] = React.useState(false);
 
-  // eslint-disable-next-line no-useless-escape
   const emailRegExp =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const passwordRegExp = /^.{6,30}$/;
   const nameRegExp = /^[a-zA-Zа-яА-ЯёЁ]{2,30}$/;
   const lastNameRegExp = /^[a-zA-Zа-яА-ЯёЁ]{1,30}$/;
