@@ -3,7 +3,6 @@
 # dependencies
 /node_modules
 /.pnp
-package-lock.json
 yarn.lock
 .pnp.js
 
@@ -11,7 +10,11 @@ yarn.lock
 /coverage
 
 # production
-
+/build
+/dist
+.env
+.env.*
+!.env.example
 
 # misc
 .DS_Store
