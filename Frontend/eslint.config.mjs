@@ -21,6 +21,11 @@ export default [
             "react/prop-types": "off",
             "no-console": "error",
             "react-hooks/exhaustive-deps": "error",
+            "max-lines-per-function": [
+                "warn",
+                { "max": 150, "skipBlankLines": true, "skipComments": true },
+            ],
+            "max-lines": ["warn", { "max": 300, "skipBlankLines": true, "skipComments": true }],
         },
         settings: { react: { version: "detect" } },
     },
