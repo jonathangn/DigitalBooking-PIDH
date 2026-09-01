@@ -4,10 +4,14 @@ import { Link } from 'react-router-dom';
 import { GoLocation } from 'react-icons/go';
 import { BsWifi } from 'react-icons/bs';
 import { BiSwim } from 'react-icons/bi';
+import ErrorState from '../ErrorState/ErrorState';
 
 const Listing = () => {
-  const dataReady = useContext(DataContext);
-  const products = useContext(DataContext);
+  const { dataReady, products, productsError, retry } = useContext(DataContext);
+
+  if (productsError) {
+    return <ErrorState error={productsError} onRetry={() => retry('products')} />;
+  }
 
   if (!dataReady) {
     return (
@@ -24,8 +28,8 @@ const Listing = () => {
         <div className="listing-container">
           <h1>Recomendaciones</h1>
           <ul>
-            {products.products &&
-              products.products.map(
+            {products &&
+              products.map(
                 (product) => (
                   product.imagenes && product.imagenes.sort((a, b) => a.id - b.id),
                   (
@@ -110,8 +114,8 @@ const Listing = () => {
         <div className="listing-container">
           <h1>Recomendaciones</h1>
           <ul>
-            {products.products &&
-              products.products.map(
+            {products &&
+              products.map(
                 (product) => (
                   product.imagenes && product.imagenes.sort((a, b) => a.id - b.id),
                   (

@@ -11,7 +11,7 @@ import dateFormat from 'dateformat';
 import axiosClient from '../../Helpers/axiosClient';
 import Select from 'react-select';
 import { Context } from '../../context/Context';
-import swal from 'sweetalert';
+import { normalizeError, apiErrorMessage } from '../../api/client';
 
 import './Booking.scss';
 
@@ -28,6 +28,7 @@ function Booking() {
   setIdProduct(id);
 
   const [bookingOk, setBookingOk] = useState(false);
+  const [bookingError, setBookingError] = useState(null);
 
   const options = [
     { value: '01:00:00', label: '01:00 AM' },
@@ -166,13 +167,10 @@ function Booking() {
                   .post('reservas', data)
                   .then(function () {
                     setBookingOk(true);
+                    setBookingError(null);
                   })
-                  .catch(function () {
-                    swal({
-                      text: 'Lamentablemente la reserva no ha podido realizarse. Por favor, reintente más tarde.',
-                      icon: 'error',
-                      button: '¡Entendido!',
-                    });
+                  .catch(function (err) {
+                    setBookingError(apiErrorMessage(normalizeError(err)));
                   });
               }
               postBooking();
@@ -336,6 +334,9 @@ function Booking() {
                               </label>
                             </div>
                             <button type="sumbit">Confirmar reserva</button>
+                            {bookingError && (
+                              <div className="error-input">{bookingError}</div>
+                            )}
                           </div>
                         </div>
                       </div>

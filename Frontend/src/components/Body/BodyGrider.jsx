@@ -3,13 +3,16 @@ import { DataContext } from '../Context/DataContext';
 import Glider from 'react-glider';
 import 'glider-js/glider.min.css';
 import { Api } from '../../Helpers/axiosClient';
+import ErrorState from '../ErrorState/ErrorState';
 
 import scrollTo from '../../utils/scrollTo';
 
 function Grider() {
-  const dataReady = useContext(DataContext);
-  const categories = useContext(DataContext);
-  const filter = useContext(DataContext);
+  const { dataReady, categories, categoriesError, retry, setFilter } = useContext(DataContext);
+
+  if (categoriesError) {
+    return <ErrorState error={categoriesError} onRetry={() => retry('categories')} />;
+  }
 
   if (!dataReady) {
     return (
@@ -23,13 +26,13 @@ function Grider() {
         <h2>Buscar por tipo de alojamiento</h2>
         <div className="grider-card">
           <Glider draggable hasDots slidesToShow={'auto'}>
-            {categories.categories.map((category) => (
+            {categories.map((category) => (
               <div
                 key={category.id}
                 className="grider-card-item"
                 onClick={() => {
                   scrollTo();
-                  filter.setFilter(Api + `productos/categoria/${category.id}`);
+                  setFilter(Api + `productos/categoria/${category.id}`);
                 }}
               >
                 <img

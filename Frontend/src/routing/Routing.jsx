@@ -10,13 +10,15 @@ import Reservations from '../pages/Reservations/Reservations';
 import NotFound from '../pages/NotFound/NotFound';
 import Forbidden from '../pages/Forbidden/Forbidden';
 import Guardian from '../components/Guardian/Guardian';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 function Routing() {
   return (
     <>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <Layout>
-          <Routes>
+        <ErrorBoundary>
+          <Layout>
+            <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
@@ -48,7 +50,8 @@ function Routing() {
             <Route path="/403" element={<Forbidden />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Layout>
+          </Layout>
+        </ErrorBoundary>
       </Router>
     </>
   );

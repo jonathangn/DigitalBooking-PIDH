@@ -1,6 +1,7 @@
 import { useEffect, useState, createContext } from 'react';
 import { fetchJson } from '../../Helpers/fetchJson';
 import { Api } from '../../Helpers/axiosClient';
+import { normalizeError } from '../../api/client';
 
 export const DataContext = createContext();
 
@@ -12,6 +13,13 @@ export const DataProvider = ({ children }) => {
   const [filter, setFilter] = useState(Api + 'productos');
   const [gallery, setGallery] = useState([]);
   const [booking, setBooking] = useState([]);
+
+  const [productsError, setProductsError] = useState(null);
+  const [categoriesError, setCategoriesError] = useState(null);
+  const [citiesError, setCitiesError] = useState(null);
+  const [bookingError, setBookingError] = useState(null);
+  const [galleryError, setGalleryError] = useState(null);
+  const [productDetailError, setProductDetailError] = useState(null);
 
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
@@ -26,8 +34,9 @@ export const DataProvider = ({ children }) => {
     try {
       const data = await fetchJson(filter);
       setProducts(data);
+      setProductsError(null);
     } catch (error) {
-      console.error(error);
+      setProductsError(normalizeError(error));
     }
   };
 
@@ -36,8 +45,9 @@ export const DataProvider = ({ children }) => {
       const data = await fetchJson(Api + 'productos');
       setDataReady(true);
       setGallery(data.map((p) => p.imagenes));
+      setGalleryError(null);
     } catch (error) {
-      console.error(error);
+      setGalleryError(normalizeError(error));
     }
   };
 
@@ -46,8 +56,9 @@ export const DataProvider = ({ children }) => {
       const data = await fetchJson(Api + 'categorias');
       setDataReady(true);
       setCategories(data);
+      setCategoriesError(null);
     } catch (error) {
-      console.error(error);
+      setCategoriesError(normalizeError(error));
     }
   };
 
@@ -56,8 +67,9 @@ export const DataProvider = ({ children }) => {
       const data = await fetchJson(Api + 'ubicaciones');
       setDataReady(true);
       setCities(data);
+      setCitiesError(null);
     } catch (error) {
-      console.error(error);
+      setCitiesError(normalizeError(error));
     }
   };
 
@@ -67,8 +79,9 @@ export const DataProvider = ({ children }) => {
       setBooking(data);
       setStartDates(data.map((p) => p.fechaInicio));
       setEndDates(data.map((p) => p.fechaFinal));
+      setBookingError(null);
     } catch (error) {
-      console.error(error);
+      setBookingError(normalizeError(error));
     }
   };
 
@@ -78,8 +91,9 @@ export const DataProvider = ({ children }) => {
       const data = await fetchJson(Api + 'productos/' + id);
       setProductDetail(data);
       setProductBookings(data.reservas || []);
+      setProductDetailError(null);
     } catch (error) {
-      console.error(error);
+      setProductDetailError(normalizeError(error));
     }
   };
 
@@ -97,6 +111,22 @@ export const DataProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- async fetch, state set after await
     fetchProductBookings(idProduct);
   }, [idProduct]);
+
+  const retry = (resource) => {
+    if (resource === 'products') return getDataProducts();
+    if (resource === 'categories') return getCategories();
+    if (resource === 'cities') return getCities();
+    if (resource === 'booking') return getAllBooking();
+    if (resource === 'gallery') return getData();
+    if (resource === 'productDetail') return fetchProductBookings(idProduct);
+
+    getData();
+    getCities();
+    getCategories();
+    getDataProducts();
+    getAllBooking();
+    fetchProductBookings(idProduct);
+  };
 
   return (
     <DataContext.Provider
@@ -128,6 +158,14 @@ export const DataProvider = ({ children }) => {
         setProductBookings,
         idProduct,
         setIdProduct,
+
+        productsError,
+        categoriesError,
+        citiesError,
+        bookingError,
+        galleryError,
+        productDetailError,
+        retry,
 
         setStartDate: (val) => setDateRange((prev) => [val, prev[1]]),
         setEndDate: (val) => setDateRange((prev) => [prev[0], val]),

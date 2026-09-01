@@ -7,6 +7,8 @@ import { Context } from '../../context/Context';
 import { MdLocationOn } from 'react-icons/md';
 import swal from 'sweetalert';
 import axiosClient from '../../Helpers/axiosClient';
+import ErrorState from '../../components/ErrorState/ErrorState';
+import { normalizeError } from '../../api/client';
 
 function Reservations() {
   const { decodedToken } = useContext(Context);
@@ -21,8 +23,10 @@ function Reservations() {
   const [hayProductos, setHayProductos] = useState(false);
   const [productos, setProductos] = useState();
   const [reserva, setReserva] = useState();
+  const [reservaError, setReservaError] = useState(null);
 
   async function getReserva() {
+    setReservaError(null);
     axiosClient
       .get(`reservas/usuario/${decodedToken?.id}`)
       .then(function (response) {
@@ -46,13 +50,18 @@ function Reservations() {
                 setProductos(productosTemp);
               }
             })
-            .catch(function () {});
+.catch(function () {
+            swal('No se pudo cancelar la reserva. Intentalo nuevamente.', { icon: 'error' });
+          });
         });
       })
-      .catch(function () {});
+      .catch(function (err) {
+        setReservaError(normalizeError(err));
+      });
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async fetch, state set after await
     getReserva();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- deps cover `decodedToken`; getReserva recreated each render
   }, [decodedToken]);
@@ -84,6 +93,22 @@ function Reservations() {
           .catch(function () {});
       }
     });
+  }
+
+  if (reservaError) {
+    return (
+      <>
+        <div className="header-product">
+          <div>
+            <h1>Mis reservas</h1>
+          </div>
+          <Link to="/">
+            <IoIosArrowBack />
+          </Link>
+        </div>
+        <ErrorState error={reservaError} onRetry={getReserva} />
+      </>
+    );
   }
 
   if (!hayReserva) {

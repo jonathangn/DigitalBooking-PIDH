@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { getToken, logout } from './auth';
+import { normalizeError, ApiError } from '../api/client';
 
 const Api = import.meta.env.VITE_API_URL || '/api/';
 
 const axiosClient = axios.create({
   baseURL: Api,
+  timeout: 10000,
 });
 
 axiosClient.interceptors.request.use((config) => {
@@ -18,10 +20,11 @@ axiosClient.interceptors.request.use((config) => {
 axiosClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
+    const normalized = normalizeError(error);
+    if (normalized.status === 401) {
       logout();
     }
-    return Promise.reject(error);
+    return Promise.reject(normalized instanceof ApiError ? normalized : error);
   }
 );
 

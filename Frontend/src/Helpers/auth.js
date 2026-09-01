@@ -37,8 +37,7 @@ export function decodeToken(token) {
       isAdmin: rolNombre === 'Administrador',
       isExpired,
     };
-  } catch (error) {
-    console.error('Error decoding token', error);
+  } catch {
     return { user: null, isAdmin: false, isExpired: false };
   }
 }

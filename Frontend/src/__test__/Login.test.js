@@ -61,7 +61,7 @@ describe('Funcionamiento del formulario', () => {
 
     expect(
       await component.findByText(
-        'Lamentablemente no ha podido iniciar sesión. Por favor intente más tarde'
+        'Ocurrió un error inesperado. Intentalo de nuevo.'
       )
     ).toBeInTheDocument();
   });

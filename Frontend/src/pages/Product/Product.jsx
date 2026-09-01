@@ -14,6 +14,8 @@ import PickerP from './PickerP';
 import { BsShare } from 'react-icons/bs';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import axiosClient from '../../Helpers/axiosClient';
+import ErrorState from '../../components/ErrorState/ErrorState';
+import { normalizeError } from '../../api/client';
 
 import {
   FacebookShareButton,
@@ -37,6 +39,7 @@ function Product() {
   const [Gallery, setGallery] = useState([]);
   const [mainImg, setMainImg] = useState(null);
   const [mainImgM, setMainImgM] = useState(null);
+  const [productError, setProductError] = useState(null);
   const gallery = [];
 
   const GalleryR = Gallery.slice(1, 5);
@@ -52,14 +55,15 @@ function Product() {
   };
 
   async function getProducto() {
+    setProductError(null);
     try {
       const result = await axiosClient.get(`productos/${id}`);
       setProducto(result.data);
       setGallery(result.data.imagenes);
       setMainImg(result.data.imagenes?.[0]?.urlImg);
       setMainImgM(result.data.imagenes?.[0]?.urlImg);
-    } catch {
-      /* intentionally ignore fetch errors */
+    } catch (err) {
+      setProductError(normalizeError(err));
     } finally {
       setLoading(false);
     }
@@ -100,6 +104,10 @@ function Product() {
         <h3>Cargando...</h3>
       </div>
     );
+  }
+
+  if (productError) {
+    return <ErrorState error={productError} onRetry={getProducto} />;
   }
 
   return (

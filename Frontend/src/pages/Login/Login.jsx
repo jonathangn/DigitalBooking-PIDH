@@ -3,6 +3,7 @@ import './Login.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { Context } from '../../context/Context';
 import axiosClient from '../../Helpers/axiosClient';
+import { normalizeError, apiErrorMessage } from '../../api/client';
 
 function Login() {
   const { warning, setToken } = useContext(Context);
@@ -24,6 +25,7 @@ function Login() {
   };
 
   async function postUser() {
+    setErrorPost(null);
     axiosClient
       .post(`authenticate`, {
         email: email.campo,
@@ -33,8 +35,13 @@ function Login() {
         setToken(response.data.jwt);
         navigate('/');
       })
-      .catch(function () {
-        setErrorPost(true);
+      .catch(function (error) {
+        const apiError = normalizeError(error);
+        if (apiError.status === 401) {
+          setErrorPost('Email o contraseña incorrectos.');
+        } else {
+          setErrorPost(apiErrorMessage(apiError));
+        }
       });
   }
 
@@ -58,9 +65,7 @@ function Login() {
             <h1>Iniciar sesión</h1>
             {errorPost && (
               <div className="error">
-                <small>
-                  Lamentablemente no ha podido iniciar sesión. Por favor intente más tarde
-                </small>
+                <small>{errorPost}</small>
               </div>
             )}
             <label htmlFor="email">Correo electrónico</label>

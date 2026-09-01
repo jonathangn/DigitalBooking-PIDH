@@ -19,9 +19,15 @@ export default [
         rules: {
             "react/react-in-jsx-scope": "off",
             "react/prop-types": "off",
-            "no-console": ["error", { allow: ["error", "warn"] }],
-             "react-hooks/exhaustive-deps": "error",
+            "no-console": "error",
+            "react-hooks/exhaustive-deps": "error",
         },
         settings: { react: { version: "detect" } },
+    },
+    {
+        files: ["src/api/**/*.{js,jsx}"],
+        rules: {
+            "no-console": ["error", { allow: ["error", "warn"] }],
+        },
     },
 ];

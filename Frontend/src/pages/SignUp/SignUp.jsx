@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
 import swal from 'sweetalert';
 import axiosClient from '../../Helpers/axiosClient';
+import { normalizeError, apiErrorMessage } from '../../api/client';
 
 function SignUp() {
   const { setWarning } = useContext(Context);
@@ -136,11 +137,11 @@ function SignUp() {
       .catch(function (error) {
         if (error.response?.data === 'Este email ya esta asociada con una cuenta creada') {
           setErrorCuentaYaExiste(true);
-          setErrorPost(false);
+          setErrorPost(null);
           setFormSent(false);
         } else {
           setFormSent(false);
-          setErrorPost(true);
+          setErrorPost(apiErrorMessage(normalizeError(error)));
         }
       });
   }
@@ -158,9 +159,7 @@ function SignUp() {
             ) : null}
             {errorPost && (
               <div className="error" style={{ justifyContent: 'center' }}>
-                <small>
-                  Lamentablemente no ha podido registrarse. Por favor intente más tarde.
-                </small>
+                <small>{errorPost}</small>
               </div>
             )}
             {errorCuentaYaExiste && (

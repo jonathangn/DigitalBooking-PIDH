@@ -7,20 +7,23 @@ import Select from 'react-select';
 import './AdminProduct.scss';
 import success from '../Booking/success-icon.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import swal from 'sweetalert';
 import axiosClient from '../../Helpers/axiosClient';
+import ErrorState from '../../components/ErrorState/ErrorState';
+import { normalizeError, apiErrorMessage } from '../../api/client';
 
 function AdminProduct() {
   const [newBooking, setNewBooking] = useState(false);
 
   const [categories, setCategories] = useState([]);
+  const [categoriesError, setCategoriesError] = useState(null);
 
   const getCategories = async () => {
     try {
       const data = await fetchJson(Api + 'categorias');
       setCategories(data);
+      setCategoriesError(null);
     } catch (error) {
-      console.error(error);
+      setCategoriesError(normalizeError(error));
     }
   };
 
@@ -31,13 +34,15 @@ function AdminProduct() {
   }));
 
   const [cities, setCities] = useState([]);
+  const [citiesError, setCitiesError] = useState(null);
 
   const getCities = async () => {
     try {
       const data = await fetchJson(Api + 'ubicaciones');
       setCities(data);
+      setCitiesError(null);
     } catch (error) {
-      console.error(error);
+      setCitiesError(normalizeError(error));
     }
   };
 
@@ -74,6 +79,8 @@ function AdminProduct() {
   };
 
   const [inputs, setInputs] = useState([{ urlImg: '' }]);
+  const [creationError, setCreationError] = useState(null);
+  const [imageError, setImageError] = useState(null);
 
   const handleInputsChange = (e, i) => {
     const { name, value } = e.target;
@@ -263,28 +270,30 @@ function AdminProduct() {
                 axiosClient
                   .post('productos', data)
                   .then(function (response) {
-                    inputs.pop();
-                    inputs.forEach((item) => {
-                      let payload = {
-                        titulo: '',
-                        urlImg: item.urlImg.trim(),
-                        producto: { id: response.data.id },
-                      };
+                    setCreationError(null);
+                    const imageUrls = inputs.map((item) => item.urlImg.trim());
 
-                      axiosClient
-                        .post('imagenes', payload)
-                        .then(function () {
-                          setNewBooking(true);
-                        })
-                        .catch(function () {});
-                    });
+                    Promise.all(
+                      imageUrls.map((urlImg) => {
+                        return axiosClient.post('imagenes', {
+                          titulo: '',
+                          urlImg,
+                          producto: { id: response.data.id },
+                        });
+                      })
+                    )
+                      .then(function () {
+                        setImageError(null);
+                        setNewBooking(true);
+                      })
+                      .catch(function () {
+                        setImageError(
+                          'No se pudieron cargar todas las imágenes. Verificá las URLs e intentá de nuevo.'
+                        );
+                      });
                   })
-                  .catch(function () {
-                    swal({
-                      text: 'Lamentablemente el producto no ha podido crearse. Por favor intente más tarde',
-                      icon: 'error',
-                      button: '¡Entendido!',
-                    });
+                  .catch(function (err) {
+                    setCreationError(normalizeError(err));
                   });
               }
 
@@ -338,6 +347,14 @@ function AdminProduct() {
                         name="categoria"
                         component={() => <div className="error-message">{errors.categoria}</div>}
                       />
+                      {categoriesError && (
+                        <div className="error-message">
+                          No pudimos cargar las categorías.
+                          <button type="button" onClick={getCategories}>
+                            Reintentar
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="inputs-container">
@@ -378,6 +395,14 @@ function AdminProduct() {
                         name="ciudad"
                         component={() => <div className="error-message">{errors.ciudad}</div>}
                       />
+                      {citiesError && (
+                        <div className="error-message">
+                          No pudimos cargar las ciudades.
+                          <button type="button" onClick={getCities}>
+                            Reintentar
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="inputs-container">
@@ -669,6 +694,10 @@ function AdminProduct() {
                   name="urlImg"
                   component={() => <div className="error-message">{errors.urlImg}</div>}
                 />
+                {imageError && <div className="error-message">{imageError}</div>}
+                {creationError && (
+                  <ErrorState error={creationError} message={apiErrorMessage(creationError)} />
+                )}
                 <div className="btn-admin">
                   <button type="submit">Crear</button>
                 </div>
