@@ -9,7 +9,16 @@ export const DataProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
-  const [dataReady, setDataReady] = useState(false);
+  const [settled, setSettled] = useState({ products: false, categories: false, cities: false });
+  const dataReady = settled.products && settled.categories && settled.cities;
+  const [loading, setLoading] = useState({
+    products: true,
+    categories: true,
+    cities: true,
+    booking: true,
+    gallery: true,
+    productDetail: false,
+  });
   const [filter, setFilter] = useState(Api + 'productos');
   const [gallery, setGallery] = useState([]);
   const [booking, setBooking] = useState([]);
@@ -31,49 +40,62 @@ export const DataProvider = ({ children }) => {
   const [idProduct, setIdProduct] = useState(null);
 
   const getDataProducts = async () => {
+    setLoading((prev) => ({ ...prev, products: true }));
     try {
       const data = await fetchJson(filter);
       setProducts(data);
       setProductsError(null);
     } catch (error) {
       setProductsError(normalizeError(error));
+    } finally {
+      setLoading((prev) => ({ ...prev, products: false }));
+      setSettled((prev) => (prev.products ? prev : { ...prev, products: true }));
     }
   };
 
   const getData = async () => {
+    setLoading((prev) => ({ ...prev, gallery: true }));
     try {
       const data = await fetchJson(Api + 'productos');
-      setDataReady(true);
       setGallery(data.map((p) => p.imagenes));
       setGalleryError(null);
     } catch (error) {
       setGalleryError(normalizeError(error));
+    } finally {
+      setLoading((prev) => ({ ...prev, gallery: false }));
     }
   };
 
   const getCategories = async () => {
+    setLoading((prev) => ({ ...prev, categories: true }));
     try {
       const data = await fetchJson(Api + 'categorias');
-      setDataReady(true);
       setCategories(data);
       setCategoriesError(null);
     } catch (error) {
       setCategoriesError(normalizeError(error));
+    } finally {
+      setLoading((prev) => ({ ...prev, categories: false }));
+      setSettled((prev) => (prev.categories ? prev : { ...prev, categories: true }));
     }
   };
 
   const getCities = async () => {
+    setLoading((prev) => ({ ...prev, cities: true }));
     try {
       const data = await fetchJson(Api + 'ubicaciones');
-      setDataReady(true);
       setCities(data);
       setCitiesError(null);
     } catch (error) {
       setCitiesError(normalizeError(error));
+    } finally {
+      setLoading((prev) => ({ ...prev, cities: false }));
+      setSettled((prev) => (prev.cities ? prev : { ...prev, cities: true }));
     }
   };
 
   const getAllBooking = async () => {
+    setLoading((prev) => ({ ...prev, booking: true }));
     try {
       const data = await fetchJson(Api + 'reservas');
       setBooking(data);
@@ -82,11 +104,14 @@ export const DataProvider = ({ children }) => {
       setBookingError(null);
     } catch (error) {
       setBookingError(normalizeError(error));
+    } finally {
+      setLoading((prev) => ({ ...prev, booking: false }));
     }
   };
 
   const fetchProductBookings = async (id) => {
     if (!id) return;
+    setLoading((prev) => ({ ...prev, productDetail: true }));
     try {
       const data = await fetchJson(Api + 'productos/' + id);
       setProductDetail(data);
@@ -94,6 +119,8 @@ export const DataProvider = ({ children }) => {
       setProductDetailError(null);
     } catch (error) {
       setProductDetailError(normalizeError(error));
+    } finally {
+      setLoading((prev) => ({ ...prev, productDetail: false }));
     }
   };
 
@@ -138,7 +165,7 @@ export const DataProvider = ({ children }) => {
         cities,
         setCities,
         dataReady,
-        setDataReady,
+        loading,
         gallery,
         setGallery,
         dateRange,
