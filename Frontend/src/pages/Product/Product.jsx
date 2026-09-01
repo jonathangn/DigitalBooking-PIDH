@@ -180,7 +180,7 @@ function Product() {
         </div>}
 
       <div className="wrapper">
-        <img src={mainImg} alt="" className="main-block" key={Gallery.id} width="800" height="600" />
+        <img src={mainImg} alt="" className="main-block" key={Gallery.id} width="800" height="600" fetchPriority="high" />
 
         <div className="random">
           {GalleryR.map((img, index) => (
