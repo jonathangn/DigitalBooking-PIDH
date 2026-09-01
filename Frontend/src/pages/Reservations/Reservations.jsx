@@ -1,17 +1,15 @@
-import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
-import botonera from "../../funcionesJS/botonera";
-import "./Reservations.scss";
-import { Context } from "../../context/Context";
-import { MdLocationOn } from "react-icons/md";
-import swal from "sweetalert";
-import axiosClient from "../../Helpers/axiosClient";
+import { useState, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { IoIosArrowBack } from 'react-icons/io';
+import botonera from '../../funcionesJS/botonera';
+import './Reservations.scss';
+import { Context } from '../../context/Context';
+import { MdLocationOn } from 'react-icons/md';
+import swal from 'sweetalert';
+import axiosClient from '../../Helpers/axiosClient';
 
 function Reservations() {
-  const {
-    decodedToken,
-  } = useContext(Context);
+  const { decodedToken } = useContext(Context);
 
   const navegador = useNavigate();
 
@@ -25,15 +23,16 @@ function Reservations() {
   const [reserva, setReserva] = useState();
 
   async function getReserva() {
-
-    axiosClient.get(`reservas/usuario/${decodedToken?.id}`)
+    axiosClient
+      .get(`reservas/usuario/${decodedToken?.id}`)
       .then(function (response) {
         setReserva(response.data);
 
         const productosTemp = [];
 
         response.data.forEach((item) => {
-          axiosClient.get(`productos/${item.producto.id}`)
+          axiosClient
+            .get(`productos/${item.producto.id}`)
             .then(function (responsePro) {
               productosTemp.push(responsePro.data);
 
@@ -60,33 +59,31 @@ function Reservations() {
 
   function eliminarReserva(idReserva) {
     swal({
-      title: "¿Está seguro de cancelar su reserva?",
-      text: "Se le cobrará el costo de cancelación de acuerdo al producto.",
-      icon: "warning",
-      buttons: ["Volver", "Cancelar reserva"],
+      title: '¿Está seguro de cancelar su reserva?',
+      text: 'Se le cobrará el costo de cancelación de acuerdo al producto.',
+      icon: 'warning',
+      buttons: ['Volver', 'Cancelar reserva'],
       dangerMode: true,
-    })
-      .then((willDelete) => {
-        if (willDelete) {
-          
-          axiosClient.delete(`reservas/${idReserva}`)
-            .then(function () {
-              if (productos === undefined || reserva.length === 0) {
-                setHayReserva(false);
-                setHayProductos(false);
-              }
-              swal("Tu reserva ha sido cancelada.", {
-                icon: "success",
-                buttons: false,
-              });
-              setTimeout(() => {
-                window.location.reload();
-              }, 1800);
-
-            })
-            .catch(function () {});
-        }
-      });
+    }).then((willDelete) => {
+      if (willDelete) {
+        axiosClient
+          .delete(`reservas/${idReserva}`)
+          .then(function () {
+            if (productos === undefined || reserva.length === 0) {
+              setHayReserva(false);
+              setHayProductos(false);
+            }
+            swal('Tu reserva ha sido cancelada.', {
+              icon: 'success',
+              buttons: false,
+            });
+            setTimeout(() => {
+              window.location.reload();
+            }, 1800);
+          })
+          .catch(function () {});
+      }
+    });
   }
 
   if (!hayReserva) {
@@ -108,9 +105,7 @@ function Reservations() {
             <div className="reservation-text-container">
               <h1>Acá vas a encontrar tus reservas</h1>
               <div className="bottom-text-reservation">
-                <h3>
-                  Utilizá los filtros del home para encontrar tu estadía ideal.
-                </h3>
+                <h3>Utilizá los filtros del home para encontrar tu estadía ideal.</h3>
                 <button onClick={() => manejadorBotones()}>Ir al Home</button>
               </div>
             </div>
@@ -137,7 +132,7 @@ function Reservations() {
               reserva.length === productos.length &&
               productos.map((p) => {
                 let idReserva = reserva.find((item) => item.producto.id === p.id);
-                let imagenFrente = p.imagenes.find((item) => item.titulo === "frente1");
+                let imagenFrente = p.imagenes.find((item) => item.titulo === 'frente1');
                 return (
                   <div key={p.id} className="reservas-items-container">
                     <section className="reserva-item">
@@ -157,7 +152,9 @@ function Reservations() {
                                 return (
                                   <>
                                     <div className="check-reserva">
-                                      <h4>Check-in:{r.fechaInicio} | {r.hora}</h4>
+                                      <h4>
+                                        Check-in:{r.fechaInicio} | {r.hora}
+                                      </h4>
                                       <hr />
                                       <h4>Check-out: {r.fechaFinal}</h4>
                                     </div>
@@ -166,28 +163,35 @@ function Reservations() {
                                       <h4>&quot;{r.datosExtra}&quot;</h4>
                                       <h4>
                                         {r.vacunado
-                                          ? "Usted indicó que se encuentra vacunado contra el COVID-19"
-                                          : "Usted indicó que no se encuentra vacunado contra el COVID-19"}
+                                          ? 'Usted indicó que se encuentra vacunado contra el COVID-19'
+                                          : 'Usted indicó que no se encuentra vacunado contra el COVID-19'}
                                       </h4>
                                     </div>
                                   </>
-                                )
-                              })
-                          }
+                                );
+                              })}
                           <div className="caracteristicas-reserva">
                             {p.caracteristicas &&
                               p.caracteristicas.map((c) => {
                                 return (
                                   <>
-                                    <img src={c.icono} alt={c.nombre} loading="lazy" width="42" height="42" />
+                                    <img
+                                      src={c.icono}
+                                      alt={c.nombre}
+                                      loading="lazy"
+                                      width="42"
+                                      height="42"
+                                    />
                                   </>
                                 );
                               })}
                           </div>
                         </div>
                         <div className="imagen-container-reserva">
-                          <div className="imagen-reserva" style={{ backgroundImage: `url('${imagenFrente.urlImg}')` }}>
-                          </div>
+                          <div
+                            className="imagen-reserva"
+                            style={{ backgroundImage: `url('${imagenFrente.urlImg}')` }}
+                          ></div>
                         </div>
                       </div>
                     </section>
@@ -195,7 +199,9 @@ function Reservations() {
                       <button className="producto">
                         <Link to={`/productos/${p.id}`}>Ver más detalle del producto</Link>
                       </button>
-                      <button className="cancelar" onClick={() => eliminarReserva(idReserva.id)}>Cancelar reserva</button>
+                      <button className="cancelar" onClick={() => eliminarReserva(idReserva.id)}>
+                        Cancelar reserva
+                      </button>
                     </div>
                   </div>
                 );

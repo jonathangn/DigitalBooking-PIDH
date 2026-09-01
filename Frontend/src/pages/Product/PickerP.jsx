@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import DatePicker, { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from "react-router-dom";
-import es from "date-fns/locale/es";
-import { Context } from "../../context/Context";
+import { useContext } from 'react';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useNavigate } from 'react-router-dom';
+import es from 'date-fns/locale/es';
+import { Context } from '../../context/Context';
 
-registerLocale("es", es);
+registerLocale('es', es);
 
 function Picker_() {
   const addDays = (date, days) => {
@@ -20,15 +20,14 @@ function Picker_() {
   };
 
   const navigate = useNavigate();
-  const { auth, setWarning } =
-    useContext(Context);
+  const { auth, setWarning } = useContext(Context);
 
   function userLogged() {
     if (auth) {
-      navigate("reserva");
+      navigate('reserva');
     } else {
       setWarning(true);
-      navigate("/login");
+      navigate('/login');
     }
   }
 
@@ -46,9 +45,7 @@ function Picker_() {
             disabledDayAriaLabelPrefix="No disponible"
             className="react-datepicker-wrapper__picker-input"
             excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
-            excludeDateIntervals={[
-              { start: subDays(new Date(), 5), end: addDays(new Date(), 5) },
-            ]}
+            excludeDateIntervals={[{ start: subDays(new Date(), 5), end: addDays(new Date(), 5) }]}
           />
         </div>
         <div className="react-datepicker-card">
@@ -75,9 +72,7 @@ function Picker_() {
             disabledDayAriaLabelPrefix="No disponible"
             className="react-datepicker-wrapper__picker-input"
             excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
-            excludeDateIntervals={[
-              { start: subDays(new Date(), 5), end: addDays(new Date(), 5) },
-            ]}
+            excludeDateIntervals={[{ start: subDays(new Date(), 5), end: addDays(new Date(), 5) }]}
           />
         </div>
         <div className="react-datepicker-card">

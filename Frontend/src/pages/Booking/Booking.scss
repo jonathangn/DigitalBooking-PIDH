@@ -1,4 +1,4 @@
-@use "../../App.scss";
+@use '../../App.scss';
 
 .form,
 .booking-date,
@@ -35,7 +35,7 @@
   justify-content: space-between;
 
   .error-input {
-    color: #FF0000;
+    color: #ff0000;
     font-size: 15px;
     font-weight: 700;
     margin-top: 3px;
@@ -200,7 +200,8 @@
         left: 0px;
         box-shadow: 0px 3px 3px #fff;
 
-        @media screen and (max-width: 1420px) {}
+        @media screen and (max-width: 1420px) {
+        }
       }
 
       .react-datepicker__current-month,
@@ -526,8 +527,6 @@
         svg {
           color: var(--color-2);
         }
-
-      
       }
 
       .check-in-booking-details {
@@ -616,7 +615,6 @@
             cursor: pointer;
             height: 0;
             width: 0;
-
           }
 
           .checkmark {
@@ -633,24 +631,24 @@
             border: 1px solid rgb(197, 195, 195);
           }
 
-          .container:hover input~.checkmark {
+          .container:hover input ~ .checkmark {
             background-color: #ccc;
           }
 
           /* When the checkbox is checked, add a blue background */
-          .container input:checked~.checkmark {
+          .container input:checked ~ .checkmark {
             background-color: var(--color-principal);
           }
 
           /* Create the checkmark/indicator (hidden when not checked) */
           .checkmark:after {
-            content: "";
+            content: '';
             position: absolute;
             display: none;
           }
 
           /* Show the checkmark when checked */
-          .container input:checked~.checkmark:after {
+          .container input:checked ~ .checkmark:after {
             display: block;
             // position: absolute;
             // top: 0;
@@ -671,8 +669,6 @@
             -ms-transform: rotate(45deg);
             transform: rotate(45deg);
           }
-
-
         }
       }
 
@@ -687,7 +683,7 @@
         border: 1px solid var(--color-principal);
         padding: 15px;
         // margin-top: 75px;
-        font-family: "Roboto", cursive;
+        font-family: 'Roboto', cursive;
         font-size: 16px;
         font-weight: 600;
         width: 100%;

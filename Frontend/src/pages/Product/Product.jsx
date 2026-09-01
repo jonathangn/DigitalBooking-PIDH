@@ -1,44 +1,38 @@
-import { useState, useEffect } from "react";
-import "swiper/css";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useState, useEffect } from 'react';
+import 'swiper/css';
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   IoIosArrowBack,
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
-} from "react-icons/io";
-import { MdLocationOn } from "react-icons/md";
-import { Link, useParams } from "react-router-dom";
-import Modal from "../../funcionesJS/Modal";
-import PickerP from "./PickerP";
-import { BsShare } from "react-icons/bs";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import axiosClient from "../../Helpers/axiosClient";
+} from 'react-icons/io';
+import { MdLocationOn } from 'react-icons/md';
+import { Link, useParams } from 'react-router-dom';
+import Modal from '../../funcionesJS/Modal';
+import PickerP from './PickerP';
+import { BsShare } from 'react-icons/bs';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import axiosClient from '../../Helpers/axiosClient';
 
 import {
   FacebookShareButton,
   TelegramShareButton,
   TwitterShareButton,
   WhatsappShareButton,
-} from "react-share";
+} from 'react-share';
 
-import {
-  FacebookIcon,
-  TelegramIcon,
-  TwitterIcon,
-  WhatsappIcon,
+import { FacebookIcon, TelegramIcon, TwitterIcon, WhatsappIcon } from 'react-share';
 
-} from "react-share";
-
-import "./Product.scss";
-import "./Product.css";
+import './Product.scss';
+import './Product.css';
 
 function Product() {
   const { id } = useParams();
   const [producto, setProducto] = useState({});
   const [loading, setLoading] = useState(true);
-  const coords = [producto?.latitud, producto?.longitud]
-  const pageURL = window.location.href
+  const coords = [producto?.latitud, producto?.longitud];
+  const pageURL = window.location.href;
 
   const [Gallery, setGallery] = useState([]);
   const [mainImg, setMainImg] = useState(null);
@@ -55,7 +49,7 @@ function Product() {
   const [modalSM, setModalSM] = useState(false);
   const toggleModalSM = () => {
     setModalSM(!modalSM);
-  }
+  };
 
   async function getProducto() {
     try {
@@ -64,8 +58,9 @@ function Product() {
       setGallery(result.data.imagenes);
       setMainImg(result.data.imagenes?.[0]?.urlImg);
       setMainImgM(result.data.imagenes?.[0]?.urlImg);
-    } catch { /* intentionally ignore fetch errors */ }
-    finally {
+    } catch {
+      /* intentionally ignore fetch errors */
+    } finally {
       setLoading(false);
     }
   }
@@ -119,7 +114,6 @@ function Product() {
         </Link>
       </div>
 
-
       <div className="location-product">
         <div className="location-content">
           <div>
@@ -138,7 +132,7 @@ function Product() {
         <BsShare onClick={toggleModalSM} />
       </div>
 
-      {modalSM &&
+      {modalSM && (
         <div className="modal-background-sm">
           <div className="modal-container-sm">
             <div className="modal-header">
@@ -146,45 +140,45 @@ function Product() {
               <button onClick={toggleModalSM}> X </button>
             </div>
             <div className="body-modal">
-              <FacebookShareButton
-                url={pageURL}
-                quote="Compartí en Facebook"
-              >
-                <FacebookIcon
-                  size={45}
-                  round />
+              <FacebookShareButton url={pageURL} quote="Compartí en Facebook">
+                <FacebookIcon size={45} round />
               </FacebookShareButton>
-              <WhatsappShareButton
-                url={pageURL}
-              >
-                <WhatsappIcon
-                  size={45}
-                  round />
+              <WhatsappShareButton url={pageURL}>
+                <WhatsappIcon size={45} round />
               </WhatsappShareButton>
-              <TwitterShareButton
-                url={pageURL}
-              >
-                <TwitterIcon
-                  size={45}
-                  round />
+              <TwitterShareButton url={pageURL}>
+                <TwitterIcon size={45} round />
               </TwitterShareButton>
-              <TelegramShareButton
-                url={pageURL}
-              >
-                <TelegramIcon
-                  size={45}
-                  round />
+              <TelegramShareButton url={pageURL}>
+                <TelegramIcon size={45} round />
               </TelegramShareButton>
             </div>
           </div>
-        </div>}
+        </div>
+      )}
 
       <div className="wrapper">
-        <img src={mainImg} alt="" className="main-block" key={Gallery.id} width="800" height="600" fetchPriority="high" />
+        <img
+          src={mainImg}
+          alt=""
+          className="main-block"
+          key={Gallery.id}
+          width="800"
+          height="600"
+          fetchPriority="high"
+        />
 
         <div className="random">
           {GalleryR.map((img, index) => (
-            <img key={index} src={img.urlImg} alt="" className="img-next" loading="lazy" width="400" height="300" />
+            <img
+              key={index}
+              src={img.urlImg}
+              alt=""
+              className="img-next"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
           ))}
 
           <button id="modal-gallery" className="" onClick={toggleModal}>
@@ -207,7 +201,14 @@ function Product() {
         >
           {gallery.map((img, index) => (
             <SwiperSlide key={index}>
-              <img src={img} alt="" className="img-swiper" loading="lazy" width="800" height="600" />
+              <img
+                src={img}
+                alt=""
+                className="img-swiper"
+                loading="lazy"
+                width="800"
+                height="600"
+              />
               <div className="swiper-slide-text">
                 <h2>
                   {index + 1} / {Gallery.length}
@@ -234,12 +235,12 @@ function Product() {
               <div key={index}>
                 <img
                   src={caracteristica.icono}
-                  alt={"icono-" + caracteristica.nombre}
+                  alt={'icono-' + caracteristica.nombre}
                   loading="lazy"
                   width="32"
                   height="32"
                 />
-                {caracteristica.nombre.replace("-", " ")}
+                {caracteristica.nombre.replace('-', ' ')}
               </div>
             );
           })}
@@ -258,25 +259,26 @@ function Product() {
         <div className="map-title">
           <h1>¿Dónde vas a estar? </h1>
           <hr />
-          <div className="map-ubication-text">{producto.ubicacion?.ciudad}, {producto.ubicacion?.pais}</div>
-          <div className="map-wrap" >
-            {producto?.latitud && producto?.longitud &&
+          <div className="map-ubication-text">
+            {producto.ubicacion?.ciudad}, {producto.ubicacion?.pais}
+          </div>
+          <div className="map-wrap">
+            {producto?.latitud && producto?.longitud && (
               <MapContainer
-                style={{ height: '100%', width: '100%', }}
+                style={{ height: '100%', width: '100%' }}
                 center={coords}
                 zoom={15}
-                scrollWheelZoom={false}>
+                scrollWheelZoom={false}
+              >
                 <TileLayer
                   attribution='&copy;<ahref="http://osm.org/copyright">OpenStreetMap </a> contributors'
-                  url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'
+                  url="https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png"
                 />
                 <Marker position={coords}>
-                  <Popup>
-                    {producto?.direccion}
-                  </Popup>
+                  <Popup>{producto?.direccion}</Popup>
                 </Marker>
               </MapContainer>
-            }
+            )}
           </div>
         </div>
       </div>
@@ -290,7 +292,7 @@ function Product() {
           <div className="politics-items">
             <h3> Normas de la casa</h3>
             {producto.politicas
-              ?.filter((politica) => politica.tipo === "NORMAS")
+              ?.filter((politica) => politica.tipo === 'NORMAS')
               .map((politica, index) => {
                 return <div key={index}>{politica.descripcion}</div>;
               })}
@@ -298,7 +300,7 @@ function Product() {
           <div className="politics-items">
             <h3> Salud y seguridad</h3>
             {producto.politicas
-              ?.filter((politica) => politica.tipo === "SEGURIDAD")
+              ?.filter((politica) => politica.tipo === 'SEGURIDAD')
               .map((politica, index) => {
                 return <div key={index}>{politica.descripcion}</div>;
               })}
@@ -306,7 +308,7 @@ function Product() {
           <div className="politics-items">
             <h3> Política de cancelación</h3>
             {producto.politicas
-              ?.filter((politica) => politica.tipo === "CANCELACION")
+              ?.filter((politica) => politica.tipo === 'CANCELACION')
               .map((politica, index) => {
                 return <div key={index}>{politica.descripcion}</div>;
               })}
@@ -317,21 +319,14 @@ function Product() {
       <Modal modalActive={modalActive} toggle={toggleModal}>
         <div className="modal-container">
           <div className="g-container">
-            <button
-              id="modal-gallery"
-              className="modal-gallery-x"
-              onClick={toggleModal}
-            >
+            <button id="modal-gallery" className="modal-gallery-x" onClick={toggleModal}>
               X
             </button>
             <img src={mainImgM} alt="" className="main-img" width="800" height="600" />
 
             <span className="arrows">
               <IoIosArrowDropleftCircle className="left-aw" onClick={prevImg} />
-              <IoIosArrowDroprightCircle
-                className="right-aw"
-                onClick={nextImg}
-              />
+              <IoIosArrowDroprightCircle className="right-aw" onClick={nextImg} />
             </span>
             <div className="counter-gallery">
               <br />
@@ -343,7 +338,7 @@ function Product() {
             <div className="carousel">
               {gallery.map((img, index) => (
                 <img
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                   key={index}
                   src={img}
                   alt=""

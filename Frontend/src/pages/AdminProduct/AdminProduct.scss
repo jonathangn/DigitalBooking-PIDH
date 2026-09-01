@@ -1,4 +1,4 @@
-@use "../../App.scss";
+@use '../../App.scss';
 
 .admin-product-container {
   // padding: 0px 40px 40px 40px;
@@ -305,24 +305,24 @@
   }
 
   /* On mouse-over, add a grey background color */
-  .container:hover input~.checkmark {
+  .container:hover input ~ .checkmark {
     background-color: #ccc;
   }
 
   /* When the checkbox is checked, add a blue background */
-  .container input:checked~.checkmark {
+  .container input:checked ~ .checkmark {
     background-color: var(--color-principal);
   }
 
   /* Create the checkmark/indicator (hidden when not checked) */
   .checkmark:after {
-    content: "";
+    content: '';
     position: absolute;
     display: none;
   }
 
   /* Show the checkmark when checked */
-  .container input:checked~.checkmark:after {
+  .container input:checked ~ .checkmark:after {
     display: block;
     // position: absolute;
     // top: 0;
@@ -345,13 +345,12 @@
   /************************/
   // Errores
   .error-message {
-    color: #FF0000;
+    color: #ff0000;
     font-size: 15px;
     font-weight: 700;
     margin-top: 3px;
     margin-bottom: 8px;
   }
-
 }
 
 /************************/
@@ -391,7 +390,7 @@
 
 .cards-politics-setup,
 input {
-// .radio input {
+  // .radio input {
   width: 100%;
   border-radius: 5px;
   border: 1px solid #fff;

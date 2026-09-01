@@ -1,4 +1,4 @@
-@use "../../App.scss";
+@use '../../App.scss';
 
 /************************/
 
@@ -58,7 +58,7 @@
   display: flex;
   background: #383b58eb;
   backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px)
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .modal-container-sm {
@@ -79,10 +79,9 @@
   @include App.breakpoints(sm) {
     width: 95%;
     // height: 20%;
-    height: 15%;;
+    height: 15%;
   }
 }
-
 
 .modal-header {
   display: flex;
@@ -135,14 +134,14 @@
   justify-content: space-evenly;
   align-items: center;
 
-  circle{
+  circle {
     font-size: 24px;
   }
   svg {
     font-size: 24px;
 
-
-    @include App.breakpoints(sm) {}
+    @include App.breakpoints(sm) {
+    }
   }
 }
 
@@ -236,7 +235,6 @@
 /************************/
 
 .map-product {
-
   .map-wrap {
     width: 100%;
     height: 500px;
@@ -315,7 +313,6 @@
   }
 }
 
-
 .share-social-media,
 .map-product,
 .location-product,
@@ -331,7 +328,6 @@
   }
 }
 
-
 .map-product,
 .header-product,
 .description-product,
@@ -343,7 +339,6 @@
     }
   }
 }
-
 
 .map-product,
 .description-product,

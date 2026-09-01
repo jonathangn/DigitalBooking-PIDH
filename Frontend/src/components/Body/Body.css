@@ -149,7 +149,7 @@
 
   font-size: 12px;
   font-weight: bolder;
-  content: "×";
+  content: '×';
 }
 
 .react-datepicker__day--keyboard-selected {
@@ -690,7 +690,7 @@ a {
   }
 
   /*CALENDAR*/
-  .react-datepicker-popper[data-placement^="bottom"] {
+  .react-datepicker-popper[data-placement^='bottom'] {
     inset: 0px auto 0px auto !important;
   }
 
@@ -860,7 +860,7 @@ a {
 }
 
 .swal-button swal-button--cancel {
-  content: "Cancelar";
+  content: 'Cancelar';
   visibility: hidden;
   font-size: 2rem;
 }

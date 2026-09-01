@@ -1,16 +1,14 @@
 // variables globales
 :root {
-  --color-principal: #1DBEB4;
-  --color-2: #383B58;
+  --color-principal: #1dbeb4;
+  --color-2: #383b58;
   --color-3: #545776;
-  --color-4: #F3F1ED;
+  --color-4: #f3f1ed;
 
-  --gris-plomo: #4F4F50;
-  --gris-suave: #BEBEBE;
+  --gris-plomo: #4f4f50;
+  --gris-suave: #bebebe;
   --blanco: #fff;
 }
-
-
 
 * {
   margin: 0;
@@ -58,7 +56,6 @@ textarea {
 // Media queries
 
 @mixin breakpoints($point) {
-
   // mobile
   @if $point==sm {
     @media (max-width: 480px) {

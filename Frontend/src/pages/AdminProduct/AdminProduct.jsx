@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { Api } from "../../Helpers/axiosClient";
-import { fetchJson } from "../../Helpers/fetchJson";
-import { Link } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
-import SelectCategory from "react-select";
-import SelectCity from "react-select";
-import "./AdminProduct.scss";
-import success from "../Booking/success-icon.svg";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useEffect, useState } from 'react';
+import { Api } from '../../Helpers/axiosClient';
+import { fetchJson } from '../../Helpers/fetchJson';
+import { Link } from 'react-router-dom';
+import { IoIosArrowBack } from 'react-icons/io';
+import SelectCategory from 'react-select';
+import SelectCity from 'react-select';
+import './AdminProduct.scss';
+import success from '../Booking/success-icon.svg';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import swal from 'sweetalert';
-import axiosClient from "../../Helpers/axiosClient";
+import axiosClient from '../../Helpers/axiosClient';
 
 function AdminProduct() {
   const [newBooking, setNewBooking] = useState(false);
@@ -18,7 +18,7 @@ function AdminProduct() {
 
   const getCategories = async () => {
     try {
-      const data = await fetchJson(Api + "categorias");
+      const data = await fetchJson(Api + 'categorias');
       setCategories(data);
     } catch (error) {
       console.error(error);
@@ -35,7 +35,7 @@ function AdminProduct() {
 
   const getCities = async () => {
     try {
-      const data = await fetchJson(Api + "ubicaciones");
+      const data = await fetchJson(Api + 'ubicaciones');
       setCities(data);
     } catch (error) {
       console.error(error);
@@ -57,24 +57,24 @@ function AdminProduct() {
   const customStyles = {
     control: (base) => ({
       ...base,
-      height: "50px",
-      width: "100%",
-      border: "1px solid #ccc",
-      borderRadius: "5px",
-      boxShadow: "0px 1px 5px rgba(0, 0, 0, 0.15)",
-      fontSize: "15px",
-      fontWeight: "700px",
+      height: '50px',
+      width: '100%',
+      border: '1px solid #ccc',
+      borderRadius: '5px',
+      boxShadow: '0px 1px 5px rgba(0, 0, 0, 0.15)',
+      fontSize: '15px',
+      fontWeight: '700px',
     }),
     option: (provided, state) => ({
       ...provided,
-      borderBottom: "1px dotted pink",
-      fontSize: "15px",
-      fontWeight: "700",
-      color: state.isSelected ? "#ffffff" : "#383B58",
+      borderBottom: '1px dotted pink',
+      fontSize: '15px',
+      fontWeight: '700',
+      color: state.isSelected ? '#ffffff' : '#383B58',
     }),
   };
 
-  const [inputs, setInputs] = useState([{ urlImg: "" }]);
+  const [inputs, setInputs] = useState([{ urlImg: '' }]);
 
   const handleInputsChange = (e, i) => {
     const { name, value } = e.target;
@@ -90,7 +90,7 @@ function AdminProduct() {
   };
 
   const handleAdd = () => {
-    setInputs([...inputs, { urlImg: "" }]);
+    setInputs([...inputs, { urlImg: '' }]);
   };
 
   if (newBooking) {
@@ -99,7 +99,14 @@ function AdminProduct() {
         <div className="booking-alternative">
           <div className="booking-success-container">
             <div className="booking-success-card card-booking">
-              <img src={success} className="success-icon" alt="Success" loading="lazy" width="120" height="120" />
+              <img
+                src={success}
+                className="success-icon"
+                alt="Success"
+                loading="lazy"
+                width="120"
+                height="120"
+              />
 
               <h3>Tu propiedad se ha creado con éxito.</h3>
 
@@ -112,7 +119,6 @@ function AdminProduct() {
       </>
     );
   }
-
 
   return (
     <>
@@ -130,65 +136,63 @@ function AdminProduct() {
         <div className="form-container">
           <Formik
             initialValues={{
-              nombre: "",
-              direccion: "",
-              latitud: "",
-              longitud: "",
-              descripcion: "",
-              ciudad: "",
-              categoria: "",
+              nombre: '',
+              direccion: '',
+              latitud: '',
+              longitud: '',
+              descripcion: '',
+              ciudad: '',
+              categoria: '',
               caracteristicas: [],
-              CheckIn: "",
-              CheckOut: "",
-              Covid: "",
-              Cancel: "",
-              Fumar: "",
-              Party: "",
-              Smoke: "",
-              Safe: "",
+              CheckIn: '',
+              CheckOut: '',
+              Covid: '',
+              Cancel: '',
+              Fumar: '',
+              Party: '',
+              Smoke: '',
+              Safe: '',
               urlImg: [],
             }}
             validate={(valores) => {
               let errores = {};
 
               if (!valores.nombre) {
-                errores.nombre = "El nombre es requerido";
+                errores.nombre = 'El nombre es requerido';
               } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.nombre)) {
-                errores.nombre = "El nombre no es válido";
+                errores.nombre = 'El nombre no es válido';
               }
 
               if (!valores.direccion) {
-                errores.direccion = "La dirección es requerida";
+                errores.direccion = 'La dirección es requerida';
               }
 
               if (!valores.latitud) {
-                errores.latitud = "La latitud es requerida";
+                errores.latitud = 'La latitud es requerida';
               }
 
               if (!valores.longitud) {
-                errores.longitud = "La longitud es requerida";
+                errores.longitud = 'La longitud es requerida';
               }
 
               if (!valores.descripcion) {
-                errores.descripcion = "La descripción es requerida";
+                errores.descripcion = 'La descripción es requerida';
               }
 
               if (!valores.caracteristicas) {
-                errores.caracteristicas =
-                  "Las características son requeridas";
+                errores.caracteristicas = 'Las características son requeridas';
               }
 
               if (valores.caracteristicas.length === 0) {
-                errores.caracteristicas =
-                  "Seleccione como mínimo 1 característica";
+                errores.caracteristicas = 'Seleccione como mínimo 1 característica';
               }
 
               if (!valores.ciudad) {
-                errores.ciudad = "La ciudad es requerida";
+                errores.ciudad = 'La ciudad es requerida';
               }
 
               if (!valores.categoria) {
-                errores.categoria = "La categoría es requerida";
+                errores.categoria = 'La categoría es requerida';
               }
 
               if (
@@ -201,16 +205,15 @@ function AdminProduct() {
                 !valores.Smoke ||
                 !valores.Safe
               ) {
-                errores.CheckIn = "Seleccione todas las políticas";
+                errores.CheckIn = 'Seleccione todas las políticas';
               }
 
               if (!inputs || inputs.length < 5) {
-                errores.urlImg =
-                  "Debe cargar al menos 5 imágenes de la propiedad";
+                errores.urlImg = 'Debe cargar al menos 5 imágenes de la propiedad';
               }
 
               if (/^(ftp|http|https):\/\/[^ "]+$/.test(inputs.urlImg)) {
-                errores.urlImg = "La URL debe tener el formato apropiado";
+                errores.urlImg = 'La URL debe tener el formato apropiado';
               }
 
               return errores;
@@ -231,7 +234,7 @@ function AdminProduct() {
                 //POST producto
                 const data = JSON.stringify({
                   nombre: valores.nombre,
-                  titulo: "Disfruta de " + valores.nombre,
+                  titulo: 'Disfruta de ' + valores.nombre,
                   descripcion: valores.descripcion,
                   precio: 0,
                   disponible: true,
@@ -258,17 +261,19 @@ function AdminProduct() {
                   },
                 });
 
-                axiosClient.post("productos", data)
+                axiosClient
+                  .post('productos', data)
                   .then(function (response) {
                     inputs.pop();
                     inputs.forEach((item) => {
                       let payload = {
-                        titulo: "",
+                        titulo: '',
                         urlImg: item.urlImg.trim(),
                         producto: { id: response.data.id },
                       };
 
-                      axiosClient.post("imagenes", payload)
+                      axiosClient
+                        .post('imagenes', payload)
                         .then(function () {
                           setNewBooking(true);
                         })
@@ -277,9 +282,9 @@ function AdminProduct() {
                   })
                   .catch(function () {
                     swal({
-                      text: "Lamentablemente el producto no ha podido crearse. Por favor intente más tarde",
-                      icon: "error",
-                      button: "¡Entendido!",
+                      text: 'Lamentablemente el producto no ha podido crearse. Por favor intente más tarde',
+                      icon: 'error',
+                      button: '¡Entendido!',
                     });
                   });
               }
@@ -301,9 +306,7 @@ function AdminProduct() {
                       />
                       <ErrorMessage
                         name="nombre"
-                        component={() => (
-                          <div className="error-message">{errors.nombre}</div>
-                        )}
+                        component={() => <div className="error-message">{errors.nombre}</div>}
                       />
                     </div>
 
@@ -315,48 +318,36 @@ function AdminProduct() {
                         required
                         styles={customStyles}
                         defaultValue={{
-                          value: "",
-                          label: "Seleccionar una categoría",
+                          value: '',
+                          label: 'Seleccionar una categoría',
                         }}
-                        onChange={(e) => setFieldValue("categoria", e.id)}
+                        onChange={(e) => setFieldValue('categoria', e.id)}
                         options={categoryOptions}
                         theme={(theme) => ({
                           ...theme,
                           borderRadius: 0,
                           colors: {
                             ...theme.colors,
-                            primary25: "#BEBEBE",
-                            primary: "#1DBEB4",
-                            color: "#383B58",
-                            fontWeight: "700",
+                            primary25: '#BEBEBE',
+                            primary: '#1DBEB4',
+                            color: '#383B58',
+                            fontWeight: '700',
                           },
                         })}
                       />
                       <ErrorMessage
                         name="categoria"
-                        component={() => (
-                          <div className="error-message">
-                            {errors.categoria}
-                          </div>
-                        )}
+                        component={() => <div className="error-message">{errors.categoria}</div>}
                       />
                     </div>
                   </div>
                   <div className="inputs-container">
                     <div className="input-div-admin">
                       <label htmlFor="direction">Dirección</label>
-                      <Field
-                        type="text"
-                        className="input-admin"
-                        name="direccion"
-                      />
+                      <Field type="text" className="input-admin" name="direccion" />
                       <ErrorMessage
                         name="direccion"
-                        component={() => (
-                          <div className="error-message">
-                            {errors.direccion}
-                          </div>
-                        )}
+                        component={() => <div className="error-message">{errors.direccion}</div>}
                       />
                     </div>
                     <div className="input-div-admin">
@@ -367,200 +358,130 @@ function AdminProduct() {
                         required
                         styles={customStyles}
                         defaultValue={{
-                          value: "",
-                          label: "Seleccionar una ciudad",
+                          value: '',
+                          label: 'Seleccionar una ciudad',
                         }}
-                        onChange={(e) => setFieldValue("ciudad", e.id)}
+                        onChange={(e) => setFieldValue('ciudad', e.id)}
                         options={cityOptions}
                         theme={(theme) => ({
                           ...theme,
                           borderRadius: 0,
                           colors: {
                             ...theme.colors,
-                            primary25: "#BEBEBE",
-                            primary: "#1DBEB4",
-                            color: "#383B58",
-                            fontWeight: "700",
+                            primary25: '#BEBEBE',
+                            primary: '#1DBEB4',
+                            color: '#383B58',
+                            fontWeight: '700',
                           },
                         })}
                       />
                       <ErrorMessage
                         name="ciudad"
-                        component={() => (
-                          <div className="error-message">
-                            {errors.ciudad}
-                          </div>
-                        )}
+                        component={() => <div className="error-message">{errors.ciudad}</div>}
                       />
                     </div>
                   </div>
                   <div className="inputs-container">
                     <div className="input-div-admin">
                       <label htmlFor="direction">Latitud</label>
-                      <Field
-                        type="tel"
-                        className="input-admin"
-                        name="latitud"
-                      />
+                      <Field type="tel" className="input-admin" name="latitud" />
                       <ErrorMessage
                         name="latitud"
-                        component={() => (
-                          <div className="error-message">
-                            {errors.latitud}
-                          </div>
-                        )}
+                        component={() => <div className="error-message">{errors.latitud}</div>}
                       />
                     </div>
                     <div className="input-div-admin">
                       <label htmlFor="longitud">Longitud</label>
-                      <Field
-                        type="text"
-                        className="input-admin"
-                        name="longitud"
-                      />
+                      <Field type="text" className="input-admin" name="longitud" />
                       <ErrorMessage
                         name="longitud"
-                        component={() => (
-                          <div className="error-message">
-                            {errors.longitud}
-                          </div>
-                        )}
+                        component={() => <div className="error-message">{errors.longitud}</div>}
                       />
                     </div>
                   </div>
                 </div>
                 <label htmlFor="descripcion">Descripción</label>
-                <Field
-                  name="descripcion"
-                  placeholder="   Escribe aquí"
-                  as="textarea"
-                />
+                <Field name="descripcion" placeholder="   Escribe aquí" as="textarea" />
                 <ErrorMessage
                   name="descripcion"
-                  component={() => (
-                    <div className="error-message">{errors.descripcion}</div>
-                  )}
+                  component={() => <div className="error-message">{errors.descripcion}</div>}
                 />
                 <h1>Agregar atributos</h1>
                 <div className="checkbox-container">
                   <div>
                     <label className="container">
                       Aire acondicionado
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="1"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="1" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div>
                     <label className="container">
                       Apto mascotas
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="2"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="2" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div>
                     <label className="container">
                       Calefacción
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="3"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="3" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div>
                     <label className="container">
                       Bodega
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="4"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="4" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div>
                     <label className="container">
                       Cocina
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="5"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="5" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div>
                     <label className="container">
                       Estacionamiento
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="6"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="6" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div>
                     <label className="container">
                       Gimnasio
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="7"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="7" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div>
                     <label className="container">
                       Televisor
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="8"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="8" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div>
                     <label className="container">
                       Pileta
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="9"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="9" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                   <div>
                     <label className="container">
                       Wifi
-                      <Field
-                        type="checkbox"
-                        name="caracteristicas"
-                        value="10"
-                      />
+                      <Field type="checkbox" name="caracteristicas" value="10" />
                       <span className="checkmark"></span>
                     </label>
                   </div>
                 </div>
                 <ErrorMessage
                   name="caracteristicas"
-                  component={() => (
-                    <div className="error-message">
-                      {errors.caracteristicas}
-                    </div>
-                  )}
+                  component={() => <div className="error-message">{errors.caracteristicas}</div>}
                 />
                 <h1>Políticas del producto</h1>
                 <div className="cards-politics-container">
@@ -571,8 +492,7 @@ function AdminProduct() {
                         <h3 className="title-politic">Hora check in</h3>
                         <div className="radio">
                           <label className="radio-label">
-                            <Field name="CheckIn" type="radio" value="4" />9
-                            am
+                            <Field name="CheckIn" type="radio" value="4" />9 am
                           </label>
                         </div>
                         <div className="radio">
@@ -587,14 +507,12 @@ function AdminProduct() {
                         <h3 className="title-politic">Hora check out</h3>
                         <div className="radio">
                           <label className="radio-label">
-                            <Field name="CheckOut" type="radio" value="6" />8
-                            am
+                            <Field name="CheckOut" type="radio" value="6" />8 am
                           </label>
                         </div>
                         <div className="radio">
                           <label className="radio-label">
-                            <Field name="CheckOut" type="radio" value="5" />9
-                            am
+                            <Field name="CheckOut" type="radio" value="5" />9 am
                           </label>
                         </div>
                       </div>
@@ -654,9 +572,7 @@ function AdminProduct() {
                       </div>
 
                       <div className="politics-blocks">
-                        <h3 className="title-politic">
-                          ¿Se permiten fiestas?
-                        </h3>
+                        <h3 className="title-politic">¿Se permiten fiestas?</h3>
                         <div className="radio">
                           <label className="radio-label">
                             <Field name="Party" type="radio" value="8" />
@@ -707,9 +623,7 @@ function AdminProduct() {
                 </div>
                 <ErrorMessage
                   name="CheckIn"
-                  component={() => (
-                    <div className="error-message">{errors.CheckIn}</div>
-                  )}
+                  component={() => <div className="error-message">{errors.CheckIn}</div>}
                 />
                 <h1>Cargar imágenes</h1>
                 {inputs.map((x, i) => {
@@ -721,7 +635,7 @@ function AdminProduct() {
                           name="urlImg"
                           placeholder="   https://..."
                           onChange={(e) => {
-                            setFieldValue("urlImg", e.value);
+                            setFieldValue('urlImg', e.value);
                             handleInputsChange(e, i);
                           }}
                         />
@@ -733,7 +647,7 @@ function AdminProduct() {
                           type="button"
                           className="gallery-sender-add"
                           onClick={() => handleQuit(i)}
-                          style={{ background: "#545776" }}
+                          style={{ background: '#545776' }}
                         >
                           x
                         </button>
@@ -754,15 +668,10 @@ function AdminProduct() {
                 })}
                 <ErrorMessage
                   name="urlImg"
-                  component={() => (
-                    <div className="error-message">{errors.urlImg}</div>
-                  )}
+                  component={() => <div className="error-message">{errors.urlImg}</div>}
                 />
                 <div className="btn-admin">
-
-                  <button type="submit">
-                    Crear
-                  </button>
+                  <button type="submit">Crear</button>
                 </div>
               </Form>
             )}

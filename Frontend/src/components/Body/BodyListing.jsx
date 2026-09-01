@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import { DataContext } from "../Context/DataContext";
-import { Link } from "react-router-dom";
-import { GoLocation } from "react-icons/go";
-import { BsWifi } from "react-icons/bs";
-import { BiSwim } from "react-icons/bi";
+import { useContext } from 'react';
+import { DataContext } from '../Context/DataContext';
+import { Link } from 'react-router-dom';
+import { GoLocation } from 'react-icons/go';
+import { BsWifi } from 'react-icons/bs';
+import { BiSwim } from 'react-icons/bi';
 
 const Listing = () => {
   const dataReady = useContext(DataContext);
@@ -17,7 +17,7 @@ const Listing = () => {
     );
   } else {
     let feedback = [];
-    const check = document.getElementById("bt-create-account");
+    const check = document.getElementById('bt-create-account');
 
     if (check) {
       return (
@@ -27,8 +27,7 @@ const Listing = () => {
             {products.products &&
               products.products.map(
                 (product) => (
-                  product.imagenes &&
-                    product.imagenes.sort((a, b) => a.id - b.id),
+                  product.imagenes && product.imagenes.sort((a, b) => a.id - b.id),
                   (
                     <li className="listing-card" key={product.id}>
                       <img
@@ -51,27 +50,23 @@ const Listing = () => {
                           <p className="review-number">
                             {product.puntuaciones
                               ? product.puntuaciones.map(
-                                  (p) =>
-                                    parseInt(p.valor) && feedback.push(p.valor)
+                                  (p) => parseInt(p.valor) && feedback.push(p.valor)
                                 ) &&
                                 Math.trunc(
-                                  feedback.reduce(
-                                    (prev, curr) => prev + curr
-                                  ) / feedback.length
+                                  feedback.reduce((prev, curr) => prev + curr) / feedback.length
                                 ) * 2
                               : 8}
                           </p>
                           <h5 className="review-text">
-                            {" "}
+                            {' '}
                             {feedback.length > 0 &&
                             Math.trunc(
-                              feedback.reduce((prev, curr) => prev + curr) /
-                                feedback.length
+                              feedback.reduce((prev, curr) => prev + curr) / feedback.length
                             ) *
                               2 >=
                               6
-                              ? "Muy bueno"
-                              : "Regular"}
+                              ? 'Muy bueno'
+                              : 'Regular'}
                           </h5>
                         </div>
 
@@ -80,12 +75,8 @@ const Listing = () => {
 
                           <GoLocation className="icons" />
                           {}
-                          {"  A 940 m del centro  "}
-                          <a
-                            href={product.nombre}
-                            rel="noreferrer"
-                            target={"_blank"}
-                          >
+                          {'  A 940 m del centro  '}
+                          <a href={product.nombre} rel="noreferrer" target={'_blank'}>
                             MOSTRAR EN EL MAPA
                           </a>
                           <p className="icons-amenities">
@@ -96,8 +87,7 @@ const Listing = () => {
                         </h4>
 
                         <h5>
-                          {product.descripcion}{" "}
-                          <a href="https://digitalhouse.com">más...</a>
+                          {product.descripcion} <a href="https://digitalhouse.com">más...</a>
                         </h5>
 
                         <Link
@@ -123,8 +113,7 @@ const Listing = () => {
             {products.products &&
               products.products.map(
                 (product) => (
-                  product.imagenes &&
-                    product.imagenes.sort((a, b) => a.id - b.id),
+                  product.imagenes && product.imagenes.sort((a, b) => a.id - b.id),
                   (
                     <li className="listing-card" key={product.id}>
                       <img
@@ -147,27 +136,23 @@ const Listing = () => {
                           <p className="review-number">
                             {product.puntuaciones
                               ? product.puntuaciones.map(
-                                  (p) =>
-                                    parseInt(p.valor) && feedback.push(p.valor)
+                                  (p) => parseInt(p.valor) && feedback.push(p.valor)
                                 ) &&
                                 Math.trunc(
-                                  feedback.reduce(
-                                    (prev, curr) => prev + curr
-                                  ) / feedback.length
+                                  feedback.reduce((prev, curr) => prev + curr) / feedback.length
                                 ) * 2
                               : 8}
                           </p>
                           <h5 className="review-text">
-                            {" "}
+                            {' '}
                             {feedback.length > 0 &&
                             Math.trunc(
-                              feedback.reduce((prev, curr) => prev + curr) /
-                                feedback.length
+                              feedback.reduce((prev, curr) => prev + curr) / feedback.length
                             ) *
                               2 >=
                               6
-                              ? "Muy bueno"
-                              : "Regular"}
+                              ? 'Muy bueno'
+                              : 'Regular'}
                           </h5>
                         </div>
 
@@ -175,12 +160,8 @@ const Listing = () => {
                           <br />
 
                           <GoLocation className="icons" />
-                          {"  A 940 m del centro  "}
-                          <a
-                            href={product.nombre}
-                            rel="noreferrer"
-                            target={"_blank"}
-                          >
+                          {'  A 940 m del centro  '}
+                          <a href={product.nombre} rel="noreferrer" target={'_blank'}>
                             MOSTRAR EN EL MAPA
                           </a>
                           <p className="icons-amenities">
@@ -191,8 +172,7 @@ const Listing = () => {
                         </h4>
 
                         <h5>
-                          {product.descripcion}{" "}
-                          <a href="https://digitalhouse.com">más...</a>
+                          {product.descripcion} <a href="https://digitalhouse.com">más...</a>
                         </h5>
                         <Link
                           to={`productos/${product.id}`}

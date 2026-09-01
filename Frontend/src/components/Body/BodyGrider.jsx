@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import { DataContext } from "../Context/DataContext";
-import Glider from "react-glider";
-import "glider-js/glider.min.css";
-import { Api } from "../../Helpers/axiosClient";
+import { useContext } from 'react';
+import { DataContext } from '../Context/DataContext';
+import Glider from 'react-glider';
+import 'glider-js/glider.min.css';
+import { Api } from '../../Helpers/axiosClient';
 
-import scrollTo from "../../funcionesJS/scrollTo";
+import scrollTo from '../../funcionesJS/scrollTo';
 
 function Grider() {
   const dataReady = useContext(DataContext);
@@ -22,7 +22,7 @@ function Grider() {
       <div className="grider-container">
         <h2>Buscar por tipo de alojamiento</h2>
         <div className="grider-card">
-          <Glider draggable hasDots slidesToShow={"auto"}>
+          <Glider draggable hasDots slidesToShow={'auto'}>
             {categories.categories.map((category) => (
               <div
                 key={category.id}
@@ -32,7 +32,13 @@ function Grider() {
                   filter.setFilter(Api + `productos/categoria/${category.id}`);
                 }}
               >
-                <img src={category.urlImagen} alt={category.titulo} loading="lazy" width="400" height="300" />
+                <img
+                  src={category.urlImagen}
+                  alt={category.titulo}
+                  loading="lazy"
+                  width="400"
+                  height="300"
+                />
 
                 <div className="grider-card-details">
                   <h3>{category.titulo}</h3>

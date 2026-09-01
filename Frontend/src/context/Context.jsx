@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo } from "react";
-import { getToken, decodeToken } from "../Helpers/auth";
+import React, { useEffect, useMemo } from 'react';
+import { getToken, decodeToken } from '../Helpers/auth';
 
 const Context = React.createContext();
 
 function Provider(props) {
-
   const [warning, setWarning] = React.useState(false);
   const [user, setUser] = React.useState(null);
   const [token, setToken] = React.useState(getToken());
@@ -15,7 +14,7 @@ function Provider(props) {
     setAuthReady(true);
   }, []);
 
-  const { user: decodedUser, isAdmin, isExpired } = useMemo(() => decodeToken(token), [token])
+  const { user: decodedUser, isAdmin, isExpired } = useMemo(() => decodeToken(token), [token]);
 
   const auth = !!token;
   const admin = isAdmin;

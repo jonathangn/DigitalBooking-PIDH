@@ -1,8 +1,8 @@
-import Seeker from "./BodySeeker";
-import Grider from "./BodyGrider";
-import Listing from "./BodyListing";
+import Seeker from './BodySeeker';
+import Grider from './BodyGrider';
+import Listing from './BodyListing';
 
-import "./Body.css";
+import './Body.css';
 
 function Body() {
   return (

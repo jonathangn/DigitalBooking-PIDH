@@ -1,5 +1,5 @@
-import { Component } from "react";
-import Portal from "./Portal";
+import { Component } from 'react';
+import Portal from './Portal';
 
 export default class Modal extends Component {
   render() {
@@ -19,14 +19,14 @@ export default class Modal extends Component {
 
 const styles = {
   wrapper: {
-    position: "fixed",
+    position: 'fixed',
     top: 0,
     left: 0,
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     zIndex: 1000,
   },
 };

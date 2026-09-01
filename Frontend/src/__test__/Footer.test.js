@@ -1,26 +1,25 @@
-import Footer from "../components/Footer/Footer";
-import '../components/Footer/Footer.scss'
+import Footer from '../components/Footer/Footer';
+import '../components/Footer/Footer.scss';
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 
 let component = null;
 
 beforeEach(() => {
-    component = render(
-        <BrowserRouter>
-            <Footer />
-        </BrowserRouter>
-    )
-    expect(component.container).toBeInTheDocument();
-})
+  component = render(
+    <BrowserRouter>
+      <Footer />
+    </BrowserRouter>
+  );
+  expect(component.container).toBeInTheDocument();
+});
 
 test('Footer renderiza correctamente', () => {
-    const component = render(<Footer />);
-    expect(component.container).toBeInTheDocument();
+  const component = render(<Footer />);
+  expect(component.container).toBeInTheDocument();
 });
 
 test('Renderizado de derechos de autor', () => {
-    expect(component.getByText('©2022 Digital Booking')).toBeInTheDocument();
+  expect(component.getByText('©2022 Digital Booking')).toBeInTheDocument();
 });
-

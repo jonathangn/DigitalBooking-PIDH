@@ -1,7 +1,7 @@
-import { render } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from "../context/Context";
-import { DataProvider } from "../components/Context/DataContext";
+import { render } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from '../context/Context';
+import { DataProvider } from '../components/Context/DataContext';
 
 export const AllTheProviders = ({ children }) => {
   return (

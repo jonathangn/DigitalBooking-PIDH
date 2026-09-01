@@ -1,17 +1,16 @@
-import { useContext } from "react";
-import { DataContext } from "../../components/Context/DataContext";
-import DatePicker, { registerLocale } from "react-datepicker";
-import eachDayOfInterval from "date-fns/eachDayOfInterval";
-import "react-datepicker/dist/react-datepicker.css";
-import parseISO from "date-fns/parseISO";
-import swal from "sweetalert";
-import es from "date-fns/locale/es";
+import { useContext } from 'react';
+import { DataContext } from '../../components/Context/DataContext';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import eachDayOfInterval from 'date-fns/eachDayOfInterval';
+import 'react-datepicker/dist/react-datepicker.css';
+import parseISO from 'date-fns/parseISO';
+import swal from 'sweetalert';
+import es from 'date-fns/locale/es';
 
-registerLocale("es", es);
+registerLocale('es', es);
 
 const Calendar = () => {
-  const { productBookings, startDate, endDate, setStartDate, setEndDate } =
-    useContext(DataContext);
+  const { productBookings, startDate, endDate, setStartDate, setEndDate } = useContext(DataContext);
 
   const arrayExcluded = [];
   let exclutions = [];
@@ -38,9 +37,9 @@ const Calendar = () => {
     if (exclutions) {
       if (exclutions.some((date) => start <= date && date <= end)) {
         swal({
-          text: "No puedes reservar en esas fechas",
-          icon: "error",
-          button: "¡Entendido!",
+          text: 'No puedes reservar en esas fechas',
+          icon: 'error',
+          button: '¡Entendido!',
         });
         setStartDate(null);
       } else {

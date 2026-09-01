@@ -1,63 +1,94 @@
-import React, { useContext } from 'react'
-import './SignUp.scss'
-import { Link } from 'react-router-dom'
-import { Context } from '../../context/Context'
+import React, { useContext } from 'react';
+import './SignUp.scss';
+import { Link } from 'react-router-dom';
+import { Context } from '../../context/Context';
 import swal from 'sweetalert';
-import axiosClient from '../../Helpers/axiosClient'
+import axiosClient from '../../Helpers/axiosClient';
 
 function SignUp() {
-  const { setWarning } = useContext(Context)
-  const [errorPost, setErrorPost] = React.useState(null)
-  const [formSent, setFormSent] = React.useState(false)
+  const { setWarning } = useContext(Context);
+  const [errorPost, setErrorPost] = React.useState(null);
+  const [formSent, setFormSent] = React.useState(false);
 
   // eslint-disable-next-line no-useless-escape
-  const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const emailRegExp =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const passwordRegExp = /^.{6,30}$/;
   const nameRegExp = /^[a-zA-Zа-яА-ЯёЁ]{2,30}$/;
   const lastNameRegExp = /^[a-zA-Zа-яА-ЯёЁ]{1,30}$/;
 
-  const [email, setEmail] = React.useState({ campo: "", error: null, mensajeError: "Ingrese un email válido." });
-  const [password, setPassword] = React.useState({ campo: "", error: null, mensajeError: "La contraseña debe tener más de 6 caracteres." });
-  const [password2, setPassword2] = React.useState({ campo: "", error: null, mensajeError: "Las contraseñas deben coincidir." });
-  const [name, setName] = React.useState({ campo: "", error: null, mensajeError: "Ingrese un nombre válido." });
-  const [lastName, setLastName] = React.useState({ campo: "", error: null, mensajeError: "Ingrese un apellido válido." });
-  const [errorCuentaYaExiste, setErrorCuentaYaExiste] = React.useState(null)
+  const [email, setEmail] = React.useState({
+    campo: '',
+    error: null,
+    mensajeError: 'Ingrese un email válido.',
+  });
+  const [password, setPassword] = React.useState({
+    campo: '',
+    error: null,
+    mensajeError: 'La contraseña debe tener más de 6 caracteres.',
+  });
+  const [password2, setPassword2] = React.useState({
+    campo: '',
+    error: null,
+    mensajeError: 'Las contraseñas deben coincidir.',
+  });
+  const [name, setName] = React.useState({
+    campo: '',
+    error: null,
+    mensajeError: 'Ingrese un nombre válido.',
+  });
+  const [lastName, setLastName] = React.useState({
+    campo: '',
+    error: null,
+    mensajeError: 'Ingrese un apellido válido.',
+  });
+  const [errorCuentaYaExiste, setErrorCuentaYaExiste] = React.useState(null);
 
-  const onChangeEmail = (e) => { setEmail({ ...email, campo: e.target.value }) }
-  const onChangePassword = (e) => { setPassword({ ...password, campo: e.target.value }) }
-  const onChangePassword2 = (e) => { setPassword2({ ...password2, campo: e.target.value }) }
-  const onChangeName = (e) => { setName({ ...name, campo: e.target.value }) }
-  const onChangeLastName = (e) => { setLastName({ ...lastName, campo: e.target.value }) }
+  const onChangeEmail = (e) => {
+    setEmail({ ...email, campo: e.target.value });
+  };
+  const onChangePassword = (e) => {
+    setPassword({ ...password, campo: e.target.value });
+  };
+  const onChangePassword2 = (e) => {
+    setPassword2({ ...password2, campo: e.target.value });
+  };
+  const onChangeName = (e) => {
+    setName({ ...name, campo: e.target.value });
+  };
+  const onChangeLastName = (e) => {
+    setLastName({ ...lastName, campo: e.target.value });
+  };
 
   const validacionName = () => {
-    return (name.campo === "" || name.campo === null || !nameRegExp.test(name.campo))  
+    return name.campo === '' || name.campo === null || !nameRegExp.test(name.campo)
       ? setName({ ...name, error: true })
-      : setName({ ...name, error: false })
-  }
+      : setName({ ...name, error: false });
+  };
 
   const validacionLastName = () => {
-    return (lastName.campo === "" || lastName.campo === null || !lastNameRegExp.test(lastName.campo)) 
+    return lastName.campo === '' || lastName.campo === null || !lastNameRegExp.test(lastName.campo)
       ? setLastName({ ...lastName, error: true })
-      : setLastName({ ...lastName, error: false })
-  }
+      : setLastName({ ...lastName, error: false });
+  };
 
   const validacionEmail = () => {
-    return (emailRegExp.test(email.campo))
+    return emailRegExp.test(email.campo)
       ? setEmail({ ...email, error: false })
-      : setEmail({ ...email, error: true })
-  }
+      : setEmail({ ...email, error: true });
+  };
 
   const validacionContra = () => {
-    return (passwordRegExp.test(password.campo))
+    return passwordRegExp.test(password.campo)
       ? setPassword({ ...password, error: false })
-      : setPassword({ ...password, error: true })
-  }
+      : setPassword({ ...password, error: true });
+  };
 
   const validacionContra2 = () => {
-    return (password.campo !== password2.campo || password2.campo === "" || password2.campo === null)
+    return password.campo !== password2.campo || password2.campo === '' || password2.campo === null
       ? setPassword2({ ...password2, error: true })
-      : setPassword2({ ...password2, error: false })
-  }
+      : setPassword2({ ...password2, error: false });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -67,61 +98,78 @@ function SignUp() {
     validacionContra2();
     validacionName();
     validacionLastName();
-    postUser()
+    postUser();
 
-    if (email.error === false &&
+    if (
+      email.error === false &&
       password.error === false &&
       password2.error === false &&
       name.error === false &&
-      lastName.error === false) {
-      setErrorCuentaYaExiste(false)
-      setErrorPost(false)
-      setWarning(false)
+      lastName.error === false
+    ) {
+      setErrorCuentaYaExiste(false);
+      setErrorPost(false);
+      setWarning(false);
     }
-  }
+  };
 
   async function postUser() {
-    axiosClient.post(`usuarios`, {
-      nombre: name.campo,
-      apellido: lastName.campo,
-      email: email.campo,
-      contraseña: password.campo,
-      ciudad: "",
-      rol: {
-        id: 2,
-      }
-    })
+    axiosClient
+      .post(`usuarios`, {
+        nombre: name.campo,
+        apellido: lastName.campo,
+        email: email.campo,
+        contraseña: password.campo,
+        ciudad: '',
+        rol: {
+          id: 2,
+        },
+      })
       .then(function () {
-        setFormSent(true)
-        setErrorPost(false)
+        setFormSent(true);
+        setErrorPost(false);
         swal({
-          text: "¡Revise su correo para validar su cuenta!",
-          icon: "/images/email.png",
-          button: "¡Entendido!",
+          text: '¡Revise su correo para validar su cuenta!',
+          icon: '/images/email.png',
+          button: '¡Entendido!',
         });
       })
       .catch(function (error) {
         if (error.response?.data === 'Este email ya esta asociada con una cuenta creada') {
-          setErrorCuentaYaExiste(true)
-          setErrorPost(false)
-          setFormSent(false)
+          setErrorCuentaYaExiste(true);
+          setErrorPost(false);
+          setFormSent(false);
         } else {
-          setFormSent(false)
-          setErrorPost(true)
+          setFormSent(false);
+          setErrorPost(true);
         }
-      })
+      });
   }
 
   return (
     <>
-      <div className='signup'>
-        <div className='form-container'>
+      <div className="signup">
+        <div className="form-container">
           <form onSubmit={onSubmit}>
             <h1>Crear cuenta</h1>
-            {formSent ? <div className='form-sent' style={{ justifyContent: 'center' }}><small>📫 ¡Revise su correo para validar su cuenta!</small></div> : null}
-            {errorPost && <div className='error' style={{ justifyContent: 'center' }}><small>Lamentablemente no ha podido registrarse. Por favor intente más tarde.</small></div>}
-            {errorCuentaYaExiste && <div className='error' style={{ justifyContent: 'center' }}><small>Este email ya esta asociado a una cuenta existente.</small></div>}
-            <div className='input-half'>
+            {formSent ? (
+              <div className="form-sent" style={{ justifyContent: 'center' }}>
+                <small>📫 ¡Revise su correo para validar su cuenta!</small>
+              </div>
+            ) : null}
+            {errorPost && (
+              <div className="error" style={{ justifyContent: 'center' }}>
+                <small>
+                  Lamentablemente no ha podido registrarse. Por favor intente más tarde.
+                </small>
+              </div>
+            )}
+            {errorCuentaYaExiste && (
+              <div className="error" style={{ justifyContent: 'center' }}>
+                <small>Este email ya esta asociado a una cuenta existente.</small>
+              </div>
+            )}
+            <div className="input-half">
               <div style={{ marginRight: '5px' }}>
                 <label htmlFor="nombre">Nombre</label>
                 <input
@@ -133,7 +181,11 @@ function SignUp() {
                   onBlur={validacionName}
                   autoComplete="username"
                 />
-                {name.error && <div className='error'><small>{name.mensajeError}</small></div>}
+                {name.error && (
+                  <div className="error">
+                    <small>{name.mensajeError}</small>
+                  </div>
+                )}
               </div>
               <div>
                 <label htmlFor="apellido">Apellido</label>
@@ -145,7 +197,11 @@ function SignUp() {
                   onChange={onChangeLastName}
                   onBlur={validacionLastName}
                 />
-                {lastName.error && <div className='error'><small>{lastName.mensajeError}</small></div>}
+                {lastName.error && (
+                  <div className="error">
+                    <small>{lastName.mensajeError}</small>
+                  </div>
+                )}
               </div>
             </div>
             <div className="form-group">
@@ -159,7 +215,11 @@ function SignUp() {
                 onBlur={validacionEmail}
                 autoComplete="email"
               />
-              {email.error && <div className='error'><small>{email.mensajeError}</small></div>}
+              {email.error && (
+                <div className="error">
+                  <small>{email.mensajeError}</small>
+                </div>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="contraseña">Contraseña</label>
@@ -172,7 +232,11 @@ function SignUp() {
                 onBlur={validacionContra}
                 autoComplete="current-password"
               />
-              {password.error && <div className='error'><small>{password.mensajeError}</small></div>}
+              {password.error && (
+                <div className="error">
+                  <small>{password.mensajeError}</small>
+                </div>
+              )}
             </div>
             <div className="form-group">
               <label htmlFor="contraseña2">Confirmar contraseña</label>
@@ -185,15 +249,24 @@ function SignUp() {
                 onBlur={validacionContra2}
                 autoComplete="current-password"
               />
-              {password2.error && <div className='error'><small>{password2.mensajeError}</small></div>}
+              {password2.error && (
+                <div className="error">
+                  <small>{password2.mensajeError}</small>
+                </div>
+              )}
             </div>
-            <button type='submit'>Crear cuenta</button>
-            <span>¿Ya tienes una cuenta? <Link to='/login' style={{ color: "#5993F5" }}>Iniciar sesión</Link> </span>
+            <button type="submit">Crear cuenta</button>
+            <span>
+              ¿Ya tienes una cuenta?{' '}
+              <Link to="/login" style={{ color: '#5993F5' }}>
+                Iniciar sesión
+              </Link>{' '}
+            </span>
           </form>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default SignUp
+export default SignUp;

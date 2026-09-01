@@ -1,11 +1,11 @@
-import Body from '../../components/Body/Body'
+import Body from '../../components/Body/Body';
 
 function UserHome() {
   return (
     <div>
       <Body />
     </div>
-  )
+  );
 }
 
-export default UserHome
+export default UserHome;

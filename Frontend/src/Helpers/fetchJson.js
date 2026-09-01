@@ -7,10 +7,10 @@ export const fetchJson = async (url, options) => {
     );
   }
 
-  const contentType = response.headers.get("content-type");
-  if (!contentType || !contentType.includes("application/json")) {
+  const contentType = response.headers.get('content-type');
+  if (!contentType || !contentType.includes('application/json')) {
     throw new Error(
-      `Expected JSON from ${url} but received ${contentType || "unknown content type"}`
+      `Expected JSON from ${url} but received ${contentType || 'unknown content type'}`
     );
   }
 

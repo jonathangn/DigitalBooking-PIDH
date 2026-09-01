@@ -1,6 +1,6 @@
-import { useEffect, useState, createContext } from "react";
-import { fetchJson } from "../../Helpers/fetchJson";
-import { Api } from "../../Helpers/axiosClient";
+import { useEffect, useState, createContext } from 'react';
+import { fetchJson } from '../../Helpers/fetchJson';
+import { Api } from '../../Helpers/axiosClient';
 
 export const DataContext = createContext();
 
@@ -9,7 +9,7 @@ export const DataProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
   const [dataReady, setDataReady] = useState(false);
-  const [filter, setFilter] = useState(Api + "productos");
+  const [filter, setFilter] = useState(Api + 'productos');
   const [gallery, setGallery] = useState([]);
   const [booking, setBooking] = useState([]);
 
@@ -33,7 +33,7 @@ export const DataProvider = ({ children }) => {
 
   const getData = async () => {
     try {
-      const data = await fetchJson(Api + "productos");
+      const data = await fetchJson(Api + 'productos');
       setDataReady(true);
       setGallery(data.map((p) => p.imagenes));
     } catch (error) {
@@ -43,7 +43,7 @@ export const DataProvider = ({ children }) => {
 
   const getCategories = async () => {
     try {
-      const data = await fetchJson(Api + "categorias");
+      const data = await fetchJson(Api + 'categorias');
       setDataReady(true);
       setCategories(data);
     } catch (error) {
@@ -53,7 +53,7 @@ export const DataProvider = ({ children }) => {
 
   const getCities = async () => {
     try {
-      const data = await fetchJson(Api + "ubicaciones");
+      const data = await fetchJson(Api + 'ubicaciones');
       setDataReady(true);
       setCities(data);
     } catch (error) {
@@ -63,7 +63,7 @@ export const DataProvider = ({ children }) => {
 
   const getAllBooking = async () => {
     try {
-      const data = await fetchJson(Api + "reservas");
+      const data = await fetchJson(Api + 'reservas');
       setBooking(data);
       setStartDates(data.map((p) => p.fechaInicio));
       setEndDates(data.map((p) => p.fechaFinal));
@@ -75,7 +75,7 @@ export const DataProvider = ({ children }) => {
   const fetchProductBookings = async (id) => {
     if (!id) return;
     try {
-      const data = await fetchJson(Api + "productos/" + id);
+      const data = await fetchJson(Api + 'productos/' + id);
       setProductDetail(data);
       setProductBookings(data.reservas || []);
     } catch (error) {
