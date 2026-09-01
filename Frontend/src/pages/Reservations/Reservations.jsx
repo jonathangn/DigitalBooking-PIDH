@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
-import botonera from '../../funcionesJS/botonera';
+import getRouteForAction from '../../utils/navigation';
 import './Reservations.scss';
 import { Context } from '../../context/Context';
 import { MdLocationOn } from 'react-icons/md';
@@ -11,10 +11,10 @@ import axiosClient from '../../Helpers/axiosClient';
 function Reservations() {
   const { decodedToken } = useContext(Context);
 
-  const navegador = useNavigate();
+  const navigate = useNavigate();
 
-  function manejadorBotones(evento) {
-    navegador(botonera(evento));
+  function handleNavAction(evento) {
+    navigate(getRouteForAction(evento));
   }
 
   const [hayReserva, setHayReserva] = useState(false);
@@ -106,7 +106,7 @@ function Reservations() {
               <h1>Acá vas a encontrar tus reservas</h1>
               <div className="bottom-text-reservation">
                 <h3>Utilizá los filtros del home para encontrar tu estadía ideal.</h3>
-                <button onClick={() => manejadorBotones()}>Ir al Home</button>
+                <button onClick={() => handleNavAction()}>Ir al Home</button>
               </div>
             </div>
           </div>

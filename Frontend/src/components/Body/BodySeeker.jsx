@@ -8,7 +8,7 @@ import es from 'date-fns/locale/es';
 import 'react-datepicker/dist/react-datepicker.css';
 import { IoLocationSharp } from 'react-icons/io5';
 import swal from 'sweetalert';
-import scrollTo from '../../funcionesJS/scrollTo';
+import scrollTo from '../../utils/scrollTo';
 
 registerLocale('es', es);
 

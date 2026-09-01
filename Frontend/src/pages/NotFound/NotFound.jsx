@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import './NotFound.scss';
-import botonera from '../../funcionesJS/botonera';
+import getRouteForAction from '../../utils/navigation';
 
 function NotFound() {
-  const navegador = useNavigate();
+  const navigate = useNavigate();
 
-  function manejadorBotones(evento) {
-    navegador(botonera(evento));
+  function handleNavAction(evento) {
+    navigate(getRouteForAction(evento));
   }
 
   return (
@@ -23,7 +23,7 @@ function NotFound() {
             </div>
             <div className="bottom-not-found-text">
               <p>Esta página no está disponible o no tienes permiso para acceder.</p>
-              <button onClick={() => manejadorBotones()}>Volver al home</button>
+              <button onClick={() => handleNavAction()}>Volver al home</button>
             </div>
           </div>
         </div>

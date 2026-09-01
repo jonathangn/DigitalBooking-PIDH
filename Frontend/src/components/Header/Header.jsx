@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './Header.scss';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import botonera from '../../funcionesJS/botonera';
+import getRouteForAction from '../../utils/navigation';
 import { FiMenu } from 'react-icons/fi';
 import { BsFacebook, BsTwitter, BsInstagram } from 'react-icons/bs';
 import { FaLinkedinIn } from 'react-icons/fa';
@@ -13,9 +13,9 @@ function Header() {
 
   const location = useLocation().pathname;
 
-  const navegador = useNavigate();
-  function manejadorBotones(evento) {
-    navegador(botonera(evento));
+  const navigate = useNavigate();
+  function handleNavAction(evento) {
+    navigate(getRouteForAction(evento));
   }
 
   const [sidebar, setSidebar] = React.useState(false);
@@ -27,7 +27,7 @@ function Header() {
   function closeSession() {
     clearToken();
     setToken(null);
-    navegador('/');
+    navigate('/');
     if (location === '/') {
       window.location.reload();
     }
@@ -42,7 +42,7 @@ function Header() {
             <p>Sentite como en tu hogar</p>
           </Link>
           <div className="button-container">
-            <button onClick={() => manejadorBotones(false)}>Iniciar sesión.</button>
+            <button onClick={() => handleNavAction(false)}>Iniciar sesión.</button>
           </div>
 
           <div className="navbar">
@@ -89,7 +89,7 @@ function Header() {
             <p>Sentite como en tu hogar</p>
           </Link>
           <div className="button-container">
-            <button onClick={() => manejadorBotones(true)}>Crear cuenta</button>
+            <button onClick={() => handleNavAction(true)}>Crear cuenta</button>
           </div>
 
           <div className="navbar">
@@ -130,10 +130,10 @@ function Header() {
             <p>Sentite como en tu hogar</p>
           </Link>
           <div className="button-container">
-            <button onClick={() => manejadorBotones(true)}>Crear cuenta</button>
+            <button onClick={() => handleNavAction(true)}>Crear cuenta</button>
             <button
               onClick={() => {
-                manejadorBotones(false);
+                handleNavAction(false);
                 setWarning(false);
               }}
             >

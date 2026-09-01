@@ -3,8 +3,7 @@ import { Api } from '../../Helpers/axiosClient';
 import { fetchJson } from '../../Helpers/fetchJson';
 import { Link } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
-import SelectCategory from 'react-select';
-import SelectCity from 'react-select';
+import Select from 'react-select';
 import './AdminProduct.scss';
 import success from '../Booking/success-icon.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -312,7 +311,7 @@ function AdminProduct() {
 
                     <div className="input-div-admin">
                       <label htmlFor="category">Categoría</label>
-                      <SelectCategory
+                      <Select
                         name="categoria"
                         id="categoria"
                         required
@@ -352,7 +351,7 @@ function AdminProduct() {
                     </div>
                     <div className="input-div-admin">
                       <label htmlFor="city">Ciudad</label>
-                      <SelectCity
+                      <Select
                         name="ciudad"
                         id="ciudad"
                         required

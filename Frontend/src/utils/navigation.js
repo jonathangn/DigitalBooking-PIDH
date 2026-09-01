@@ -1,4 +1,4 @@
-export default function botonera(evento) {
+export default function getRouteForAction(evento) {
   if (evento === true || evento === false) {
     return evento ? '/signup' : '/login';
   } else {

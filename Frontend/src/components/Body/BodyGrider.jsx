@@ -4,7 +4,7 @@ import Glider from 'react-glider';
 import 'glider-js/glider.min.css';
 import { Api } from '../../Helpers/axiosClient';
 
-import scrollTo from '../../funcionesJS/scrollTo';
+import scrollTo from '../../utils/scrollTo';
 
 function Grider() {
   const dataReady = useContext(DataContext);

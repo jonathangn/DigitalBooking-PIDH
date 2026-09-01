@@ -1,6 +1,6 @@
 import Header from '../components/Header/Header';
 import { screen, act, fireEvent } from '@testing-library/react';
-import botonera from '../funcionesJS/botonera';
+import getRouteForAction from '../utils/navigation';
 import { create } from 'react-test-renderer';
 import renderWithProviders, { AllTheProvidersWithRouter } from './test-utils';
 
@@ -27,46 +27,46 @@ test('Funcionamiento de menu lateral', async () => {
 describe('Redirección por función manejadorBotones', () => {
   test('Redireccion a /signup', async () => {
     const button = screen.getByRole('button', { name: /Crear cuenta/ });
-    const manejadorBotones = botonera(true);
+    const route = getRouteForAction(true);
 
     act(() => {
       fireEvent.click(button);
     });
 
-    expect(manejadorBotones).toBe('/signup');
+    expect(route).toBe('/signup');
   });
 
   test('Redirección a /login', async () => {
     const button = screen.getByRole('button', { name: /Iniciar sesión/ });
-    const manejadorBotones = botonera(false);
+    const route = getRouteForAction(false);
 
     act(() => {
       fireEvent.click(button);
     });
 
-    expect(manejadorBotones).toBe('/login');
+    expect(route).toBe('/login');
   });
 
   test('Redireccion a /', async () => {
     const logo = screen.getByAltText('logo');
-    const manejadorBotones = botonera();
+    const route = getRouteForAction();
 
     act(() => {
       fireEvent.click(logo);
     });
 
-    expect(manejadorBotones).toBe('/');
+    expect(route).toBe('/');
   });
 
   test('Redireccion a / cuando cierra sesión', async () => {
     const close = screen.getByText('X');
-    const manejadorBotones = botonera();
+    const route = getRouteForAction();
 
     act(() => {
       fireEvent.click(close);
     });
 
-    expect(manejadorBotones).toBe('/');
+    expect(route).toBe('/');
   });
 });
 

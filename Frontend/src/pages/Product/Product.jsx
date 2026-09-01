@@ -9,7 +9,7 @@ import {
 } from 'react-icons/io';
 import { MdLocationOn } from 'react-icons/md';
 import { Link, useParams } from 'react-router-dom';
-import Modal from '../../funcionesJS/Modal';
+import Modal from '../../utils/Modal';
 import PickerP from './PickerP';
 import { BsShare } from 'react-icons/bs';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
