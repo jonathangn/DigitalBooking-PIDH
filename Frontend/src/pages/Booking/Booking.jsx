@@ -82,6 +82,14 @@ function Booking() {
     productDetail.imagenes &&
     productDetail.imagenes.sort((a, b) => a.id - b.id);
 
+  if (!productDetail || !productDetail.id) {
+    return (
+      <div className="loading-data">
+        <h3>Cargando...</h3>
+      </div>
+    );
+  }
+
   if (!bookingOk) {
     return (
       <>

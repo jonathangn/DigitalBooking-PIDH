@@ -36,6 +36,7 @@ import "./Product.css";
 function Product() {
   const { id } = useParams();
   const [producto, setProducto] = useState({});
+  const [loading, setLoading] = useState(true);
   const coords = [producto?.latitud, producto?.longitud]
   const pageURL = window.location.href
 
@@ -61,9 +62,12 @@ function Product() {
       const result = await axiosClient.get(`productos/${id}`);
       setProducto(result.data);
       setGallery(result.data.imagenes);
-      setMainImg(result.data.imagenes[0].urlImg);
-      setMainImgM(result.data.imagenes[0].urlImg);
+      setMainImg(result.data.imagenes?.[0]?.urlImg);
+      setMainImgM(result.data.imagenes?.[0]?.urlImg);
     } catch { /* intentionally ignore fetch errors */ }
+    finally {
+      setLoading(false);
+    }
   }
 
   for (let i in Gallery) {
@@ -94,6 +98,14 @@ function Product() {
     getProducto();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- fetch on mount; read `id` via getProducto
   }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-data">
+        <h3>Cargando...</h3>
+      </div>
+    );
+  }
 
   return (
     <>

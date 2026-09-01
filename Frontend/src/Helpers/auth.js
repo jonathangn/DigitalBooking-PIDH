@@ -24,6 +24,8 @@ export function decodeToken(token) {
     );
     const payload = JSON.parse(jsonPayload);
     const isExpired = payload.exp * 1000 < Date.now();
+    const rolNombre =
+        typeof payload.rol === "string" ? payload.rol : payload.rol?.nombre;
     return {
         user: {
             id: payload.id,
@@ -32,7 +34,7 @@ export function decodeToken(token) {
             email: payload.sub,
             rol: payload.rol,
         },
-        isAdmin: payload.rol === "Administrador",
+        isAdmin: rolNombre === "Administrador",
         isExpired,
     };
     } catch (error) {

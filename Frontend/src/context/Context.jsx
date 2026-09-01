@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { getToken, decodeToken } from "../Helpers/auth";
 
 const Context = React.createContext();
@@ -8,6 +8,12 @@ function Provider(props) {
   const [warning, setWarning] = React.useState(false);
   const [user, setUser] = React.useState(null);
   const [token, setToken] = React.useState(getToken());
+  const [authReady, setAuthReady] = React.useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- signal that token state is settled after mount
+    setAuthReady(true);
+  }, []);
 
   const { user: decodedUser, isAdmin, isExpired } = useMemo(() => decodeToken(token), [token])
 
@@ -19,6 +25,7 @@ function Provider(props) {
     <Context.Provider
       value={{
         auth,
+        authReady,
         token,
         setToken,
         user,
