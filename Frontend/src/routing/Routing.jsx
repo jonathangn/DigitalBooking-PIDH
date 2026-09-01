@@ -10,6 +10,7 @@ import Booking from '../pages/Booking/Booking'
 import AdminProduct from '../pages/AdminProduct/AdminProduct'
 import Reservations from '../pages/Reservations/Reservations'
 import NotFound from '../pages/NotFound/NotFound'
+import Guardian from '../components/Guardian/Guardian'
 
 function Routing() {
     return (
@@ -21,9 +22,9 @@ function Routing() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/productos/:id" element={<Product />} />
-                        <Route path="/productos/:id/reserva" element={<Booking />} />
-                        <Route path="/admin" element={<AdminProduct />} />
-                        <Route path="/reservations" element={<Reservations />} />
+                        <Route path="/productos/:id/reserva" element={<Guardian><Booking /></Guardian>} />
+                        <Route path="/admin" element={<Guardian adminOnly><AdminProduct /></Guardian>} />
+                        <Route path="/reservations" element={<Guardian><Reservations /></Guardian>} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Layout >

@@ -1,37 +1,31 @@
-import React, { useEffect } from "react";
-import { useJwt } from "react-jwt";
+import React, { useMemo } from "react";
+import { getToken, decodeToken } from "../Helpers/auth";
 
 const Context = React.createContext();
 
 function Provider(props) {
-  
-  const [user, setUser] = React.useState(null);
+
   const [warning, setWarning] = React.useState(false);
-  const [auth, setAuth] = React.useState(
-    localStorage.getItem("token") ? true : false
-  );
-  const [token, setToken] = React.useState(
-    localStorage.getItem("token") ? localStorage.getItem("token") : null
-  );
+  const [user, setUser] = React.useState(null);
+  const [token, setToken] = React.useState(getToken());
 
-  const { decodedToken, isExpired } = useJwt(token);
+  const { user: decodedUser, isAdmin, isExpired } = useMemo(() => decodeToken(token), [token])
 
-  const [admin, setAdmin] = React.useState(decodedToken?.rol.id == 1 ? true : false);
-  // const [admin, setAdmin] = React.useState(false);
+  const auth = !!token;
+  const admin = isAdmin;
+  const decodedToken = decodedUser;
 
   return (
     <Context.Provider
       value={{
         auth,
-        setAuth,
-        warning,
-        setWarning,
-        user,
-        setUser,
         token,
         setToken,
+        user,
+        setUser,
         admin,
-        setAdmin,
+        warning,
+        setWarning,
         decodedToken,
         isExpired,
       }}

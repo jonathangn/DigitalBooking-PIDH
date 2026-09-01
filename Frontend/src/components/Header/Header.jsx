@@ -1,27 +1,23 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import './Header.scss'
-import { Link, useNavigate, useLocation, Navigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import botonera from "../../funcionesJS/botonera"
 import { FiMenu } from 'react-icons/fi'
 import { BsFacebook, BsTwitter, BsInstagram } from 'react-icons/bs'
 import { FaLinkedinIn } from 'react-icons/fa'
 import { Context } from '../../context/Context'
-import axios from 'axios'
-import { useJwt } from "react-jwt";
+import { clearToken } from '../../Helpers/auth'
 
 function Header() {
 
     const {
         auth,
-        setAuth,
         warning,
         setWarning,
-        user,
-        setUser,
         token,
         setToken,
-        admin,
-        setAdmin
+        decodedToken,
+        admin
     }
         = useContext(Context)
 
@@ -40,18 +36,12 @@ function Header() {
     }
 
     function closeSession() {
-        setAuth(false)
-        localStorage.removeItem('token')
+        clearToken()
         setToken(null)
         navegador('/')
         if (location === '/') {
             window.location.reload();
         }
-    }
-
-    const { decodedToken, isExpired } = useJwt(token);
-    if (decodedToken?.rol?.id === 1) {
-        setAdmin(true)
     }
 
     if (location === '/signup') {

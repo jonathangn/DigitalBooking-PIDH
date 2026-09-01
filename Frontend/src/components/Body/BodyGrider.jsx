@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { DataContext } from "../Context/DataContext";
 import Glider from "react-glider";
 import "glider-js/glider.min.css";
-import Api from "../../Helpers/Api";
+import { Api } from "../../Helpers/axiosClient";
 
 import scrollTo from "../../funcionesJS/scrollTo";
 

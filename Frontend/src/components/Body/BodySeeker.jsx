@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { DataContext } from "../Context/DataContext";
 import dateFormat from "dateformat";
 import Select from "react-select";
-import Api from "../../Helpers/Api";
+import { Api } from "../../Helpers/axiosClient";
 import DatePicker, { registerLocale } from "react-datepicker";
 import es from "date-fns/locale/es";
 import "react-datepicker/dist/react-datepicker.css";

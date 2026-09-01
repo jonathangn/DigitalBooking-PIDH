@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Api from "../../Helpers/Api";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,9 +11,9 @@ import { MdLocationOn } from "react-icons/md";
 import { Link, useParams, useLocation } from "react-router-dom";
 import Modal from "../../funcionesJS/Modal";
 import PickerP from "./PickerP";
-import axios from "axios";
 import { BsShare } from "react-icons/bs";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import axiosClient from "../../Helpers/axiosClient";
 
 import {
   FacebookShareButton,
@@ -63,7 +62,7 @@ function Product() {
 
   async function getProducto() {
     try {
-      const result = await axios.get(Api + `productos/${id}`);
+      const result = await axiosClient.get(`productos/${id}`);
       setProducto(result.data);
       setGallery(result.data.imagenes);
       setMainImg(result.data.imagenes[0].urlImg);

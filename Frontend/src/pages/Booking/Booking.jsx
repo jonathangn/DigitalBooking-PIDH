@@ -9,23 +9,19 @@ import Calendar from "../Booking/Calendar";
 import success from "./success-icon.svg";
 import dateFormat from "dateformat";
 import Select from "react-select";
-import Api from "../../Helpers/Api";
-import axios from "axios";
 import { Context } from "../../context/Context";
-import { useJwt } from "react-jwt";
 import swal from 'sweetalert';
 
 import "./Booking.scss";
 
 function Booking() {
-  const { token } = useContext(Context);
-  const { decodedToken, isExpired } = useJwt(token);
+  const { decodedToken } = useContext(Context);
   const { id } = useParams();
 
   const userId = decodedToken?.id;
   const userName = decodedToken?.nombre;
   const userLastname = decodedToken?.apellido;
-  const userEmail = decodedToken?.sub;
+  const userEmail = decodedToken?.email;
 
   /* LÓGICA CALENDARIO */
 
@@ -187,17 +183,7 @@ function Booking() {
                   vacunado: values.vacunado,
                 });
 
-                var config = {
-                  method: "POST",
-                  url: `${Api}reservas`,
-                  data: data,
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                  },
-                };
-
-                axios(config)
+                axiosClient.post("reservas", data)
                   .then(function (response) {
                     setBookingOk(true);
                   })

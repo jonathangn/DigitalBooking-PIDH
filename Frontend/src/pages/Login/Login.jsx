@@ -2,11 +2,10 @@ import React, { useContext } from 'react'
 import './Login.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { Context } from '../../context/Context'
-import axios from 'axios'
-import api from '../../Helpers/Api'
+import axiosClient from '../../Helpers/axiosClient'
 
 function Login() {
-  const { auth, setAuth, userEmail, setUserEmail, warning, setWarning, user, setUser, token, setToken } = useContext(Context)
+  const { auth, warning, setWarning, token, setToken } = useContext(Context)
   const [errorPost, setErrorPost] = React.useState(null)
   const navigate = useNavigate();
   const [email, setEmail] = React.useState({ campo: "", error: null });
@@ -24,20 +23,17 @@ function Login() {
 
   // Envio de datos para obtener JWT
   async function postUser() {
-    axios.post(`${api}authenticate`, {
+    axiosClient.post(`authenticate`, {
       email: email.campo,
       password: password.campo,
     })
       .then(function (response) {
-        localStorage.setItem('token', response.data.jwt)
         setToken(response.data.jwt)
         navigate('/');
-        setAuth(true)
       })
       .catch(function (error) {
         console.log(error);
         setErrorPost(true)
-        setAuth(false)
       })
   }
 

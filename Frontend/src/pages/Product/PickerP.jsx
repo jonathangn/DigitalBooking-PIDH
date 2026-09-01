@@ -23,7 +23,7 @@ function Picker_() {
   };
 
   const navigate = useNavigate();
-  const { auth, setAuth, jwt, setJwt, warning, setWarning } =
+  const { auth, warning, setWarning } =
     useContext(Context);
 
   function userLogged() {

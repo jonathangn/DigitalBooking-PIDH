@@ -2,9 +2,8 @@ import React, { useContext } from 'react'
 import './SignUp.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { Context } from '../../context/Context'
-import axios from 'axios'
-import api from '../../Helpers/Api'
 import swal from 'sweetalert';
+import axiosClient from '../../Helpers/axiosClient'
 
 function SignUp() {
   const navigate = useNavigate()
@@ -95,7 +94,7 @@ function SignUp() {
 
   // Envio de datos para crear un nuevo usuario
   async function postUser() {
-    axios.post(`${api}usuarios`, {
+    axiosClient.post(`usuarios`, {
       nombre: name.campo,
       apellido: lastName.campo,
       email: email.campo,

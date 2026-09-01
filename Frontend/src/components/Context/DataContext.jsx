@@ -1,6 +1,6 @@
 import React, { useEffect, useState, createContext } from "react";
-import Api from "../../Helpers/Api";
 import { fetchJson } from "../../Helpers/fetchJson";
+import { Api } from "../../Helpers/axiosClient";
 
 export const DataContext = createContext();
 

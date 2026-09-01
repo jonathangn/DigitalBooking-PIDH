@@ -2,28 +2,17 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import botonera from "../../funcionesJS/botonera";
-import axios from "axios";
-import Api from "../../Helpers/Api";
 import "./Reservations.scss";
 import { Context } from "../../context/Context";
 import { MdLocationOn } from "react-icons/md";
-import { useJwt } from "react-jwt";
 import swal from "sweetalert";
+import axiosClient from "../../Helpers/axiosClient";
 
 function Reservations() {
   const {
-    auth,
-    setAuth,
     warning,
     setWarning,
-    user,
-    setUser,
-    token,
-    setToken,
-    admin,
-    setAdmin,
     decodedToken,
-    isExpired,
   } = useContext(Context);
 
   const navegador = useNavigate();
@@ -33,23 +22,13 @@ function Reservations() {
   }
 
   const [hayReserva, setHayReserva] = useState(false);
-  console.log("🚀 ~ file: Reservations.jsx ~ line 36 ~ Reservations ~ hayReserva", hayReserva)
   const [hayProductos, setHayProductos] = useState(false);
   const [productos, setProductos] = useState();
   const [reserva, setReserva] = useState();
-  // const { decodedToken, isExpired } = useJwt(token);
 
   async function getReserva() {
-    var config = {
-      method: "GET",
-      url: `${Api}reservas/usuario/${decodedToken?.id}`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
 
-    axios(config)
+    axiosClient.get(`reservas/usuario/${decodedToken?.id}`)
       .then(function (response) {
         console.log(response.data);
         setReserva(response.data);
@@ -61,10 +40,7 @@ function Reservations() {
         const productosTemp = [];
 
         response.data.forEach((item) => {
-          axios({
-            url: `${Api}productos/${item.producto.id}`,
-            method: "get",
-          })
+          axiosClient.get(`productos/${item.producto.id}`)
             .then(function (responsePro) {
               // console.log(responsePro.data);
               productosTemp.push(responsePro.data);
@@ -103,16 +79,8 @@ function Reservations() {
     })
       .then((willDelete) => {
         if (willDelete) {
-          var config = {
-            method: "DELETE",
-            url: `${Api}reservas/${idReserva}`,
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          };
-
-          axios(config)
+          
+          axiosClient.delete(`reservas/${idReserva}`)
             .then(function (response) {
               // getReserva();
               if (productos === undefined || reserva.length === 0) {
