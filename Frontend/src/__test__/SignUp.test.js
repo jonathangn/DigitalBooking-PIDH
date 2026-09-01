@@ -1,9 +1,7 @@
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import React from 'react';
 import SignUp from '../pages/SignUp/SignUp';
 import '@testing-library/jest-dom'
-import { create } from 'react-test-renderer';
 
 let component = null;
 

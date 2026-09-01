@@ -1,8 +1,6 @@
 import { render, act, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import React from 'react';
 import Login from '../pages/Login/Login';
-import { create } from 'react-test-renderer';
 
 let component = null;
 

@@ -1,6 +1,6 @@
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { DataContext } from "../../components/Context/DataContext";
-import React, { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsCheck2Circle } from "react-icons/bs";
@@ -8,6 +8,7 @@ import { MdLocationOn } from "react-icons/md";
 import Calendar from "../Booking/Calendar";
 import success from "./success-icon.svg";
 import dateFormat from "dateformat";
+import axiosClient from "../../Helpers/axiosClient";
 import Select from "react-select";
 import { Context } from "../../context/Context";
 import swal from 'sweetalert';
@@ -28,11 +29,6 @@ function Booking() {
   setIdProduct(id);
 
   const [bookingOk, setBookingOk] = useState(false);
-
-  const [selectedOption, setSelectedOption] = useState({
-    value: "",
-    label: "",
-  });
 
   const options = [
     { value: "01:00:00", label: "01:00 AM" },
@@ -62,7 +58,7 @@ function Booking() {
   ];
 
   const customStyles = {
-    control: (base, state) => ({
+    control: (base) => ({
       ...base,
       height: "50px",
       width: "100%",
@@ -150,7 +146,7 @@ function Booking() {
 
               return error;
             }}
-            onSubmit={(values, { resetForm }) => {
+            onSubmit={(values) => {
               async function postBooking() {
                 const data = JSON.stringify({
                   hora: values.hora,
@@ -167,10 +163,10 @@ function Booking() {
                 });
 
                 axiosClient.post("reservas", data)
-                  .then(function (response) {
+                  .then(function () {
                     setBookingOk(true);
                   })
-                  .catch(function (error) {
+                  .catch(function () {
                     swal({
                       text: "Lamentablemente la reserva no ha podido realizarse. Por favor, reintente más tarde.",
                       icon: "error",

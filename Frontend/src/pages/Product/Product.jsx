@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,7 +8,7 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 import { MdLocationOn } from "react-icons/md";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Modal from "../../funcionesJS/Modal";
 import PickerP from "./PickerP";
 import { BsShare } from "react-icons/bs";
@@ -63,7 +63,7 @@ function Product() {
       setGallery(result.data.imagenes);
       setMainImg(result.data.imagenes[0].urlImg);
       setMainImgM(result.data.imagenes[0].urlImg);
-    } catch (error) { }
+    } catch { /* intentionally ignore fetch errors */ }
   }
 
   for (let i in Gallery) {
@@ -90,7 +90,9 @@ function Product() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async fetch, state set after await
     getProducto();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- fetch on mount; read `id` via getProducto
   }, []);
 
   return (

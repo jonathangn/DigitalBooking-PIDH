@@ -5,7 +5,7 @@ import { Context } from '../../context/Context'
 import axiosClient from '../../Helpers/axiosClient'
 
 function Login() {
-  const { auth, warning, setWarning, token, setToken } = useContext(Context)
+  const { warning, setToken } = useContext(Context)
   const [errorPost, setErrorPost] = React.useState(null)
   const navigate = useNavigate();
   const [email, setEmail] = React.useState({ campo: "", error: null });
@@ -28,7 +28,7 @@ function Login() {
         setToken(response.data.jwt)
         navigate('/');
       })
-      .catch(function (error) {
+      .catch(function () {
         setErrorPost(true)
       })
   }

@@ -1,6 +1,6 @@
-import { render, screen, act } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Listing from '../components/Body/Listing';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 test('Correcto renderizado de Listing', () => {
     const component = render(

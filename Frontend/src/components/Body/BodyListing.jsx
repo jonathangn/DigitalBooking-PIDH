@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { DataContext } from "../Context/DataContext";
 import { Link } from "react-router-dom";
 import { GoLocation } from "react-icons/go";
@@ -53,7 +53,7 @@ const Listing = () => {
                                 ) &&
                                 Math.trunc(
                                   feedback.reduce(
-                                    (prev, curr) => (prev += curr)
+                                    (prev, curr) => prev + curr
                                   ) / feedback.length
                                 ) * 2
                               : 8}
@@ -62,7 +62,7 @@ const Listing = () => {
                             {" "}
                             {feedback.length > 0 &&
                             Math.trunc(
-                              feedback.reduce((prev, curr) => (prev += curr)) /
+                              feedback.reduce((prev, curr) => prev + curr) /
                                 feedback.length
                             ) *
                               2 >=
@@ -146,7 +146,7 @@ const Listing = () => {
                                 ) &&
                                 Math.trunc(
                                   feedback.reduce(
-                                    (prev, curr) => (prev += curr)
+                                    (prev, curr) => prev + curr
                                   ) / feedback.length
                                 ) * 2
                               : 8}
@@ -155,7 +155,7 @@ const Listing = () => {
                             {" "}
                             {feedback.length > 0 &&
                             Math.trunc(
-                              feedback.reduce((prev, curr) => (prev += curr)) /
+                              feedback.reduce((prev, curr) => prev + curr) /
                                 feedback.length
                             ) *
                               2 >=

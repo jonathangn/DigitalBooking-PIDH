@@ -1,4 +1,3 @@
-import React from 'react'
 import './Footer.scss'
 import { BsFacebook, BsTwitter, BsInstagram } from 'react-icons/bs'
 import { FaLinkedinIn } from 'react-icons/fa'

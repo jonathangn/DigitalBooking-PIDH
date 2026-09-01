@@ -1,5 +1,5 @@
 import Booking from '../pages/Booking/Booking'
-import { render, screen, act, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 let component = null;

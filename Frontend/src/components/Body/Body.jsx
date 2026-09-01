@@ -1,4 +1,3 @@
-import React from "react";
 import Seeker from "./BodySeeker";
 import Grider from "./BodyGrider";
 import Listing from "./BodyListing";

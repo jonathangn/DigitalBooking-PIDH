@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { DataContext } from "../Context/DataContext";
 import Glider from "react-glider";
 import "glider-js/glider.min.css";
@@ -10,7 +10,6 @@ function Grider() {
   const dataReady = useContext(DataContext);
   const categories = useContext(DataContext);
   const filter = useContext(DataContext);
-  const categoriesS = categories.categories.slice(2, 6);
 
   if (!dataReady) {
     return (
@@ -24,7 +23,7 @@ function Grider() {
         <h2>Buscar por tipo de alojamiento</h2>
         <div className="grider-card">
           <Glider draggable hasDots slidesToShow={"auto"}>
-            {categories.categories.map((category, i) => (
+            {categories.categories.map((category) => (
               <div
                 key={category.id}
                 className="grider-card-item"

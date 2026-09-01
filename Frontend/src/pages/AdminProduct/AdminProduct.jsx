@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Api } from "../../Helpers/axiosClient";
 import { fetchJson } from "../../Helpers/fetchJson";
-import { Link, useParams } from "react-router-dom";
-import { Context } from "../../context/Context";
+import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import SelectCategory from "react-select";
 import SelectCity from "react-select";
 import "./AdminProduct.scss";
 import success from "../Booking/success-icon.svg";
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
-import NotFound from "../NotFound/NotFound";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import swal from 'sweetalert';
 import axiosClient from "../../Helpers/axiosClient";
 
@@ -51,12 +49,13 @@ function AdminProduct() {
   }));
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async fetch, state set after await
     getCities();
     getCategories();
   }, []);
 
   const customStyles = {
-    control: (base, state) => ({
+    control: (base) => ({
       ...base,
       height: "50px",
       width: "100%",
@@ -216,7 +215,7 @@ function AdminProduct() {
 
               return errores;
             }}
-            onSubmit={(valores, { resetForm }) => {
+            onSubmit={(valores) => {
               async function postProduct() {
                 const arrayCaracteristicas = [];
                 function politicas() {
@@ -270,13 +269,13 @@ function AdminProduct() {
                       };
 
                       axiosClient.post("imagenes", payload)
-                        .then(function (responseImg) {
+                        .then(function () {
                           setNewBooking(true);
                         })
-                        .catch(function (error) {});
+                        .catch(function () {});
                     });
                   })
-                  .catch(function (error) {
+                  .catch(function () {
                     swal({
                       text: "Lamentablemente el producto no ha podido crearse. Por favor intente más tarde",
                       icon: "error",

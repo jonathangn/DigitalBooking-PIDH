@@ -12,9 +12,7 @@ function Header() {
 
     const {
         auth,
-        warning,
         setWarning,
-        token,
         setToken,
         decodedToken,
         admin

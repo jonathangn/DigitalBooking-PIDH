@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext } from "react";
 import { fetchJson } from "../../Helpers/fetchJson";
 import { Api } from "../../Helpers/axiosClient";
 
@@ -84,14 +84,17 @@ export const DataProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async fetch, state set after await
     getData();
     getCities();
     getCategories();
     getDataProducts();
     getAllBooking();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- deps cover `filter`; fetch fns are recreated each render
   }, [filter, setProducts]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- async fetch, state set after await
     fetchProductBookings(idProduct);
   }, [idProduct]);
 

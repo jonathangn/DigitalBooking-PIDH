@@ -1,16 +1,13 @@
-import React, { useState, useContext } from "react";
+import { useContext } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import es from "date-fns/locale/es";
 import { Context } from "../../context/Context";
 
 registerLocale("es", es);
 
 function Picker_() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
-
   const addDays = (date, days) => {
     const copy = new Date(Number(date));
     copy.setDate(date.getDate() + days);
@@ -23,7 +20,7 @@ function Picker_() {
   };
 
   const navigate = useNavigate();
-  const { auth, warning, setWarning } =
+  const { auth, setWarning } =
     useContext(Context);
 
   function userLogged() {

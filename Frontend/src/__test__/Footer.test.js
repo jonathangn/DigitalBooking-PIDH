@@ -1,10 +1,8 @@
 import Footer from "../components/Footer/Footer";
 import '../components/Footer/Footer.scss'
-import { render, screen, unmountComponentAtNode, act, fireEvent, getTestById } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import React from 'react';
 import '@testing-library/jest-dom'
-import { create } from 'react-test-renderer';
 
 let component = null;
 

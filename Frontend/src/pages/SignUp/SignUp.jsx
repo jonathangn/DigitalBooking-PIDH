@@ -1,17 +1,16 @@
 import React, { useContext } from 'react'
 import './SignUp.scss'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Context } from '../../context/Context'
 import swal from 'sweetalert';
 import axiosClient from '../../Helpers/axiosClient'
 
 function SignUp() {
-  const navigate = useNavigate()
-
-  const { auth, setAuth, setWarning } = useContext(Context)
+  const { setWarning } = useContext(Context)
   const [errorPost, setErrorPost] = React.useState(null)
   const [formSent, setFormSent] = React.useState(false)
 
+  // eslint-disable-next-line no-useless-escape
   const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const passwordRegExp = /^.{6,30}$/;
   const nameRegExp = /^[a-zA-Zа-яА-ЯёЁ]{2,30}$/;
@@ -92,7 +91,7 @@ function SignUp() {
         id: 2,
       }
     })
-      .then(function (response) {
+      .then(function () {
         setFormSent(true)
         setErrorPost(false)
         swal({

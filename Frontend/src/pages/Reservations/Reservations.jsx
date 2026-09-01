@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import botonera from "../../funcionesJS/botonera";
 import "./Reservations.scss";
@@ -10,8 +10,6 @@ import axiosClient from "../../Helpers/axiosClient";
 
 function Reservations() {
   const {
-    warning,
-    setWarning,
     decodedToken,
   } = useContext(Context);
 
@@ -49,14 +47,15 @@ function Reservations() {
                 setProductos(productosTemp);
               }
             })
-            .catch(function (errorProd) {});
+            .catch(function () {});
         });
       })
-      .catch(function (error) {});
+      .catch(function () {});
   }
 
   useEffect(() => {
     getReserva();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- deps cover `decodedToken`; getReserva recreated each render
   }, [decodedToken]);
 
   function eliminarReserva(idReserva) {
@@ -71,7 +70,7 @@ function Reservations() {
         if (willDelete) {
           
           axiosClient.delete(`reservas/${idReserva}`)
-            .then(function (response) {
+            .then(function () {
               if (productos === undefined || reserva.length === 0) {
                 setHayReserva(false);
                 setHayProductos(false);
@@ -85,7 +84,7 @@ function Reservations() {
               }, 1800);
 
             })
-            .catch(function (error) {});
+            .catch(function () {});
         }
       });
   }

@@ -1,8 +1,5 @@
 import Body from '../components/Body/Body';
 import { render} from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import React from 'react';
-import { create } from 'react-test-renderer';
 
 let component = null;
 

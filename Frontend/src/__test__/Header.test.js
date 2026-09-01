@@ -1,9 +1,8 @@
 import Header from '../components/Header/Header';
 import { render, screen, act, fireEvent } from '@testing-library/react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React from 'react';
-import { create } from 'react-test-renderer';
+import { BrowserRouter } from 'react-router-dom';
 import botonera from "../funcionesJS/botonera";
+import { create } from 'react-test-renderer';
 
 let component = null;
 beforeEach(() => {

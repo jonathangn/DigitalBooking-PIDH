@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { DataContext } from "../Context/DataContext";
 import dateFormat from "dateformat";
 import Select from "react-select";
@@ -88,7 +88,7 @@ const Seeker = () => {
     value: c.ciudad,
   }));
 
-  const formatOptionLabel = ({ options, value, label }) => (
+  const formatOptionLabel = ({ options, label }) => (
     <div style={{ display: "flex", alignItems: "center" }}>
       <div>{options}</div>
       <div style={{ marginLeft: "5px", color: "hsl(0, 0%, 50%)" }}>

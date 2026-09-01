@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { DataContext } from "../../components/Context/DataContext";
 import DatePicker, { registerLocale } from "react-datepicker";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
