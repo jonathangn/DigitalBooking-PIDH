@@ -179,7 +179,7 @@ function Reservations() {
                               p.caracteristicas.map((c) => {
                                 return (
                                   <>
-                                    <img src={c.icono} alt={c.nombre} />
+                                    <img src={c.icono} alt={c.nombre} loading="lazy" width="42" height="42" />
                                   </>
                                 );
                               })}

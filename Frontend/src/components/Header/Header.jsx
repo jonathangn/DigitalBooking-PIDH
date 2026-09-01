@@ -47,7 +47,7 @@ function Header() {
                 <div className='navbar-container'>
 
                     <Link to="/" className='logo-container'>
-                        <img src='/images/logo.png' alt='logo' />
+                        <img src='/images/logo.png' alt='logo' width="71" height="52" />
                         <p>Sentite como en tu hogar</p>
                     </Link>
                     <div className='button-container'>
@@ -91,7 +91,7 @@ function Header() {
                 <div className='navbar-container'>
 
                     <Link to="/" className='logo-container'>
-                        <img src='/images/logo.png' alt='logo' />
+                        <img src='/images/logo.png' alt='logo' width="71" height="52" />
                         <p>Sentite como en tu hogar</p>
                     </Link>
                     <div className='button-container'>
@@ -134,7 +134,7 @@ function Header() {
                 <div className='navbar-container'>
 
                     <Link to="/" className='logo-container'>
-                        <img src='/images/logo.png' alt='logo' />
+                        <img src='/images/logo.png' alt='logo' width="71" height="52" />
                         <p>Sentite como en tu hogar</p>
                     </Link>
                     <div className='button-container'>
@@ -182,7 +182,7 @@ function Header() {
                 <div className='navbar-container'>
 
                     <Link to="/" className='logo-container'>
-                        <img src='/images/logo.png' alt='logo' />
+                        <img src='/images/logo.png' alt='logo' width="71" height="52" />
                         <p>Sentite como en tu hogar</p>
                     </Link>
 
@@ -245,7 +245,7 @@ function Header() {
                 <div className='navbar-container'>
 
                     <Link to="/" className='logo-container'>
-                        <img src='/images/logo.png' alt='logo' />
+                        <img src='/images/logo.png' alt='logo' width="71" height="52" />
                         <p>Sentite como en tu hogar</p>
                     </Link>
 

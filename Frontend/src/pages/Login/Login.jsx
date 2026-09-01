@@ -42,7 +42,7 @@ function Login() {
               ? <div
                 className="warning"
                 style={{ display: 'flex' }}>
-                <img src="/images/warning.png" alt="warning" />
+                <img src="/images/warning.png" alt="warning" loading="lazy" width="31" height="31" />
                 <p>Para realizar una reserva necesitas estar logueado</p>
               </div>
               : null}
