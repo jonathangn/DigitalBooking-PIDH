@@ -34,6 +34,9 @@ const Listing = () => {
                       <img
                         src={product.imagenes[0] && product.imagenes[0].urlImg}
                         alt={product.titulo}
+                        loading="lazy"
+                        width="400"
+                        height="300"
                       />
                       <p className="icon-img">🤍</p>
                       <div className="listing-card-details">
@@ -127,6 +130,9 @@ const Listing = () => {
                       <img
                         src={product.imagenes[0] && product.imagenes[0].urlImg}
                         alt={product.titulo}
+                        loading="lazy"
+                        width="400"
+                        height="300"
                       />
                       <p className="icon-img">🤍</p>
                       <div className="listing-card-details">

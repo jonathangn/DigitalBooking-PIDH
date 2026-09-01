@@ -32,7 +32,7 @@ function Grider() {
                   filter.setFilter(Api + `productos/categoria/${category.id}`);
                 }}
               >
-                <img src={category.urlImagen} alt={category.titulo} />
+                <img src={category.urlImagen} alt={category.titulo} loading="lazy" width="400" height="300" />
 
                 <div className="grider-card-details">
                   <h3>{category.titulo}</h3>

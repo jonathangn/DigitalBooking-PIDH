@@ -99,7 +99,7 @@ function AdminProduct() {
         <div className="booking-alternative">
           <div className="booking-success-container">
             <div className="booking-success-card card-booking">
-              <img src={success} className="success-icon" alt="Success" />
+              <img src={success} className="success-icon" alt="Success" loading="lazy" width="120" height="120" />
 
               <h3>Tu propiedad se ha creado con éxito.</h3>
 

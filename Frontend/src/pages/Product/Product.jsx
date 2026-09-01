@@ -180,11 +180,11 @@ function Product() {
         </div>}
 
       <div className="wrapper">
-        <img src={mainImg} alt="" className="main-block" key={Gallery.id} />
+        <img src={mainImg} alt="" className="main-block" key={Gallery.id} width="800" height="600" />
 
         <div className="random">
           {GalleryR.map((img, index) => (
-            <img key={index} src={img.urlImg} alt="" className="img-next" />
+            <img key={index} src={img.urlImg} alt="" className="img-next" loading="lazy" width="400" height="300" />
           ))}
 
           <button id="modal-gallery" className="" onClick={toggleModal}>
@@ -207,7 +207,7 @@ function Product() {
         >
           {gallery.map((img, index) => (
             <SwiperSlide key={index}>
-              <img src={img} alt="" className="img-swiper" />
+              <img src={img} alt="" className="img-swiper" loading="lazy" width="800" height="600" />
               <div className="swiper-slide-text">
                 <h2>
                   {index + 1} / {Gallery.length}
@@ -235,6 +235,9 @@ function Product() {
                 <img
                   src={caracteristica.icono}
                   alt={"icono-" + caracteristica.nombre}
+                  loading="lazy"
+                  width="32"
+                  height="32"
                 />
                 {caracteristica.nombre.replace("-", " ")}
               </div>
@@ -321,7 +324,7 @@ function Product() {
             >
               X
             </button>
-            <img src={mainImgM} alt="" className="main-img" />
+            <img src={mainImgM} alt="" className="main-img" width="800" height="600" />
 
             <span className="arrows">
               <IoIosArrowDropleftCircle className="left-aw" onClick={prevImg} />
@@ -346,6 +349,9 @@ function Product() {
                   alt=""
                   className="img-next"
                   onClick={() => setMainImgM(img)}
+                  loading="lazy"
+                  width="150"
+                  height="112"
                 />
               ))}
             </div>
