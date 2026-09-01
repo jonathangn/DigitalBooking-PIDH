@@ -20,6 +20,7 @@ export default [
             "react/react-in-jsx-scope": "off",
             "react/prop-types": "off",
             "no-console": ["error", { allow: ["error", "warn"] }],
+             "react-hooks/exhaustive-deps": "error",
         },
         settings: { react: { version: "detect" } },
     },
