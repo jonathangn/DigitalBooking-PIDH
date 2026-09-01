@@ -2,11 +2,6 @@
   "name": "digitalbooking-web",
   "version": "0.1.2",
   "private": true,
-  "jest": {
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(react-syntax-highlighter)/)"
-    ]
-  },
   "scripts": {
     "dev": "vite",
     "test": "vitest",
@@ -31,59 +26,41 @@
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.2",
     "axios": "^0.33.0",
-    "bootstrap": "^5.3.8",
-    "bootstrap-daterangepicker": "^3.1.0",
     "caniuse-lite": "^1.0.30001739",
-    "cors": "^2.8.5",
-    "data-fns": "^0.1.9",
-    "dateformat": "^5.0.3",
-    "express": "^4.21.2",
+    "date-fns": "^4.4.0",
     "formik": "^2.4.6",
-    "jquery": "^3.7.1",
     "leaflet": "^1.9.4",
-    "moment": "^2.30.1",
-    "npm-util": "^0.0.2",
     "react": "^18.3.1",
-    "react-bootstrap-daterangepicker": "^7.0.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.3.1",
     "react-glider": "^4.0.2",
+    "react-hot-toast": "^2.6.0",
     "react-icons": "^4.3.1",
-    "react-jwt": "^1.3.0",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^7.18.2",
     "react-select": "^5.10.2",
     "react-share": "^4.4.1",
     "sass": "^1.92.0",
-    "source-map-loader": "^4.0.2",
-    "sweetalert": "^2.1.2",
     "swiper": "^14.0.6",
-    "typescript": "^4.9.5",
-    "util": "^0.12.5",
     "vite": "^7.1.4",
     "web-vitals": "^4.2.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.6",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/preset-env": "^7.28.3",
     "@eslint/js": "^9.39.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "babel-preset-jest": "^28.1.3",
     "eslint": "^9.39.5",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.11.0",
-    "jest": "^28.1.3",
     "jsdom": "^29.1.1",
     "prettier": "^3.9.6",
     "react-test-renderer": "^18.3.1",
     "vitest": "^3.2.4"
   },
   "overrides": {
-    "nanoid": "^3.3.17"
+    "nanoid": "^3.3.18"
   },
   "engines": {
     "node": "20.x"

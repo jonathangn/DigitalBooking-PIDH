@@ -7,7 +7,7 @@ import { BsCheck2Circle } from 'react-icons/bs';
 import { MdLocationOn } from 'react-icons/md';
 import Calendar from '../Booking/Calendar';
 import success from './success-icon.svg';
-import dateFormat from 'dateformat';
+import { format } from 'date-fns';
 import axiosClient from '../../Helpers/axiosClient';
 import Select from 'react-select';
 import { Context } from '../../context/Context';
@@ -110,8 +110,8 @@ function Booking() {
               email: userEmail,
               city: '',
               hora: '',
-              fechaInicio: dateFormat(startDate, 'yyyy-mm-dd'),
-              fechaFinal: dateFormat(endDate, 'yyyy-mm-dd'),
+              fechaInicio: format(startDate, 'yyyy-MM-dd'),
+              fechaFinal: format(endDate, 'yyyy-MM-dd'),
               producto: { id: parseInt(id) },
               usuario: { id: userId },
               vacunado: false,
@@ -310,13 +310,13 @@ function Booking() {
                             <div className="check-in-check-out">
                               <h4>Check in </h4>
                               <h4 className="datesBooking">
-                                {dateFormat(startDate, 'yyyy/mm/dd')}
+                                {format(startDate, 'yyyy/MM/dd')}
                               </h4>
                             </div>
                             <hr className="hr-booking" />
                             <div className="check-in-check-out">
                               <h4>Check out </h4>
-                              <h4 className="datesBooking">{dateFormat(endDate, 'yyyy/mm/dd')}</h4>
+                              <h4 className="datesBooking">{format(endDate, 'yyyy/MM/dd')}</h4>
                             </div>
                             <hr className="hr-booking" />
                             <div className="textarea-booking">

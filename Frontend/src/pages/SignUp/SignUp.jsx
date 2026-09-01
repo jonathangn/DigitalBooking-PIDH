@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './SignUp.scss';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
-import swal from 'sweetalert';
+import { toast } from 'react-hot-toast';
 import axiosClient from '../../Helpers/axiosClient';
 import { normalizeError, apiErrorMessage } from '../../api/client';
 
@@ -128,10 +128,8 @@ function SignUp() {
       .then(function () {
         setFormSent(true);
         setErrorPost(false);
-        swal({
-          text: '¡Revise su correo para validar su cuenta!',
+        toast.success('¡Revise su correo para validar su cuenta!', {
           icon: '/images/email.png',
-          button: '¡Entendido!',
         });
       })
       .catch(function (error) {

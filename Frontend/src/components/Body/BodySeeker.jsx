@@ -1,19 +1,19 @@
 import { useContext, useState } from 'react';
 import { DataContext } from '../Context/DataContext';
-import dateFormat from 'dateformat';
 import Select from 'react-select';
 import { Api } from '../../Helpers/axiosClient';
 import DatePicker, { registerLocale } from 'react-datepicker';
+import { format } from 'date-fns';
 import es from 'date-fns/locale/es';
 import 'react-datepicker/dist/react-datepicker.css';
 import { IoLocationSharp } from 'react-icons/io5';
-import swal from 'sweetalert';
 import scrollTo from '../../utils/scrollTo';
 
 registerLocale('es', es);
 
 const Seeker = () => {
   const [value, setValue] = useState(null);
+  const [seekerError, setSeekerError] = useState(null);
   const cities = useContext(DataContext);
   const filter = useContext(DataContext);
 
@@ -32,19 +32,16 @@ const Seeker = () => {
   }
 
   function handleOnClick() {
-    let dateOne = dateFormat(dateRange.startDate, 'isoDate');
-    let dateTwo = dateFormat(dateRange.endDate, 'isoDate');
+    let dateOne = format(dateRange.startDate, 'yyyy-MM-dd');
+    let dateTwo = format(dateRange.endDate, 'yyyy-MM-dd');
+    setSeekerError(null);
     if (value !== null && dateRange.startDate !== null && dateRange.endDate !== null) {
       scrollTo();
       filter.setFilter(
         Api + `productos/ubicacion/${value.id}/fechainicial/${dateOne}/fechafinal/${dateTwo}`
       );
     } else if (value === null && dateRange.startDate !== null && dateRange.endDate !== null) {
-      swal({
-        text: 'Seleccione una ubicación',
-        icon: 'warning',
-        button: '¡Entendido!',
-      });
+      setSeekerError('Seleccione una ubicación');
     } else if (value !== null && dateRange.startDate === null && dateRange.endDate === null) {
       scrollTo();
       filter.setFilter(Api + `productos/ubicacion/${value.id}`);
@@ -53,11 +50,7 @@ const Seeker = () => {
       });
       handleChange(null);
     } else if (value !== null && dateRange.startDate !== null && dateRange.endDate === null) {
-      swal({
-        text: 'Seleccione una fecha de salida',
-        icon: 'warning',
-        button: '¡Entendido!',
-      });
+      setSeekerError('Seleccione una fecha de salida');
     } else {
       filter.setFilter(Api + `productos`); //REFRESH FILTER
     }
@@ -117,6 +110,7 @@ const Seeker = () => {
           </button>
         </div>
       </div>
+      {seekerError && <div className="error-message">{seekerError}</div>}
     </div>
   );
 };

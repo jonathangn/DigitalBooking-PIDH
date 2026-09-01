@@ -4,6 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { DataProvider } from './components/Context/DataContext';
 import { Provider } from './context/Context';
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,6 +12,7 @@ root.render(
     <Provider>
       <DataProvider>
         <App />
+        <Toaster />
       </DataProvider>
     </Provider>
   </React.StrictMode>

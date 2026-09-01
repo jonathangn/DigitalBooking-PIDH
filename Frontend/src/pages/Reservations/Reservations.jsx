@@ -5,7 +5,8 @@ import getRouteForAction from '../../utils/navigation';
 import './Reservations.scss';
 import { Context } from '../../context/Context';
 import { MdLocationOn } from 'react-icons/md';
-import swal from 'sweetalert';
+import { toast } from 'react-hot-toast';
+import Modal from '../../utils/Modal';
 import axiosClient from '../../Helpers/axiosClient';
 import ErrorState from '../../components/ErrorState/ErrorState';
 import { normalizeError } from '../../api/client';
@@ -24,6 +25,7 @@ function Reservations() {
   const [productos, setProductos] = useState();
   const [reserva, setReserva] = useState();
   const [reservaError, setReservaError] = useState(null);
+  const [pendingCancel, setPendingCancel] = useState(null);
 
   async function getReserva() {
     setReservaError(null);
@@ -51,7 +53,7 @@ function Reservations() {
               }
             })
 .catch(function () {
-            swal('No se pudo cancelar la reserva. Intentalo nuevamente.', { icon: 'error' });
+            toast.error('No se pudo cancelar la reserva. Intentalo nuevamente.');
           });
         });
       })
@@ -66,33 +68,21 @@ function Reservations() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- deps cover `decodedToken`; getReserva recreated each render
   }, [decodedToken]);
 
-  function eliminarReserva(idReserva) {
-    swal({
-      title: '¿Está seguro de cancelar su reserva?',
-      text: 'Se le cobrará el costo de cancelación de acuerdo al producto.',
-      icon: 'warning',
-      buttons: ['Volver', 'Cancelar reserva'],
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        axiosClient
-          .delete(`reservas/${idReserva}`)
-          .then(function () {
-            if (productos === undefined || reserva.length === 0) {
-              setHayReserva(false);
-              setHayProductos(false);
-            }
-            swal('Tu reserva ha sido cancelada.', {
-              icon: 'success',
-              buttons: false,
-            });
-            setTimeout(() => {
-              window.location.reload();
-            }, 1800);
-          })
-          .catch(function () {});
-      }
-    });
+  function confirmarCancelacion() {
+    axiosClient
+      .delete(`reservas/${pendingCancel}`)
+      .then(function () {
+        if (productos === undefined || reserva.length === 0) {
+          setHayReserva(false);
+          setHayProductos(false);
+        }
+        setPendingCancel(null);
+        toast.success('Tu reserva ha sido cancelada.');
+        setTimeout(() => {
+          window.location.reload();
+        }, 1800);
+      })
+      .catch(function () {});
   }
 
   if (reservaError) {
@@ -224,7 +214,7 @@ function Reservations() {
                       <button className="producto">
                         <Link to={`/productos/${p.id}`}>Ver más detalle del producto</Link>
                       </button>
-                      <button className="cancelar" onClick={() => eliminarReserva(idReserva.id)}>
+                      <button className="cancelar" onClick={() => setPendingCancel(idReserva.id)}>
                         Cancelar reserva
                       </button>
                     </div>
@@ -233,6 +223,20 @@ function Reservations() {
               })}
           </div>
         </div>
+        <Modal modalActive={pendingCancel !== null}>
+          <div className="modal-confirm">
+            <h3>¿Está seguro de cancelar su reserva?</h3>
+            <p>Se le cobrará el costo de cancelación de acuerdo al producto.</p>
+            <div className="modal-confirm-buttons">
+              <button className="modal-confirm-back" onClick={() => setPendingCancel(null)}>
+                Volver
+              </button>
+              <button className="modal-confirm-cancel" onClick={confirmarCancelacion}>
+                Cancelar reserva
+              </button>
+            </div>
+          </div>
+        </Modal>
       </>
     );
   }
