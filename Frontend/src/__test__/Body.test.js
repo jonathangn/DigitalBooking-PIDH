@@ -1,10 +1,10 @@
 import Body from '../components/Body/Body';
-import { render} from '@testing-library/react';
+import renderWithProviders from './test-utils';
 
 let component = null;
 
 beforeEach(() => {
-    component = render(<Body />)
+    component = renderWithProviders(<Body />)
     expect(component.container).toBeInTheDocument();
 });
 

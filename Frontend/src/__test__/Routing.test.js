@@ -1,10 +1,11 @@
-import Routing from '../../src/Routing/Routing';
 import { render } from "@testing-library/react";
+import Routing from "../../src/routing/Routing";
+import { AllTheProviders } from './test-utils';
 
 let component = null;
 
 beforeEach(() => {
-    component = render(<Routing />)
+    component = render(<Routing />, { wrapper: AllTheProviders })
 });
 
 test('Renderizado del routing', () => {

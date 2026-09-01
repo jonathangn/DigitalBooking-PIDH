@@ -1,16 +1,12 @@
-import { render, screen, act, fireEvent } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { screen, act, fireEvent } from '@testing-library/react';
 import SignUp from '../pages/SignUp/SignUp';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
+import renderWithProviders from './test-utils';
 
 let component = null;
 
 beforeEach(() => {
-    component = render(
-        <BrowserRouter>
-            <SignUp />
-        </BrowserRouter>
-    )
+    component = renderWithProviders(<SignUp />)
     expect(component.container).toBeInTheDocument();
 });
 

@@ -1,15 +1,10 @@
 import Booking from '../pages/Booking/Booking'
-import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import renderWithProviders from './test-utils';
 
 let component = null;
 
 beforeEach(() => {
-    component = render(
-        <BrowserRouter>
-            <Booking />
-        </BrowserRouter>
-    )
+    component = renderWithProviders(<Booking />)
     expect(component.container).toBeInTheDocument();
 });
 

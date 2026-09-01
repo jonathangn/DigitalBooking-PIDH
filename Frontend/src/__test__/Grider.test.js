@@ -1,7 +1,7 @@
-import { render } from '@testing-library/react';
-import Grider from '../components/Body/Grider';
+import Grider from '../components/Body/BodyGrider';
+import renderWithProviders from './test-utils';
 
 test('Correcto renderizado de Grider', () => {
-    const grider = render(<Grider />)
+    const grider = renderWithProviders(<Grider />)
     expect(grider.container).toBeInTheDocument();
 });

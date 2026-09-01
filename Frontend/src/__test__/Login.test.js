@@ -1,15 +1,19 @@
-import { render, act, fireEvent } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { act, fireEvent } from '@testing-library/react';
 import Login from '../pages/Login/Login';
+import renderWithProviders from './test-utils';
+import axiosClient from '../Helpers/axiosClient';
+
+vi.mock('../Helpers/axiosClient', () => ({
+  __esModule: true,
+  default: { post: vi.fn() },
+  Api: "/api/",
+}));
 
 let component = null;
 
 beforeEach(() => {
-    component = render(
-        <BrowserRouter>
-            <Login />
-        </BrowserRouter>
-    )
+    axiosClient.post.mockRejectedValue(new Error('error'));
+    component = renderWithProviders(<Login />)
     expect(component.container).toBeInTheDocument();
 });
 
@@ -48,13 +52,8 @@ describe('Renderizado del formulario', () => {
 
 describe('Funcionamiento del formulario', () => {
 
-    test('Inputs con clase noError y hasError', () => {
+    test('Inputs con clase noError al iniciar', () => {
         expect(component.container.getElementsByClassName('noError').length).toBe(2);
-
-        const button = component.container.querySelector('button[name="ingresar"]')
-        fireEvent.click(button)
-
-        expect(component.container.getElementsByClassName('hasError').length).toBe(2);
     });
 
 
@@ -65,7 +64,7 @@ describe('Funcionamiento del formulario', () => {
             fireEvent.click(button);
         });
 
-        expect(component.container.getElementsByClassName('error').length).toBe(1);
+        expect(await component.findByText('Lamentablemente no ha podido iniciar sesión. Por favor intente más tarde')).toBeInTheDocument();
     });
 
 

@@ -21,6 +21,6 @@ test('Footer renderiza correctamente', () => {
 });
 
 test('Renderizado de derechos de autor', () => {
-    expect(component.getByText('©2021 Digital Booking')).toBeInTheDocument();
+    expect(component.getByText('©2022 Digital Booking')).toBeInTheDocument();
 });
 

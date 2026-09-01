@@ -1,13 +1,13 @@
-import { render } from '@testing-library/react';
-import UserHome from '../pages/UserHome';
-import Home from '../pages/Home'
+import UserHome from '../pages/Home/UserHome';
+import Home from '../pages/Home/Home';
+import renderWithProviders from './test-utils';
 
 test('Correcto renderizado de Home', () => {
-    const userHome = render(<UserHome />)
+    const userHome = renderWithProviders(<UserHome />)
     expect(userHome.container).toBeInTheDocument();
 });
 
 test('Correcto renderizado de UserHome', () => {
-    const home = render(<Home />)
+    const home = renderWithProviders(<Home />)
     expect(home.container).toBeInTheDocument();
 });

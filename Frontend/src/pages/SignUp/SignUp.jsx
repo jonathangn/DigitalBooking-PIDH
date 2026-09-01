@@ -101,7 +101,7 @@ function SignUp() {
         });
       })
       .catch(function (error) {
-        if (error.response.data === 'Este email ya esta asociada con una cuenta creada') {
+        if (error.response?.data === 'Este email ya esta asociada con una cuenta creada') {
           setErrorCuentaYaExiste(true)
           setErrorPost(false)
           setFormSent(false)

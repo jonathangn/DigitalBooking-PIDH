@@ -1,17 +1,13 @@
 import Header from '../components/Header/Header';
-import { render, screen, act, fireEvent } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { screen, act, fireEvent } from '@testing-library/react';
 import botonera from "../funcionesJS/botonera";
 import { create } from 'react-test-renderer';
+import renderWithProviders, { AllTheProvidersWithRouter } from './test-utils';
 
 let component = null;
 beforeEach(() => {
 
-    component = render(
-        <BrowserRouter>
-            <Header />
-        </BrowserRouter>
-    )
+    component = renderWithProviders(<Header />)
     expect(component.container).toBeInTheDocument();
 });
 
@@ -139,9 +135,9 @@ test('Comprobar manejador de botones', async () => {
 
 test('Snapshot de header', () => {
     const tree = create(
-        <BrowserRouter>
+        <AllTheProvidersWithRouter>
             <Header />
-        </BrowserRouter>
+        </AllTheProvidersWithRouter>
     ).toJSON();
     expect(tree).toMatchSnapshot();
 });

@@ -1,8 +1,6 @@
 import { Component } from "react";
 import ReactDOM from "react-dom";
 
-const portalRoot = document.getElementById("portal");
-
 export default class Portal extends Component {
   constructor() {
     super();
@@ -10,11 +8,17 @@ export default class Portal extends Component {
   }
 
   componentDidMount = () => {
-    portalRoot.appendChild(this.el);
+    const portalRoot = document.getElementById("portal");
+    if (portalRoot) {
+      portalRoot.appendChild(this.el);
+    }
   };
 
   componentWillUnmount = () => {
-    portalRoot.removeChild(this.el);
+    const portalRoot = document.getElementById("portal");
+    if (portalRoot && this.el.parentNode === portalRoot) {
+      portalRoot.removeChild(this.el);
+    }
   };
 
   render() {

@@ -1,15 +1,11 @@
 import Product from "../pages/Product/Product";
-import { render, screen, act, fireEvent } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { screen, act, fireEvent } from '@testing-library/react';
+import renderWithProviders from './test-utils';
 
 let component = null;
 
 beforeEach(() => {
-    component = render(
-        <BrowserRouter>
-            <Product />
-        </BrowserRouter>
-    )
+    component = renderWithProviders(<Product />)
     expect(component.container).toBeInTheDocument();
 });
 
