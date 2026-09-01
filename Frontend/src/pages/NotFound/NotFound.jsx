@@ -4,30 +4,11 @@ import './NotFound.scss'
 import botonera from '../../funcionesJS/botonera'
 
 function NotFound() {
-
-    // const {
-    //     auth,
-    //     setAuth,
-    //     warning,
-    //     setWarning,
-    //     user,
-    //     setUser,
-    //     token,
-    //     setToken,
-    //     admin,
-    //     setAdmin
-    // }
-    //     = useContext(Context)
-
     const navegador = useNavigate();
 
     function manejadorBotones(evento) {
         navegador(botonera(evento));
     }
-
-    // if (window.location.pathname === '/admin' && !admin) {
-
-    // }
 
     return (
         <>

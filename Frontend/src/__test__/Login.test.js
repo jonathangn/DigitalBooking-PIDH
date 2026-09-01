@@ -86,13 +86,3 @@ describe('Funcionamiento del formulario', () => {
     });
 
 });
-
-
-// test('Snapshot de Login', () => {
-//     const tree = create(
-//         <BrowserRouter>
-//             <Login />
-//         </BrowserRouter>
-//     ).toJSON();
-//     expect(tree).toMatchSnapshot();
-// });

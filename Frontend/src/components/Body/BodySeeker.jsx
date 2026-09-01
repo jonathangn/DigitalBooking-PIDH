@@ -36,29 +36,6 @@ const Seeker = () => {
   function handleOnClick() {
     let dateOne = dateFormat(dateRange.startDate, "isoDate");
     let dateTwo = dateFormat(dateRange.endDate, "isoDate");
-    // TODO -- SETEA PRODUCTOS QUE NO TIENEN RESERVAS
-    // --  let bookingDatesStart = startDates.startDates[0];
-    // --  let bookingDatesEnd = endDates.endDates[endDates.endDates.length - 1];
-    // --   if (
-    // --     bookingDatesStart >= dateOne ||
-    // --     dateOne <= bookingDatesEnd ||
-    // --     bookingDatesEnd >= dateTwo ||
-    // --     dateTwo <= bookingDatesEnd
-    // --   ) {
-    // --     console.log("esta dentro del rango de reservas");
-    // --     let results = products.products.filter(
-    // --       (p) =>
-    // -- // !p.reservas.filter((r) => {
-    // --           // return r.fechaInicio >= dateOne && r.fechaFinal <= dateTwo;
-    // --           r.fechaInicio.includes(dateOne);
-    // --         })
-    // --     );
-    // --     console.log("RESULTS: ", results);
-    // --     products.setProducts(results);
-    // --   } else {
-    // --     console.log("esta fuera del rango de reservas");
-    // --   }
-    // --   // filter.setFilter(Api + `productos/ubicacion/${value.id}`);
     if (
       value !== null &&
       dateRange.startDate !== null &&

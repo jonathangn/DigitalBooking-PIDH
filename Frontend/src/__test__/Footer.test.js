@@ -26,13 +26,3 @@ test('Renderizado de derechos de autor', () => {
     expect(component.getByText('©2021 Digital Booking')).toBeInTheDocument();
 });
 
-// test('Snasphot de Footer', () => {
-//     const tree = create(
-//         <BrowserRouter>
-//             <Footer />
-//         </BrowserRouter>
-//     ).toJSON();
-//     expect(tree).toMatchSnapshot();
-// });
-
-

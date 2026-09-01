@@ -57,13 +57,6 @@ function Picker_() {
         <div className="react-datepicker-card">
           <div className="react-datepicker-card__body">
             <h4>Agregá tus fechas de viaje para obtener precios exactos</h4>
-            {/* <Link
-            to={auth ? 'reserva' : '/login'}
-            className="seeker-button seeker-item wrapper-calendar-button"
-            type="button"
-          >
-            Iniciar reserva
-          </Link> */}
             <button
               onClick={() => userLogged()}
               className="seeker-button seeker-item wrapper-calendar-button"
@@ -93,13 +86,6 @@ function Picker_() {
         <div className="react-datepicker-card">
           <div className="react-datepicker-card__body">
             <h4>Agregá tus fechas de viaje para obtener precios exactos</h4>
-            {/* <Link
-              to={auth ? 'reserva' : '/login'}
-              className="seeker-button seeker-item wrapper-calendar-button"
-              type="button"
-            >
-              Iniciar reserva
-            </Link> */}
             <button
               onClick={() => userLogged()}
               className="seeker-button seeker-item wrapper-calendar-button"

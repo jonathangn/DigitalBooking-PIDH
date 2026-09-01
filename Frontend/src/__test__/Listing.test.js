@@ -10,8 +10,3 @@ test('Correcto renderizado de Listing', () => {
     )
     expect(component.container).toBeInTheDocument();
 });
-
-// test('Item con clase listing-card', async () => {
-//     const item = component.container.getElementsByClassName('listing-card');
-//     expect(item).toBeInTheDocument();
-// });

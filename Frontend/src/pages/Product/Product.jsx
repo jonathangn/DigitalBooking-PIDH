@@ -30,7 +30,6 @@ import {
 
 } from "react-share";
 
-/* STYLES */
 import "./Product.scss";
 import "./Product.css";
 
@@ -47,14 +46,11 @@ function Product() {
 
   const GalleryR = Gallery.slice(1, 5);
 
-  /* MODAL SWITCH */
   const [modalActive, setModalActive] = useState(false);
   const toggleModal = () => {
     setModalActive(!modalActive);
   };
 
-
-  /* MODAL SM */
   const [modalSM, setModalSM] = useState(false);
   const toggleModalSM = () => {
     setModalSM(!modalSM);
@@ -67,9 +63,7 @@ function Product() {
       setGallery(result.data.imagenes);
       setMainImg(result.data.imagenes[0].urlImg);
       setMainImgM(result.data.imagenes[0].urlImg);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) { }
   }
 
   for (let i in Gallery) {
@@ -78,11 +72,8 @@ function Product() {
 
   const len = Gallery.length;
 
-  /* MODAL BUTTONS */
-
   const nextImg = () => {
     let index = gallery.indexOf(mainImgM);
-    console.log(index);
     if (index === len - 1) {
       setMainImgM(gallery[0]);
     } else {
@@ -124,7 +115,6 @@ function Product() {
             <h4>
               {producto.ubicacion?.ciudad}, {producto.ubicacion?.pais}
             </h4>
-            {/* <h4 className="distance-text">A 940 m del centro </h4> */}
           </div>
         </div>
         <div className="score"></div>
@@ -189,13 +179,6 @@ function Product() {
         </div>
       </div>
 
-      {/* <div className="wrapper-alt">
-        <div className="random-animation">
-          {GalleryR.map((img, index) => (
-            <img key={index} src={img.urlImg} alt="" className="img-next" />
-          ))}
-        </div>
-      </div> */}
       <div className="swiper-container">
         <Swiper
           modules={[Autoplay]}
@@ -314,7 +297,6 @@ function Product() {
         </div>
       </div>
 
-      {/* MODAL */}
       <Modal modalActive={modalActive} toggle={toggleModal}>
         <div className="modal-container">
           <div className="g-container">

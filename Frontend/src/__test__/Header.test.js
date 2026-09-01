@@ -84,7 +84,6 @@ describe('Redirección por función manejadorBotones', () => {
 
 
 test('Comprobar manejador de botones', async () => {
-    // from home - location === '/'
     const buttonCrear = screen.getByRole("button", { name: /Crear Cuenta/i });
 
     act(() => {
@@ -94,7 +93,6 @@ test('Comprobar manejador de botones', async () => {
     expect(component.container).not.toHaveTextContent('Crear cuenta');
     expect(component.container).toHaveTextContent('Iniciar sesión');
 
-    // from login - location === '/signup'
     const buttonIniciar = screen.getByRole("button", { name: /Iniciar Sesión/i });
     act(() => {
         fireEvent.click(buttonIniciar);
@@ -112,13 +110,11 @@ test('Comprobar manejador de botones', async () => {
     expect(component.container).toHaveTextContent('Iniciar sesión');
     expect(component.container).toHaveTextContent('Crear cuenta');
 
-    // from home - location === '/'
     const buttonIniciar2 = screen.getByRole("button", { name: /Iniciar Sesión/i });
     act(() => {
         fireEvent.click(buttonIniciar2);
     });
 
-    // from login - location === '/login'
     expect(component.container).not.toHaveTextContent('Iniciar sesión');
     expect(component.container).toHaveTextContent('Crear cuenta');
 
@@ -131,7 +127,6 @@ test('Comprobar manejador de botones', async () => {
     expect(component.container).not.toHaveTextContent('Crear cuenta');
     expect(component.container).toHaveTextContent('Iniciar sesión');
 
-    // back to home
     const logo2 = screen.getByAltText('logo');
 
     act(() => {

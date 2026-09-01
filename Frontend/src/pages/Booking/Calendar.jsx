@@ -27,8 +27,6 @@ const Calendar = () => {
         );
       });
 
-    console.log(arrayExcluded, "ARRAY");
-
     exclutions = [].concat.apply([], arrayExcluded);
   };
 

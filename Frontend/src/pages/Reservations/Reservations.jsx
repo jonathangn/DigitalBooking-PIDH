@@ -30,19 +30,13 @@ function Reservations() {
 
     axiosClient.get(`reservas/usuario/${decodedToken?.id}`)
       .then(function (response) {
-        console.log(response.data);
         setReserva(response.data);
-        // setHayReserva(true);
-        // if (response.data.length > 0) {
-        //   setHayReserva(true);
-        // }
 
         const productosTemp = [];
 
         response.data.forEach((item) => {
           axiosClient.get(`productos/${item.producto.id}`)
             .then(function (responsePro) {
-              // console.log(responsePro.data);
               productosTemp.push(responsePro.data);
 
               if (response.data.length !== productosTemp.length) {
@@ -55,14 +49,10 @@ function Reservations() {
                 setProductos(productosTemp);
               }
             })
-            .catch(function (errorProd) {
-              console.log(errorProd);
-            });
+            .catch(function (errorProd) {});
         });
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   }
 
   useEffect(() => {
@@ -82,12 +72,10 @@ function Reservations() {
           
           axiosClient.delete(`reservas/${idReserva}`)
             .then(function (response) {
-              // getReserva();
               if (productos === undefined || reserva.length === 0) {
                 setHayReserva(false);
                 setHayProductos(false);
               }
-              console.log(response.data);
               swal("Tu reserva ha sido cancelada.", {
                 icon: "success",
                 buttons: false,
@@ -97,13 +85,8 @@ function Reservations() {
               }, 1800);
 
             })
-            .catch(function (error) {
-              console.log(error);
-            });
+            .catch(function (error) {});
         }
-        // else {
-        //   swal("Your imaginary file is safe!");
-        // }
       });
   }
 

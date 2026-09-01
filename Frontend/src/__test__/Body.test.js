@@ -18,12 +18,3 @@ test('Renderizado mensaje de bienvenida', () => {
 test('Renderizado de botón de búsqueda', () => {
     expect(component.getByText('Buscar')).toBeInTheDocument();
 });
-
-// test('Snapshot de Body', () => {
-//     const tree = create(
-//         <BrowserRouter>
-//             <Body />
-//         </BrowserRouter>
-//     ).toJSON();
-//     expect(tree).toMatchSnapshot();
-// });

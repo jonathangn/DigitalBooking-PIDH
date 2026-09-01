@@ -107,12 +107,3 @@ describe('Funcionamiento del formulario', () => {
     });
 
 });
-
-// test('Snapshot SignUp', () => {
-//     const tree = create(
-//         <BrowserRouter>
-//             <SignUp />
-//         </BrowserRouter>
-//     ).toJSON();
-//     expect(tree).toMatchSnapshot();
-// });

@@ -23,22 +23,16 @@ function Booking() {
   const userLastname = decodedToken?.apellido;
   const userEmail = decodedToken?.email;
 
-  /* LÓGICA CALENDARIO */
-
   const { setIdProduct, startDate, endDate, productDetail } =
     useContext(DataContext);
   setIdProduct(id);
 
   const [bookingOk, setBookingOk] = useState(false);
 
-  /* SELECT */
-
   const [selectedOption, setSelectedOption] = useState({
     value: "",
     label: "",
   });
-
-  /* HORARIOS SELECT */
 
   const options = [
     { value: "01:00:00", label: "01:00 AM" },
@@ -66,8 +60,6 @@ function Booking() {
     { value: "23:00:00", label: "11:00 PM" },
     { value: "24:00:00", label: "12:00 AM" },
   ];
-
-  /* ESTILOS SELECT */
 
   const customStyles = {
     control: (base, state) => ({
@@ -130,16 +122,10 @@ function Booking() {
               if (!values.name) {
                 error.name = "Por favor, ingresa tu nombre";
               }
-              // else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)) {
-              //   error.name = "El nombre solo puede contener letras";
-              // }
 
               if (!values.lastname) {
                 error.lastname = "Por favor, ingresa tu apellido";
               }
-              //  else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.lastname)) {
-              //   error.lastname = "El apellido solo puede contener letras";
-              // }
 
               if (!values.email) {
                 error.email = "Por favor, ingresa un correo electrónico";
@@ -165,9 +151,6 @@ function Booking() {
               return error;
             }}
             onSubmit={(values, { resetForm }) => {
-              console.log(values, "Sended");
-
-              // POST crear reserva
               async function postBooking() {
                 const data = JSON.stringify({
                   hora: values.hora,
@@ -188,7 +171,6 @@ function Booking() {
                     setBookingOk(true);
                   })
                   .catch(function (error) {
-                    console.log(error);
                     swal({
                       text: "Lamentablemente la reserva no ha podido realizarse. Por favor, reintente más tarde.",
                       icon: "error",
@@ -197,29 +179,22 @@ function Booking() {
                   });
               }
               postBooking();
-              // setBookingOk(true);
             }}
           >
-            {/* {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => ( */}
             {({ errors, setFieldValue }) => (
               <Form>
-                {/* // <form onSubmit={handleSubmit}> */}
                 <div className="booking-information">
                   <div className="form">
                     <section className="form-inputs">
                       <div className="card-booking">
                         <div className="inputs-div">
                           <label htmlFor="name">Nombre</label>
-                          {/* <input */}
                           <Field
                             type="text"
                             id="name"
                             name="name"
                             placeholder="Nombre"
                             disabled
-                          // value={values.name}
-                          // onChange={handleChange}
-                          // onBlur={handleBlur}
                           />
                           <ErrorMessage
                             name="name"
@@ -227,7 +202,6 @@ function Booking() {
                               <div className="error-input">{errors.name}</div>
                             )}
                           />
-                          {/* {touched.name && errors.name && <div className='error-input'>{errors.name}</div>} */}
                           <label htmlFor="lastname">Apellido</label>
                           <Field
                             type="text"
@@ -401,7 +375,6 @@ function Booking() {
                   </section>
                 </div>
                 <p className="success-submit"></p>
-                {/* </form> */}
               </Form>
             )}
           </Formik>

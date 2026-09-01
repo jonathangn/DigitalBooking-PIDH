@@ -16,7 +16,6 @@ import axiosClient from "../../Helpers/axiosClient";
 function AdminProduct() {
   const [newBooking, setNewBooking] = useState(false);
 
-  /* SELECT CATEGORÍAS */
   const [categories, setCategories] = useState([]);
 
   const getCategories = async () => {
@@ -34,7 +33,6 @@ function AdminProduct() {
     id: c.id,
   }));
 
-  /* SELECT CIUDAD */
   const [cities, setCities] = useState([]);
 
   const getCities = async () => {
@@ -57,7 +55,6 @@ function AdminProduct() {
     getCategories();
   }, []);
 
-  /* ESTILOS SELECT */
   const customStyles = {
     control: (base, state) => ({
       ...base,
@@ -78,8 +75,6 @@ function AdminProduct() {
     }),
   };
 
-  /* INPUTS VALIDATION */
-
   const [inputs, setInputs] = useState([{ urlImg: "" }]);
 
   const handleInputsChange = (e, i) => {
@@ -97,7 +92,6 @@ function AdminProduct() {
 
   const handleAdd = () => {
     setInputs([...inputs, { urlImg: "" }]);
-    console.log(inputs);
   };
 
   if (newBooking) {
@@ -171,16 +165,10 @@ function AdminProduct() {
               if (!valores.latitud) {
                 errores.latitud = "La latitud es requerida";
               }
-              // else if (!/^[0-9]{1,10}$/.test(valores.latitud)) {
-              //   errores.latitud = "La latitud no es válida";
-              // }
 
               if (!valores.longitud) {
                 errores.longitud = "La longitud es requerida";
               }
-              // else if (!/^[0-9]{1,10}$/.test(valores.longitud)) {
-              //   errores.longitud = "La longitud no es válida";
-              // }
 
               if (!valores.descripcion) {
                 errores.descripcion = "La descripción es requerida";
@@ -230,7 +218,6 @@ function AdminProduct() {
             }}
             onSubmit={(valores, { resetForm }) => {
               async function postProduct() {
-                // Transforma el array de características en objetos con ID
                 const arrayCaracteristicas = [];
                 function politicas() {
                   for (let i = 0; i < valores.caracteristicas.length; i++) {
@@ -274,15 +261,7 @@ function AdminProduct() {
 
                 axiosClient.post("productos", data)
                   .then(function (response) {
-                    console.log(
-                      response,
-                      " ---PROPIEADA CREADA CON ID: ",
-                      response.data.id
-                    );
-
                     inputs.pop();
-
-                    // POST imagenes
                     inputs.forEach((item) => {
                       let payload = {
                         titulo: "",
@@ -292,24 +271,12 @@ function AdminProduct() {
 
                       axiosClient.post("imagenes", payload)
                         .then(function (responseImg) {
-                          // your action after success
-                          console.log(
-                            "Listo el elemento: ",
-                            responseImg.data.id
-                          );
                           setNewBooking(true);
                         })
-                        .catch(function (error) {
-                          // your action on error success
-                          console.log(error);
-                        });
+                        .catch(function (error) {});
                     });
-
-                    // resetForm();
                   })
                   .catch(function (error) {
-                    console.log("El producto se creo sin imágenes");
-                    console.log("Más detalles: ", error);
                     swal({
                       text: "Lamentablemente el producto no ha podido crearse. Por favor intente más tarde",
                       icon: "error",
@@ -475,7 +442,6 @@ function AdminProduct() {
                     <div className="error-message">{errors.descripcion}</div>
                   )}
                 />
-                {/* Checkboxes */}
                 <h1>Agregar atributos</h1>
                 <div className="checkbox-container">
                   <div>
@@ -597,7 +563,6 @@ function AdminProduct() {
                     </div>
                   )}
                 />
-                {/* Radio buttons  */}
                 <h1>Políticas del producto</h1>
                 <div className="cards-politics-container">
                   <div className="cards-politics-setup">
@@ -747,7 +712,6 @@ function AdminProduct() {
                     <div className="error-message">{errors.CheckIn}</div>
                   )}
                 />
-                {/* Imagenes */}
                 <h1>Cargar imágenes</h1>
                 {inputs.map((x, i) => {
                   return (

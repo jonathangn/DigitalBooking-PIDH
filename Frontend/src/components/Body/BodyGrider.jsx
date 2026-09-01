@@ -24,7 +24,6 @@ function Grider() {
         <h2>Buscar por tipo de alojamiento</h2>
         <div className="grider-card">
           <Glider draggable hasDots slidesToShow={"auto"}>
-            {/* {categoriesS.map((category, i) => ( */}
             {categories.categories.map((category, i) => (
               <div
                 key={category.id}

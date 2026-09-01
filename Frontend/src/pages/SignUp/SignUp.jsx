@@ -24,15 +24,11 @@ function SignUp() {
   const [lastName, setLastName] = React.useState({ campo: "", error: null, mensajeError: "Ingrese un apellido válido." });
   const [errorCuentaYaExiste, setErrorCuentaYaExiste] = React.useState(null)
 
-  // Escucha cambios de los inputs
-
   const onChangeEmail = (e) => { setEmail({ ...email, campo: e.target.value }) }
   const onChangePassword = (e) => { setPassword({ ...password, campo: e.target.value }) }
   const onChangePassword2 = (e) => { setPassword2({ ...password2, campo: e.target.value }) }
   const onChangeName = (e) => { setName({ ...name, campo: e.target.value }) }
   const onChangeLastName = (e) => { setLastName({ ...lastName, campo: e.target.value }) }
-
-  // Validaciones por cada input
 
   const validacionName = () => {
     return (name.campo === "" || name.campo === null || !nameRegExp.test(name.campo))  
@@ -64,7 +60,6 @@ function SignUp() {
       : setPassword2({ ...password2, error: false })
   }
 
-  // Envio de form si es válido y redireccion al login para obtención de token
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -80,19 +75,12 @@ function SignUp() {
       password2.error === false &&
       name.error === false &&
       lastName.error === false) {
-      // setFormSent(true)
       setErrorCuentaYaExiste(false)
       setErrorPost(false)
       setWarning(false)
-      // swal({
-      //   text: "¡Revise su correo para validar su cuenta!",
-      //   icon: "/images/email.png",
-      //   button: "¡Entendido!",
-      // });
     }
   }
 
-  // Envio de datos para crear un nuevo usuario
   async function postUser() {
     axiosClient.post(`usuarios`, {
       nombre: name.campo,
@@ -105,7 +93,6 @@ function SignUp() {
       }
     })
       .then(function (response) {
-        console.log(response);
         setFormSent(true)
         setErrorPost(false)
         swal({
@@ -115,8 +102,6 @@ function SignUp() {
         });
       })
       .catch(function (error) {
-        console.log(error.response);
-        console.log(error.response.status);
         if (error.response.data === 'Este email ya esta asociada con una cuenta creada') {
           setErrorCuentaYaExiste(true)
           setErrorPost(false)

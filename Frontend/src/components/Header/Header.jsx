@@ -28,7 +28,6 @@ function Header() {
         navegador(botonera(evento));
     }
 
-    // Despliegue de barra lateral de navegación
     const [sidebar, setSidebar] = React.useState(false);
 
     const showSidebar = () => {

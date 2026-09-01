@@ -11,17 +11,14 @@ function Login() {
   const [email, setEmail] = React.useState({ campo: "", error: null });
   const [password, setPassword] = React.useState({ campo: "", error: null });
 
-  // Escucha cambios de los inputs
   const onChangeEmail = (e) => { setEmail({ ...email, campo: e.target.value }); }
   const onChangePassword = (e) => { setPassword({ ...password, campo: e.target.value }); }
 
-  // Envio de form si es válido y redireccion al Home
   const onSubmit = (e) => {
     e.preventDefault();
     postUser()
   }
 
-  // Envio de datos para obtener JWT
   async function postUser() {
     axiosClient.post(`authenticate`, {
       email: email.campo,
@@ -32,7 +29,6 @@ function Login() {
         navigate('/');
       })
       .catch(function (error) {
-        console.log(error);
         setErrorPost(true)
       })
   }
@@ -59,7 +55,6 @@ function Login() {
               name="email"
               value={email.campo}
               onChange={onChangeEmail}
-              // onBlur={validacionEmail}
               autoComplete="current-email"
             />
             <label htmlFor='password'>Contraseña</label>
@@ -69,7 +64,6 @@ function Login() {
               name="password"
               value={password.campo}
               onChange={onChangePassword}
-              // onBlur={validacionContra}
               autoComplete="current-password"
             />
             {(email.error || password.error) && <div className='error'><small>Por favor vuelva a intentarlo, sus credenciales son inválidas</small></div>}
