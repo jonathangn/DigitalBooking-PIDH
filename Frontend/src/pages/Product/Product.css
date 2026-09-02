@@ -218,7 +218,6 @@
   min-height: 300px;
   align-items: baseline;
   padding-top: 15px;
-  /* width: 110% !important; */
   width: 110%;
   left: -50px;
   box-shadow: 0px 3px 3px #74757e6b;
@@ -423,7 +422,6 @@
   }
 
   .react-datepicker-card__body {
-    /* width: 80%; */
     height: initial;
     display: flex;
     flex-direction: row;

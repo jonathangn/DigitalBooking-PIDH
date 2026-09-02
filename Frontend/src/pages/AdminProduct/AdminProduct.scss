@@ -21,9 +21,6 @@
   /* SELECTS */
 
   .css-6j8wv5-Input {
-    /* margin: 2px; */
-    /* padding-bottom: 2px; */
-    /* padding-top: 2px; */
     visibility: visible;
     color: hsl(0, 0%, 20%);
     -webkit-flex: 1 1 auto;
@@ -39,32 +36,12 @@
   .css-319lph-ValueContainer,
   .css-7z8g7q-control,
   .css-7z8g7q-control {
-    // font-size: 1.2rem;
-    // font-weight: bold;
-    // color: var(--color-2);
-    // margin-top: 2rem;
-    // margin-bottom: 1rem;
     width: 100%;
     margin: 10px 0px;
   }
 
   .css-319lph-ValueContainer {
     margin: 0px 0px;
-  }
-
-  .css-6j8wv5-Input {
-    /* margin: 2px; */
-    /* padding-bottom: 2px; */
-    /* padding-top: 2px; */
-    visibility: visible;
-    color: hsl(0, 0%, 20%);
-    -webkit-flex: 1 1 auto;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    display: inline-grid;
-    grid-area: 1/1/2/3;
-    grid-template-columns: 0 min-content;
-    box-sizing: border-box;
   }
 
   .form-container {
@@ -324,9 +301,6 @@
   /* Show the checkmark when checked */
   .container input:checked ~ .checkmark:after {
     display: block;
-    // position: absolute;
-    // top: 0;
-    // left: 0;
   }
 
   /* Style the checkmark/indicator */
