@@ -42,7 +42,7 @@
     "react-share": "^4.4.1",
     "sass": "^1.92.0",
     "swiper": "^14.0.6",
-    "vite": "^7.1.4",
+    "vite": "^7.3.7",
     "web-vitals": "^4.2.4"
   },
   "devDependencies": {
